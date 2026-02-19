@@ -1,0 +1,231 @@
+:root {
+  --bg: #f4efe7;
+  --surface: rgba(255, 255, 255, 0.82);
+  --text: #1f2a2a;
+  --muted: #4e5f5e;
+  --primary: #0e8f7d;
+  --line: rgba(18, 45, 44, 0.14);
+  --shadow: 0 20px 45px rgba(31, 42, 42, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 8% 10%, rgba(255, 122, 47, 0.22), transparent 30%),
+    radial-gradient(circle at 92% 18%, rgba(14, 143, 125, 0.24), transparent 32%),
+    linear-gradient(160deg, #f6f2ea 0%, #efe9df 48%, #f7f4ee 100%);
+}
+
+.wrap {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+
+.hero {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  backdrop-filter: blur(3px);
+  box-shadow: var(--shadow);
+  padding: 56px 42px 48px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: rgba(14, 143, 125, 0.12);
+  color: #0b6358;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+h1 {
+  margin: 18px 0 14px;
+  font-family: "Archivo", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+}
+
+.lead {
+  margin: 0;
+  max-width: 64ch;
+  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.install-hint {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
+.section-title {
+  margin: 42px 0 18px;
+  font-family: "Archivo", sans-serif;
+  font-size: clamp(1.4rem, 2.1vw, 1.8rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+.card {
+  grid-column: span 12;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  padding: 20px 20px 18px;
+  box-shadow: 0 8px 22px rgba(31, 42, 42, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(31, 42, 42, 0.12);
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-family: "Archivo", sans-serif;
+  font-size: 1.24rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #113837;
+  background: rgba(14, 143, 125, 0.14);
+}
+
+.card.accent .badge {
+  color: #6c3205;
+  background: rgba(255, 122, 47, 0.2);
+}
+
+.page-block {
+  margin-top: 36px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 8px 22px rgba(31, 42, 42, 0.08);
+  padding: 22px;
+}
+
+.page-block h2,
+.topic-section h3 {
+  font-family: "Archivo", sans-serif;
+}
+
+.page-block ul,
+.page-block ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.topics-index {
+  columns: 2;
+  column-gap: 28px;
+  list-style-type: upper-roman;
+}
+
+.topics-index a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.topics-index a:hover {
+  color: var(--primary);
+}
+
+.topic-section {
+  margin-top: 18px;
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: #ffffff;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.foot {
+  margin-top: 34px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  color: #5b6b6a;
+}
+
+@media (min-width: 700px) {
+  .card {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 980px) {
+  .card {
+    grid-column: span 4;
+  }
+
+  .card.wide {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 760px) {
+  .topics-index {
+    columns: 1;
+  }
+}
