@@ -11,6 +11,42 @@ type RouteState = {
   sectionId: string | null;
 };
 
+const CZ_MONTHS = [
+  "leden",
+  "unor",
+  "brezen",
+  "duben",
+  "kveten",
+  "cerven",
+  "cervenec",
+  "srpen",
+  "zari",
+  "rijen",
+  "listopad",
+  "prosinec"
+];
+
+const WEEKDAY_LABELS = ["Po", "Ut", "St", "Ct", "Pa", "So", "Ne"];
+
+function getCalendarDays(date: Date): Array<number | null> {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const totalDays = new Date(year, month + 1, 0).getDate();
+  const mondayStartOffset = (firstDay.getDay() + 6) % 7;
+  const days: Array<number | null> = Array.from({ length: mondayStartOffset }, () => null);
+
+  for (let day = 1; day <= totalDays; day += 1) {
+    days.push(day);
+  }
+
+  while (days.length % 7 !== 0) {
+    days.push(null);
+  }
+
+  return days;
+}
+
 function getRouteFromHash(): RouteState {
   const raw = window.location.hash.replace(/^#/, "");
   const clean = raw.startsWith("/") ? raw.slice(1) : raw;
@@ -61,6 +97,7 @@ function HomePage({ onInstall, installHint }: { onInstall: () => void; installHi
 
 function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | null }) {
   const moduleData = modules.find((item) => item.slug === slug);
+  const [calendarDate, setCalendarDate] = useState(() => new Date());
 
   if (!moduleData) {
     return null;
@@ -68,6 +105,15 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 
   if (moduleData.slug === "rehaedu") {
     return <RehaEduPage sectionId={sectionId} />;
+  }
+
+  const days = getCalendarDays(calendarDate);
+  const now = new Date();
+  const isCurrentMonth =
+    now.getFullYear() === calendarDate.getFullYear() && now.getMonth() === calendarDate.getMonth();
+
+  function changeMonth(step: number) {
+    setCalendarDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + step, 1));
   }
 
   return (
@@ -93,6 +139,41 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
               <li key={point}>{point}</li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {moduleData.slug === "rehaevent" && (
+        <section className="page-block calendar-block" aria-label="Kalendar udalosti">
+          <div className="calendar-head">
+            <button className="calendar-nav" type="button" onClick={() => changeMonth(-1)} aria-label="Predchozi mesic">
+              &lt;
+            </button>
+            <h3 className="calendar-month">
+              {CZ_MONTHS[calendarDate.getMonth()]} {calendarDate.getFullYear()}
+            </h3>
+            <button className="calendar-nav" type="button" onClick={() => changeMonth(1)} aria-label="Dalsi mesic">
+              &gt;
+            </button>
+          </div>
+
+          <div className="calendar-grid calendar-weekdays">
+            {WEEKDAY_LABELS.map((label) => (
+              <span key={label} className="calendar-weekday">
+                {label}
+              </span>
+            ))}
+          </div>
+
+          <div className="calendar-grid calendar-days">
+            {days.map((day, index) => {
+              const isToday = isCurrentMonth && day === now.getDate();
+              return (
+                <div key={`${index}-${day ?? "empty"}`} className={`calendar-day ${day ? "" : "is-empty"} ${isToday ? "is-today" : ""}`.trim()}>
+                  {day ?? ""}
+                </div>
+              );
+            })}
+          </div>
         </section>
       )}
     </>
