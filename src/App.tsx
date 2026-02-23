@@ -23,6 +23,24 @@ type CalendarEvent = {
 
 const calendarEvents: CalendarEvent[] = [
   {
+    title: "Neuromuskulární sonografie",
+    url: "https://mhconsulting.cz/kongres/328-neuromuskularni-sonografie-22-23-ledna-2026/poplatky",
+    startDate: new Date(2026, 0, 22),
+    endDate: new Date(2026, 0, 23)
+  },
+  {
+    title: "Sympozium sportovní medicíny (Dříteč)",
+    url: "https://www.sport-sympozium.cz/",
+    startDate: new Date(2026, 2, 26),
+    endDate: new Date(2026, 2, 28)
+  },
+  {
+    title: "15. Severočeské algeziologické dny",
+    url: "https://www.bos-congress.cz/sad2026",
+    startDate: new Date(2026, 2, 27),
+    endDate: new Date(2026, 2, 28)
+  },
+  {
     title: "XXXI. sjezd SRFM a 38. konference ČAE",
     url: "https://www.srfm.cz/aktuality/xxxi-sjezd-srfm-a-38-konference-cae-13824",
     startDate: new Date(2026, 4, 28),
