@@ -23,7 +23,7 @@ type CalendarEvent = {
 
 const calendarEvents: CalendarEvent[] = [
   {
-    title: "Neuromuskulární sonografie",
+    title: "Neuromuskulární sonografie (Tábor)",
     url: "https://mhconsulting.cz/kongres/328-neuromuskularni-sonografie-22-23-ledna-2026/poplatky",
     startDate: new Date(2026, 0, 22),
     endDate: new Date(2026, 0, 23)
@@ -35,13 +35,13 @@ const calendarEvents: CalendarEvent[] = [
     endDate: new Date(2026, 2, 28)
   },
   {
-    title: "15. Severočeské algeziologické dny",
+    title: "15. Severočeské algeziologické dny (Ústí nad Labem)",
     url: "https://www.bos-congress.cz/sad2026",
     startDate: new Date(2026, 2, 27),
     endDate: new Date(2026, 2, 28)
   },
   {
-    title: "XXXI. sjezd SRFM a 38. konference ČAE",
+    title: "XXXI. sjezd SRFM a 38. konference ČAE (Luhačovice)",
     url: "https://www.srfm.cz/aktuality/xxxi-sjezd-srfm-a-38-konference-cae-13824",
     startDate: new Date(2026, 4, 28),
     endDate: new Date(2026, 4, 30)
@@ -200,7 +200,7 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 
           <div className="calendar-layout">
             <button className="calendar-nav side left" type="button" onClick={() => changeMonth(-1)} aria-label="Predchozi mesic">
-              &lt;
+              ←
             </button>
 
             <div>
@@ -233,7 +233,7 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
             </div>
 
             <button className="calendar-nav side right" type="button" onClick={() => changeMonth(1)} aria-label="Dalsi mesic">
-              &gt;
+              →
             </button>
           </div>
 
