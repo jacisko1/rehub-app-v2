@@ -15,7 +15,40 @@ if (import.meta.env.DEV) {
 
 if (import.meta.env.PROD && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => undefined);
+    const swUrl = `/sw.js?build=${encodeURIComponent(__APP_BUILD_ID__)}`;
+    let refreshing = false;
+
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (refreshing) {
+        return;
+      }
+      refreshing = true;
+      window.location.reload();
+    });
+
+    navigator.serviceWorker
+      .register(swUrl)
+      .then((registration) => {
+        const tryActivateUpdate = (worker: ServiceWorker | null) => {
+          if (!worker) {
+            return;
+          }
+
+          worker.addEventListener("statechange", () => {
+            if (worker.state === "installed" && navigator.serviceWorker.controller) {
+              worker.postMessage({ type: "SKIP_WAITING" });
+            }
+          });
+        };
+
+        tryActivateUpdate(registration.installing);
+        registration.addEventListener("updatefound", () => {
+          tryActivateUpdate(registration.installing);
+        });
+
+        void registration.update();
+      })
+      .catch(() => undefined);
   });
 }
 

@@ -182,10 +182,8 @@ h1 {
 }
 
 .calendar-head {
-  display: grid;
-  grid-template-columns: 42px 1fr 42px;
+  display: block;
   align-items: center;
-  gap: 10px;
   margin-bottom: 14px;
 }
 
@@ -213,6 +211,18 @@ h1 {
 .calendar-nav:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(31, 42, 42, 0.12);
+}
+
+.calendar-layout {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.calendar-nav.side {
+  align-self: stretch;
+  height: auto;
 }
 
 .calendar-grid {
@@ -255,6 +265,46 @@ h1 {
   border-color: rgba(14, 143, 125, 0.5);
   background: rgba(14, 143, 125, 0.18);
   color: #0b6358;
+}
+
+.calendar-day.has-event {
+  border-color: rgba(255, 122, 47, 0.42);
+  box-shadow: inset 0 -3px 0 rgba(255, 122, 47, 0.32);
+}
+
+.calendar-events {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.calendar-events h4 {
+  margin: 0 0 10px;
+  font-family: "Archivo", sans-serif;
+  font-size: 1rem;
+}
+
+.calendar-events ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.calendar-events li {
+  margin-bottom: 8px;
+}
+
+.calendar-events a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.calendar-events a:hover {
+  text-decoration: underline;
+}
+
+.calendar-events-empty {
+  margin: 0;
+  color: var(--muted);
 }
 
 .actions {

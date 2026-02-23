@@ -11,22 +11,24 @@ type RouteState = {
   sectionId: string | null;
 };
 
-const CZ_MONTHS = [
-  "leden",
-  "unor",
-  "brezen",
-  "duben",
-  "kveten",
-  "cerven",
-  "cervenec",
-  "srpen",
-  "zari",
-  "rijen",
-  "listopad",
-  "prosinec"
-];
-
 const WEEKDAY_LABELS = ["Po", "Ut", "St", "Ct", "Pa", "So", "Ne"];
+const MONTH_FORMATTER = new Intl.DateTimeFormat("cs-CZ", { month: "long" });
+
+type CalendarEvent = {
+  title: string;
+  url: string;
+  startDate: Date;
+  endDate: Date;
+};
+
+const calendarEvents: CalendarEvent[] = [
+  {
+    title: "XXXI. sjezd SRFM a 38. konference ČAE",
+    url: "https://www.srfm.cz/aktuality/xxxi-sjezd-srfm-a-38-konference-cae-13824",
+    startDate: new Date(2026, 4, 28),
+    endDate: new Date(2026, 4, 30)
+  }
+];
 
 function getCalendarDays(date: Date): Array<number | null> {
   const year = date.getFullYear();
@@ -45,6 +47,34 @@ function getCalendarDays(date: Date): Array<number | null> {
   }
 
   return days;
+}
+
+function isSameMonth(date: Date, monthDate: Date): boolean {
+  return date.getFullYear() === monthDate.getFullYear() && date.getMonth() === monthDate.getMonth();
+}
+
+function eventIntersectsMonth(event: CalendarEvent, monthDate: Date): boolean {
+  const monthStart = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
+  const monthEnd = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0, 23, 59, 59, 999);
+  return event.startDate <= monthEnd && event.endDate >= monthStart;
+}
+
+function eventIncludesDay(event: CalendarEvent, year: number, month: number, day: number): boolean {
+  const dayDate = new Date(year, month, day);
+  const start = new Date(event.startDate.getFullYear(), event.startDate.getMonth(), event.startDate.getDate());
+  const end = new Date(event.endDate.getFullYear(), event.endDate.getMonth(), event.endDate.getDate());
+  return dayDate >= start && dayDate <= end;
+}
+
+function formatEventDate(event: CalendarEvent): string {
+  const sameDay = event.startDate.getTime() === event.endDate.getTime();
+  if (sameDay) {
+    return `${event.startDate.getDate()}. ${MONTH_FORMATTER.format(event.startDate)} ${event.startDate.getFullYear()}`;
+  }
+  if (isSameMonth(event.startDate, event.endDate)) {
+    return `${event.startDate.getDate()}.–${event.endDate.getDate()}. ${MONTH_FORMATTER.format(event.startDate)} ${event.startDate.getFullYear()}`;
+  }
+  return `${event.startDate.getDate()}. ${MONTH_FORMATTER.format(event.startDate)} ${event.startDate.getFullYear()} – ${event.endDate.getDate()}. ${MONTH_FORMATTER.format(event.endDate)} ${event.endDate.getFullYear()}`;
 }
 
 function getRouteFromHash(): RouteState {
@@ -145,34 +175,68 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
       {moduleData.slug === "rehaevent" && (
         <section className="page-block calendar-block" aria-label="Kalendar udalosti">
           <div className="calendar-head">
-            <button className="calendar-nav" type="button" onClick={() => changeMonth(-1)} aria-label="Predchozi mesic">
+            <h3 className="calendar-month">
+              {MONTH_FORMATTER.format(calendarDate)} {calendarDate.getFullYear()}
+            </h3>
+          </div>
+
+          <div className="calendar-layout">
+            <button className="calendar-nav side left" type="button" onClick={() => changeMonth(-1)} aria-label="Predchozi mesic">
               &lt;
             </button>
-            <h3 className="calendar-month">
-              {CZ_MONTHS[calendarDate.getMonth()]} {calendarDate.getFullYear()}
-            </h3>
-            <button className="calendar-nav" type="button" onClick={() => changeMonth(1)} aria-label="Dalsi mesic">
+
+            <div>
+              <div className="calendar-grid calendar-weekdays">
+                {WEEKDAY_LABELS.map((label) => (
+                  <span key={label} className="calendar-weekday">
+                    {label}
+                  </span>
+                ))}
+              </div>
+
+              <div className="calendar-grid calendar-days">
+                {days.map((day, index) => {
+                  const isToday = isCurrentMonth && day === now.getDate();
+                  const hasEvent =
+                    day !== null &&
+                    calendarEvents.some((event) =>
+                      eventIncludesDay(event, calendarDate.getFullYear(), calendarDate.getMonth(), day)
+                    );
+                  return (
+                    <div
+                      key={`${index}-${day ?? "empty"}`}
+                      className={`calendar-day ${day ? "" : "is-empty"} ${isToday ? "is-today" : ""} ${hasEvent ? "has-event" : ""}`.trim()}
+                    >
+                      {day ?? ""}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <button className="calendar-nav side right" type="button" onClick={() => changeMonth(1)} aria-label="Dalsi mesic">
               &gt;
             </button>
           </div>
 
-          <div className="calendar-grid calendar-weekdays">
-            {WEEKDAY_LABELS.map((label) => (
-              <span key={label} className="calendar-weekday">
-                {label}
-              </span>
-            ))}
-          </div>
-
-          <div className="calendar-grid calendar-days">
-            {days.map((day, index) => {
-              const isToday = isCurrentMonth && day === now.getDate();
-              return (
-                <div key={`${index}-${day ?? "empty"}`} className={`calendar-day ${day ? "" : "is-empty"} ${isToday ? "is-today" : ""}`.trim()}>
-                  {day ?? ""}
-                </div>
-              );
-            })}
+          <div className="calendar-events">
+            <h4>Události v tomto měsíci</h4>
+            {calendarEvents.filter((event) => eventIntersectsMonth(event, calendarDate)).length === 0 ? (
+              <p className="calendar-events-empty">Zatím bez naplánovaných událostí.</p>
+            ) : (
+              <ul>
+                {calendarEvents
+                  .filter((event) => eventIntersectsMonth(event, calendarDate))
+                  .map((event) => (
+                    <li key={event.url}>
+                      <strong>{formatEventDate(event)}:</strong>{" "}
+                      <a href={event.url} target="_blank" rel="noreferrer">
+                        {event.title}
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+            )}
           </div>
         </section>
       )}
