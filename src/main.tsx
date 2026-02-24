@@ -15,7 +15,7 @@ if (import.meta.env.DEV) {
 
 if (import.meta.env.PROD && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    const swUrl = `/sw.js?build=${encodeURIComponent(__APP_BUILD_ID__)}`;
+    const swUrl = `${import.meta.env.BASE_URL}sw.js?build=${encodeURIComponent(__APP_BUILD_ID__)}`;
     let refreshing = false;
 
     navigator.serviceWorker.addEventListener("controllerchange", () => {

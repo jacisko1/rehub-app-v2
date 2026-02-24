@@ -2,6 +2,7 @@ var _a;
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 export default defineConfig({
+    base: "./",
     define: {
         __APP_BUILD_ID__: JSON.stringify((_a = process.env.VERCEL_GIT_COMMIT_SHA) !== null && _a !== void 0 ? _a : new Date().toISOString())
     },

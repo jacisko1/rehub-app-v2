@@ -19,6 +19,7 @@ type CalendarEvent = {
   url: string;
   startDate: Date;
   endDate: Date;
+  isCzech: boolean;
 };
 
 const calendarEvents: CalendarEvent[] = [
@@ -26,25 +27,43 @@ const calendarEvents: CalendarEvent[] = [
     title: "Neuromuskulární sonografie (Tábor)",
     url: "https://mhconsulting.cz/kongres/328-neuromuskularni-sonografie-22-23-ledna-2026/poplatky",
     startDate: new Date(2026, 0, 22),
-    endDate: new Date(2026, 0, 23)
+    endDate: new Date(2026, 0, 23),
+    isCzech: true
   },
   {
     title: "Sympozium sportovní medicíny (Dříteč)",
     url: "https://www.sport-sympozium.cz/",
     startDate: new Date(2026, 2, 26),
-    endDate: new Date(2026, 2, 28)
+    endDate: new Date(2026, 2, 28),
+    isCzech: true
   },
   {
     title: "15. Severočeské algeziologické dny (Ústí nad Labem)",
     url: "https://www.bos-congress.cz/sad2026",
     startDate: new Date(2026, 2, 27),
-    endDate: new Date(2026, 2, 28)
+    endDate: new Date(2026, 2, 28),
+    isCzech: true
   },
   {
     title: "XXXI. sjezd SRFM a 38. konference ČAE (Luhačovice)",
     url: "https://www.srfm.cz/aktuality/xxxi-sjezd-srfm-a-38-konference-cae-13824",
     startDate: new Date(2026, 4, 28),
-    endDate: new Date(2026, 4, 30)
+    endDate: new Date(2026, 4, 30),
+    isCzech: true
+  },
+  {
+    title: "ESPRM 2026 (Krakow, Poland)",
+    url: "https://esprm2026.com/",
+    startDate: new Date(2026, 2, 23),
+    endDate: new Date(2026, 2, 26),
+    isCzech: false
+  },
+  {
+    title: "ISPRM 2026 (Vancouver, Canada)",
+    url: "https://www.isprm2026.com/",
+    startDate: new Date(2026, 4, 17),
+    endDate: new Date(2026, 4, 21),
+    isCzech: false
   }
 ];
 
@@ -179,7 +198,7 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
         </div>
       </section>
 
-      {moduleData.points && (
+      {moduleData.points && moduleData.slug !== "rehaevent" && (
         <section className="page-block">
           <h2>Klíčová témata</h2>
           <ul>
@@ -247,7 +266,9 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
                   .filter((event) => eventIntersectsMonth(event, calendarDate))
                   .map((event) => (
                     <li key={event.url}>
-                      <strong>{formatEventDate(event)}:</strong>{" "}
+                      <strong>
+                        {event.isCzech ? "🇨🇿" : "🌍"} {formatEventDate(event)}:
+                      </strong>{" "}
                       <a href={event.url} target="_blank" rel="noreferrer">
                         {event.title}
                       </a>

@@ -1,5 +1,5 @@
-const CACHE_NAME = "rehub-v3";
-const APP_SHELL = ["/", "/index.html", "/manifest.webmanifest", "/icon.svg", "/icon-192-v2.png", "/icon-512-v2.png"];
+const CACHE_NAME = "rehub-v4";
+const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg", "./icon-192-v3.png", "./icon-512-v3.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
@@ -40,11 +40,12 @@ self.addEventListener("fetch", (event) => {
   }
 
   const isNavigation = event.request.mode === "navigate";
+  const path = requestUrl.pathname;
   const isCriticalAsset =
-    requestUrl.pathname === "/" ||
-    requestUrl.pathname === "/index.html" ||
-    requestUrl.pathname === "/assets/index.js" ||
-    requestUrl.pathname === "/assets/index.css";
+    path === "/" ||
+    path.endsWith("/index.html") ||
+    path.endsWith("/assets/index.js") ||
+    path.endsWith("/assets/index.css");
 
   if (isNavigation || isCriticalAsset) {
     event.respondWith(
@@ -60,7 +61,7 @@ self.addEventListener("fetch", (event) => {
             return cached;
           }
           if (isNavigation) {
-            return caches.match("/index.html");
+            return caches.match("./index.html");
           }
           return Promise.reject();
         })
