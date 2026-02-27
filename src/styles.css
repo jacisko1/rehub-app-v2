@@ -187,6 +187,7 @@ h1 {
   align-items: flex-start;
   gap: 10px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .question-number {
@@ -206,6 +207,60 @@ h1 {
 .question-number.pending {
   background: #f8d8de;
   color: #974456;
+}
+
+.question-number.prepared {
+  background: #d9f2e3;
+  color: #2f7554;
+}
+
+.question-toggle {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.question-toggle:hover {
+  color: var(--primary);
+}
+
+.question-details {
+  width: 100%;
+  margin-left: 40px;
+  margin-top: 8px;
+  border-left: 2px solid rgba(14, 143, 125, 0.18);
+  padding-left: 12px;
+}
+
+.chapter-details {
+  margin-bottom: 8px;
+}
+
+.chapter-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #244443;
+}
+
+.chapter-details ul {
+  margin: 8px 0 12px;
+  padding-left: 1.2rem;
+}
+
+.chapter-details li {
+  margin-bottom: 6px;
+}
+
+.chapter-roman {
+  display: inline-block;
+  margin-right: 8px;
+  min-width: 22px;
+  color: #0b6358;
 }
 
 .calendar-block {

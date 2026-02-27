@@ -22,6 +22,124 @@ type CalendarEvent = {
   isCzech: boolean;
 };
 
+type QuestionChapter = {
+  title: string;
+  points: string[];
+};
+
+type PreparedQuestion = {
+  chapters: QuestionChapter[];
+};
+
+const ROMAN_CHAPTERS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+
+const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
+  "v-neurologie:10": {
+    chapters: [
+      {
+        title: "Definice a charakteristika",
+        points: [
+          "Dětská mozková obrna (DMO) je neprogresivní neurologický syndrom vznikající na podkladě léze nezralého mozku v prenatálním, perinatálním nebo časně postnatálním období.",
+          "Jedná se o poruchu vývoje pohybu a postury. Léze samotná je uzavřený děj, avšak klinická manifestace se mění v průběhu růstu a vývoje dítěte.",
+          "DMO je nejčastější onemocnění pohybového aparátu v dětském věku, prevalence je přibližně 2-3/1000 živě narozených dětí a výrazně vyšší u nedonošených.",
+          "Motorická porucha je často doprovázena poruchami kognitivními, senzorickými (zrak, sluch), komunikačními, percepčními, poruchami chování a PAS, epilepsií a sekundárními muskuloskeletálními změnami."
+        ]
+      },
+      {
+        title: "Etiologie",
+        points: [
+          "Prenatální: IUGR, chronická hypoxie, preeklampsie, vícečetná těhotenství, kongenitální infekce, intoxikace, VVV CNS.",
+          "Perinatální: hypoxie, porodní trauma, intraventrikulární hemoragie (IVH).",
+          "Postnatální: infekce CNS, hyperbilirubinémie (riziko dyskineticko-dystonické formy, cca 10 %).",
+          "Významnou roli hraje vulnerabilita germinální matrix u nedonošených dětí (křehká cévní síť, nezralá regulace průtoku, ischemie a krvácení)."
+        ]
+      },
+      {
+        title: "Klasifikace dle typu postižení",
+        points: [
+          "Spastický typ: poškozena pyramidová dráha, chudá stereotypní motorika; formy di-/kvadruparéza a hemiparéza (HK často horší než DK).",
+          "Spastická diparéza: HK bývají funkčně lepší, často hypoplazie pletence pánevního, DK kratší a drobnější, riziko luxace kyčlí a pes equinus.",
+          "Spastická kvadruparéza: těžká léze CNS, těžké postižení HK i DK, častá mentální retardace, bulbární symptomatika, skolióza, poruchy příjmu p.o., respirační komplikace a poruchy vyprazdňování.",
+          "Spastická hemiparéza: unilaterální postižení, často časná vertikalizace, equinovarózní postavení, epilepsie cca 27-44 %.",
+          "Dyskinetický typ (cca 10 %): dystonický a choreo-atetotický, ztráta kontroly pohybu, labilita trupu, poruchy orofaciální motoriky; epilepsie méně častá.",
+          "Ataktický typ (4-15 %): centrální hypotonie, ataxie trupu a končetin, hypermetrie, intenční tremor, porucha koordinace očních bulbů, často nestabilní sed a pozdní chůze.",
+          "Smíšený typ: kombinace spastického a dyskinetického typu."
+        ]
+      },
+      {
+        title: "Diagnostika",
+        points: [
+          "Klinické a neurologické vyšetření, Vojtův diagnosticko-terapeutický koncept (spontánní motorika, milníky vývoje, polohové reakce, dynamika reflexů).",
+          "Zobrazovací metody: SONO, MRI; poranění mozku nemusí být vždy na MRI, ale většina dětí s DMO má abnormální nález.",
+          "Doplňující vyšetření: EEG, metabolické vady, genetické vyšetření.",
+          "V ČR bývá diagnostika často mezi 1.-2. rokem věku."
+        ]
+      },
+      {
+        title: "Hodnocení tíže postižení",
+        points: [
+          "GMFCS (I-V): Gross Motor Function Classification System pro klasifikaci hrubé motoriky a funkčních schopností.",
+          "GMFM: Gross Motor Function Measure pro kvantifikaci hrubé motoriky.",
+          "Objektivizace efektu terapie: 6MWT, 10MWT, TUG, 9HPT, Box and Block test."
+        ]
+      },
+      {
+        title: "Komplexní rehabilitační léčba",
+        points: [
+          "Interdisciplinární proces se zaměřením na maximální nezávislost, kvalitu života a sociální integraci.",
+          "Nutné zohlednit typ a tíži postižení, věk pacienta, milníky vývoje a individuální potřeby.",
+          "Léčba spasticity: funkční elektrostimulace, aplikace botulotoxinu, ortézování.",
+          "Pohybová terapie: Vojtův princip, Bobath koncept, funkční trénink (chůze, vozík), sportovní aktivity.",
+          "Řešení komplikací: luxace kyčlí, skolióza, deformity DK, osteoporóza, epilepsie, poruchy příjmu potravy (NG sonda, PEG), neurogenní měchýř a střevo."
+        ]
+      },
+      {
+        title: "Krátkodobý rehabilitační program",
+        points: [
+          "Stanovení hlavního problému a definice konkrétního krátkodobého cíle.",
+          "Výběr vhodné terapeutické techniky.",
+          "Objektivní kontrola efektu standardizovaným testováním.",
+          "Cíle mohou být např. zlepšení stability sedu, nácvik asistované chůze, prevence kontraktur a edukace rodiny."
+        ]
+      },
+      {
+        title: "Dlouhodobý rehabilitační program dle věku",
+        points: [
+          "0-3 roky: pohybová terapie (dozrávání hrubé motoriky), návaznost na ranou péči, logopedie (p.o. příjem, polykání), ergoterapie a řešení interních komplikací.",
+          "3-6/8 let: rozvoj jemné motoriky a koordinace, trénink ADL, předškolní příprava, pomůcky, komunikace verbální i alternativní, řešení spasticity a deformit.",
+          "6-12 let (zlatý věk motorického učení): funkční trénink, školní integrace (SPC, IVP, asistent), kompenzační strategie.",
+          "12 let až dospělost: riziko zhoršení mobility při snížené motivaci a růstové akceleraci, potřeba intenzivnější pohybové terapie, důraz na kvalitu i kvantitu pohybu."
+        ]
+      },
+      {
+        title: "Limity rehabilitační terapie",
+        points: [
+          "Mentální deficit, poruchy senzorického zpracování, PAS.",
+          "Nedostatečná motivace, nespolupráce rodiny.",
+          "Nutnost respektovat hranice motorických a mentálních možností pacienta."
+        ]
+      },
+      {
+        title: "Posudkové řešení",
+        points: [
+          "Hodnocení funkční schopnosti (GMFCS), soběstačnosti (ADL), mobility, mentálního stavu a potřeby asistence.",
+          "Možnosti: příspěvek na péči, průkaz ZTP/ZTP-P, kompenzační pomůcky, invalidní důchod.",
+          "Rozhodující je funkční dopad onemocnění, nikoli samotná diagnóza."
+        ]
+      },
+      {
+        title: "Pracovní zařazení",
+        points: [
+          "Lehké formy (GMFCS I-II): běžný pracovní trh s případnou úpravou podmínek.",
+          "Střední formy: chráněné zaměstnání, sociální podniky.",
+          "Těžké formy (GMFCS IV-V): zpravidla plná invalidita.",
+          "Cílem je maximální možná nezávislost, participace a sociální integrace."
+        ]
+      }
+    ]
+  }
+};
+
 const calendarEvents: CalendarEvent[] = [
   {
     title: "Neuromuskulární sonografie (Tábor)",
@@ -284,6 +402,8 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 }
 
 function RehaEduPage({ sectionId }: { sectionId: string | null }) {
+  const [openQuestionKey, setOpenQuestionKey] = useState<string | null>(null);
+
   return (
     <>
       <section className="hero">
@@ -314,14 +434,44 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
           <div className="topic-section" id={topic.id} key={topic.id}>
             <h3>{topic.heading}</h3>
             <ol className="questions-list">
-              {topic.questions.map((question, questionIndex) => (
-                <li key={`${topic.id}:${questionIndex}`} className="question-item">
-                  <span className="question-number pending" aria-hidden="true">
-                    {questionIndex + 1}.
-                  </span>
+              {topic.questions.map((question, questionIndex) => {
+                const questionKey = `${topic.id}:${questionIndex}`;
+                const preparedQuestion = PREPARED_QUESTIONS[questionKey];
+                const isPrepared = Boolean(preparedQuestion);
+                const isOpen = openQuestionKey === questionKey;
+
+                return (
+                  <li key={questionKey} className={`question-item ${isOpen ? "open" : ""}`}>
+                    <span className={`question-number ${isPrepared ? "prepared" : "pending"}`} aria-hidden="true">
+                      {questionIndex + 1}.
+                    </span>
+                    {isPrepared ? (
+                      <button type="button" className="question-toggle" onClick={() => setOpenQuestionKey(isOpen ? null : questionKey)}>
+                        {question}
+                      </button>
+                    ) : (
                     <span>{question}</span>
-                </li>
-              ))}
+                    )}
+                    {isPrepared && isOpen && preparedQuestion ? (
+                      <div className="question-details">
+                        {preparedQuestion.chapters.map((chapter, chapterIndex) => (
+                          <details key={`${questionKey}-chapter-${chapterIndex}`} className="chapter-details">
+                            <summary>
+                              <span className="chapter-roman">{ROMAN_CHAPTERS[chapterIndex] ?? `${chapterIndex + 1}`}</span>
+                              {chapter.title}
+                            </summary>
+                            <ul>
+                              {chapter.points.map((point) => (
+                                <li key={point}>{point}</li>
+                              ))}
+                            </ul>
+                          </details>
+                        ))}
+                      </div>
+                    ) : null}
+                  </li>
+                );
+              })}
             </ol>
           </div>
         ))}
