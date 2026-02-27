@@ -22,6 +22,13 @@ type CalendarEvent = {
   isCzech: boolean;
 };
 
+type QuestionStatusMap = Record<string, boolean>;
+const QUESTION_STATUS_STORAGE_KEY = "rehaedu-question-status-v1";
+
+function getQuestionKey(topicId: string, questionIndex: number): string {
+  return `${topicId}:${questionIndex}`;
+}
+
 const calendarEvents: CalendarEvent[] = [
   {
     title: "Neuromuskulární sonografie (Tábor)",
@@ -284,6 +291,35 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 }
 
 function RehaEduPage({ sectionId }: { sectionId: string | null }) {
+  const [preparedQuestions, setPreparedQuestions] = useState<QuestionStatusMap>(() => {
+    try {
+      const raw = window.localStorage.getItem(QUESTION_STATUS_STORAGE_KEY);
+      if (!raw) {
+        return {};
+      }
+      const parsed: unknown = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object") {
+        return {};
+      }
+      const result: QuestionStatusMap = {};
+      for (const [key, value] of Object.entries(parsed)) {
+        result[key] = Boolean(value);
+      }
+      return result;
+    } catch {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(QUESTION_STATUS_STORAGE_KEY, JSON.stringify(preparedQuestions));
+  }, [preparedQuestions]);
+
+  const togglePrepared = (topicId: string, questionIndex: number) => {
+    const questionKey = getQuestionKey(topicId, questionIndex);
+    setPreparedQuestions((prev) => ({ ...prev, [questionKey]: !prev[questionKey] }));
+  };
+
   return (
     <>
       <section className="hero">
@@ -313,10 +349,26 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
         {eduTopics.map((topic) => (
           <div className="topic-section" id={topic.id} key={topic.id}>
             <h3>{topic.heading}</h3>
-            <ol>
-              {topic.questions.map((question) => (
-                <li key={question}>{question}</li>
-              ))}
+            <ol className="questions-list">
+              {topic.questions.map((question, questionIndex) => {
+                const questionKey = getQuestionKey(topic.id, questionIndex);
+                const isPrepared = Boolean(preparedQuestions[questionKey]);
+
+                return (
+                  <li key={questionKey} className="question-item">
+                    <button
+                      type="button"
+                      className={`question-number ${isPrepared ? "prepared" : "pending"}`}
+                      onClick={() => togglePrepared(topic.id, questionIndex)}
+                      aria-pressed={isPrepared}
+                      title={isPrepared ? "Otázka připravená" : "Otázka nepřipravená"}
+                    >
+                      {questionIndex + 1}
+                    </button>
+                    <span>{question}</span>
+                  </li>
+                );
+              })}
             </ol>
           </div>
         ))}
