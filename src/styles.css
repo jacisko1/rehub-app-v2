@@ -190,33 +190,22 @@ h1 {
 }
 
 .question-number {
-  min-width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  font-family: "Archivo", sans-serif;
-  font-size: 0.95rem;
+  display: inline;
+  min-width: 0;
+  height: auto;
+  border-radius: 6px;
+  border: 0;
+  padding: 0 6px;
+  font-family: inherit;
+  font-size: 1rem;
   font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
-  transition: transform 0.18s ease, filter 0.18s ease;
-}
-
-.question-number:hover {
-  transform: translateY(-1px);
-  filter: brightness(0.98);
+  line-height: 1.45;
+  cursor: default;
 }
 
 .question-number.pending {
   background: #f8d8de;
-  border-color: #efbcc6;
   color: #974456;
-}
-
-.question-number.prepared {
-  background: #d8f1e3;
-  border-color: #addbbe;
-  color: #2f7554;
 }
 
 .calendar-block {
