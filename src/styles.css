@@ -179,14 +179,15 @@ h1 {
 
 .questions-list {
   list-style: none;
-  padding-left: 0;
+  padding-left: 1.15rem;
+  margin-top: 2px;
 }
 
 .question-item {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 4px;
   flex-wrap: wrap;
 }
 
@@ -198,9 +199,9 @@ h1 {
   border: 0;
   padding: 0 6px;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.96rem;
   font-weight: 700;
-  line-height: 1.45;
+  line-height: 1.3;
   cursor: default;
 }
 
@@ -221,8 +222,12 @@ h1 {
   text-align: left;
   color: inherit;
   font: inherit;
-  line-height: 1.45;
+  line-height: 1.3;
   cursor: pointer;
+}
+
+.question-item > span:last-child {
+  line-height: 1.3;
 }
 
 .question-toggle:hover {

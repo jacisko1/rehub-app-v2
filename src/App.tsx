@@ -48,31 +48,31 @@ const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
       {
         title: "Etiologie",
         points: [
-          "Prenatální: IUGR, chronická hypoxie, preeklampsie, vícečetná těhotenství, kongenitální infekce, intoxikace, VVV CNS.",
-          "Perinatální: hypoxie, porodní trauma, intraventrikulární hemoragie (IVH).",
-          "Postnatální: infekce CNS, hyperbilirubinémie (riziko dyskineticko-dystonické formy, cca 10 %).",
+          "1. Prenatální: IUGR, chronická hypoxie, preeklampsie, vícečetná těhotenství, kongenitální infekce, intoxikace, VVV CNS.",
+          "2. Perinatální: hypoxie, porodní trauma, intraventrikulární hemoragie (IVH).",
+          "3. Postnatální: infekce CNS, hyperbilirubinémie (riziko dyskineticko-dystonické formy, cca 10 %).",
           "Významnou roli hraje vulnerabilita germinální matrix u nedonošených dětí (křehká cévní síť, nezralá regulace průtoku, ischemie a krvácení)."
         ]
       },
       {
         title: "Klasifikace dle typu postižení",
         points: [
-          "Spastický typ: poškozena pyramidová dráha, chudá stereotypní motorika; formy di-/kvadruparéza a hemiparéza (HK často horší než DK).",
-          "Spastická diparéza: HK bývají funkčně lepší, často hypoplazie pletence pánevního, DK kratší a drobnější, riziko luxace kyčlí a pes equinus.",
-          "Spastická kvadruparéza: těžká léze CNS, těžké postižení HK i DK, častá mentální retardace, bulbární symptomatika, skolióza, poruchy příjmu p.o., respirační komplikace a poruchy vyprazdňování.",
-          "Spastická hemiparéza: unilaterální postižení, často časná vertikalizace, equinovarózní postavení, epilepsie cca 27-44 %.",
-          "Dyskinetický typ (cca 10 %): dystonický a choreo-atetotický, ztráta kontroly pohybu, labilita trupu, poruchy orofaciální motoriky; epilepsie méně častá.",
-          "Ataktický typ (4-15 %): centrální hypotonie, ataxie trupu a končetin, hypermetrie, intenční tremor, porucha koordinace očních bulbů, často nestabilní sed a pozdní chůze.",
-          "Smíšený typ: kombinace spastického a dyskinetického typu."
+          "1. Spastický typ: poškozena pyramidová dráha, chudá stereotypní motorika; formy di-/kvadruparéza a hemiparéza (HK často horší než DK).",
+          "A) Spastická diparéza: HK bývají funkčně lepší, často hypoplazie pletence pánevního, DK kratší a drobnější, riziko luxace kyčlí a pes equinus.",
+          "B) Spastická kvadruparéza: těžká léze CNS, těžké postižení HK i DK, častá mentální retardace, bulbární symptomatika, skolióza, poruchy příjmu p.o., respirační komplikace a poruchy vyprazdňování.",
+          "C) Spastická hemiparéza: unilaterální postižení, často časná vertikalizace, equinovarózní postavení, epilepsie cca 27-44 %.",
+          "2. Dyskinetický typ (cca 10 %): dystonický a choreo-atetotický, ztráta kontroly pohybu, labilita trupu, poruchy orofaciální motoriky; epilepsie méně častá.",
+          "3. Ataktický typ (4-15 %): centrální hypotonie, ataxie trupu a končetin, hypermetrie, intenční tremor, porucha koordinace očních bulbů, často nestabilní sed a pozdní chůze.",
+          "4. Smíšený typ: kombinace spastického a dyskinetického typu."
         ]
       },
       {
         title: "Diagnostika",
         points: [
-          "Klinické a neurologické vyšetření, Vojtův diagnosticko-terapeutický koncept (spontánní motorika, milníky vývoje, polohové reakce, dynamika reflexů).",
-          "Zobrazovací metody: SONO, MRI; poranění mozku nemusí být vždy na MRI, ale většina dětí s DMO má abnormální nález.",
-          "Doplňující vyšetření: EEG, metabolické vady, genetické vyšetření.",
-          "V ČR bývá diagnostika často mezi 1.-2. rokem věku."
+          "1. Klinické a neurologické vyšetření, Vojtův diagnosticko-terapeutický koncept (spontánní motorika, milníky vývoje, polohové reakce, dynamika reflexů).",
+          "2. Zobrazovací metody: SONO, MRI; poranění mozku nemusí být vždy na MRI, ale většina dětí s DMO má abnormální nález.",
+          "3. Doplňující vyšetření: EEG, metabolické vady, genetické vyšetření.",
+          "4. V ČR bývá diagnostika často mezi 1.-2. rokem věku."
         ]
       },
       {
@@ -122,17 +122,17 @@ const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
       {
         title: "Posudkové řešení",
         points: [
-          "Hodnocení funkční schopnosti (GMFCS), soběstačnosti (ADL), mobility, mentálního stavu a potřeby asistence.",
-          "Možnosti: příspěvek na péči, průkaz ZTP/ZTP-P, kompenzační pomůcky, invalidní důchod.",
+          "1. Hodnocení funkční schopnosti (GMFCS), soběstačnosti (ADL), mobility, mentálního stavu a potřeby asistence.",
+          "2. Možnosti: příspěvek na péči, průkaz ZTP/ZTP-P, kompenzační pomůcky, invalidní důchod.",
           "Rozhodující je funkční dopad onemocnění, nikoli samotná diagnóza."
         ]
       },
       {
         title: "Pracovní zařazení",
         points: [
-          "Lehké formy (GMFCS I-II): běžný pracovní trh s případnou úpravou podmínek.",
-          "Střední formy: chráněné zaměstnání, sociální podniky.",
-          "Těžké formy (GMFCS IV-V): zpravidla plná invalidita.",
+          "1. Lehké formy (GMFCS I-II): běžný pracovní trh s případnou úpravou podmínek.",
+          "2. Střední formy: chráněné zaměstnání, sociální podniky.",
+          "3. Těžké formy (GMFCS IV-V): zpravidla plná invalidita.",
           "Cílem je maximální možná nezávislost, participace a sociální integrace."
         ]
       }
