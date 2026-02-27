@@ -33,6 +33,10 @@ type PreparedQuestion = {
 
 const ROMAN_CHAPTERS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 
+function hasOwnMarker(text: string): boolean {
+  return /^(\d+[\.\)]|[A-Z][\.\)]|[IVXLCDM]+\.)\s/.test(text.trim());
+}
+
 const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
   "v-neurologie:10": {
     chapters: [
@@ -460,11 +464,13 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                               <span className="chapter-roman">{ROMAN_CHAPTERS[chapterIndex] ?? `${chapterIndex + 1}`}</span>
                               {chapter.title}
                             </summary>
-                            <ul>
+                            <div className="chapter-points">
                               {chapter.points.map((point) => (
-                                <li key={point}>{point}</li>
+                                <p key={point} className={`chapter-point ${hasOwnMarker(point) ? "with-marker" : "with-bullet"}`}>
+                                  {point}
+                                </p>
                               ))}
-                            </ul>
+                            </div>
                           </details>
                         ))}
                       </div>
