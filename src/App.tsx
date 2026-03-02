@@ -407,6 +407,47 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 
 function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const [openQuestionKey, setOpenQuestionKey] = useState<string | null>(null);
+  const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({});
+
+  const activePreparedQuestion = openQuestionKey ? PREPARED_QUESTIONS[openQuestionKey] : null;
+  const activeQuestionLabel = useMemo(() => {
+    if (!openQuestionKey) {
+      return null;
+    }
+    const [topicId, rawIndex] = openQuestionKey.split(":");
+    const questionIndex = Number(rawIndex);
+    const topic = eduTopics.find((entry) => entry.id === topicId);
+    if (!topic || Number.isNaN(questionIndex)) {
+      return null;
+    }
+    return `${questionIndex + 1}. ${topic.questions[questionIndex] ?? ""}`;
+  }, [openQuestionKey]);
+
+  useEffect(() => {
+    if (!openQuestionKey) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenQuestionKey(null);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [openQuestionKey]);
+
+  useEffect(() => {
+    if (!openQuestionKey) {
+      return;
+    }
+    setOpenChapters({});
+  }, [openQuestionKey]);
+
+  const toggleChapter = (chapterKey: string) => {
+    setOpenChapters((prev) => ({ ...prev, [chapterKey]: !prev[chapterKey] }));
+  };
 
   return (
     <>
@@ -456,25 +497,6 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                     ) : (
                     <span>{question}</span>
                     )}
-                    {isPrepared && isOpen && preparedQuestion ? (
-                      <div className="question-details">
-                        {preparedQuestion.chapters.map((chapter, chapterIndex) => (
-                          <details key={`${questionKey}-chapter-${chapterIndex}`} className="chapter-details">
-                            <summary>
-                              <span className="chapter-roman">{ROMAN_CHAPTERS[chapterIndex] ?? `${chapterIndex + 1}`}</span>
-                              {chapter.title}
-                            </summary>
-                            <div className="chapter-points">
-                              {chapter.points.map((point) => (
-                                <p key={point} className={`chapter-point ${hasOwnMarker(point) ? "with-marker" : "with-bullet"}`}>
-                                  {point}
-                                </p>
-                              ))}
-                            </div>
-                          </details>
-                        ))}
-                      </div>
-                    ) : null}
                   </li>
                 );
               })}
@@ -482,6 +504,45 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
           </div>
         ))}
       </section>
+
+      <div className={`rehaedu-drawer-backdrop ${activePreparedQuestion ? "open" : ""}`} onClick={() => setOpenQuestionKey(null)} />
+      <aside className={`rehaedu-drawer ${activePreparedQuestion ? "open" : ""}`} aria-hidden={!activePreparedQuestion}>
+        <div className="rehaedu-drawer-head">
+          <p className="rehaedu-drawer-kicker">Vypracovana otazka</p>
+          <button type="button" className="rehaedu-drawer-close" onClick={() => setOpenQuestionKey(null)} aria-label="Zavrit detail otazky">
+            ×
+          </button>
+        </div>
+        {activePreparedQuestion && activeQuestionLabel ? (
+          <>
+            <h3 className="rehaedu-drawer-title">{activeQuestionLabel}</h3>
+            <div className="rehaedu-drawer-content">
+              {activePreparedQuestion.chapters.map((chapter, chapterIndex) => {
+                const chapterKey = `${openQuestionKey}:chapter:${chapterIndex}`;
+                const isChapterOpen = Boolean(openChapters[chapterKey]);
+                return (
+                  <details key={chapterKey} className="chapter-details" open={isChapterOpen}>
+                    <summary onClick={(event) => {
+                      event.preventDefault();
+                      toggleChapter(chapterKey);
+                    }}>
+                      <span className="chapter-roman">{ROMAN_CHAPTERS[chapterIndex] ?? `${chapterIndex + 1}`}</span>
+                      {chapter.title}
+                    </summary>
+                    <div className="chapter-points">
+                      {chapter.points.map((point) => (
+                        <p key={point} className={`chapter-point ${hasOwnMarker(point) ? "with-marker" : "with-bullet"}`}>
+                          {point}
+                        </p>
+                      ))}
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </>
+        ) : null}
+      </aside>
 
     </>
   );
