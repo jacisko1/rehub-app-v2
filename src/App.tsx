@@ -167,6 +167,13 @@ const calendarEvents: CalendarEvent[] = [
     isCzech: true
   },
   {
+    title: "Den myoskeletalni mediciny (Praha)",
+    url: "https://www.csmm.cz/event/den-myoskeletalni-mediciny/",
+    startDate: new Date(2026, 3, 23),
+    endDate: new Date(2026, 3, 23),
+    isCzech: true
+  },
+  {
     title: "XXXI. sjezd SRFM a 38. konference ČAE (Luhačovice)",
     url: "https://www.srfm.cz/aktuality/xxxi-sjezd-srfm-a-38-konference-cae-13824",
     startDate: new Date(2026, 4, 28),
