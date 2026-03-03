@@ -320,7 +320,7 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
         </div>
       </section>
 
-      {moduleData.points && moduleData.slug !== "rehaevent" && (
+      {moduleData.points && moduleData.slug !== "rehaevent" && moduleData.slug !== "rehaexp" && (
         <section className="page-block">
           <h2>Klíčová témata</h2>
           <ul>
@@ -328,6 +328,28 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
               <li key={point}>{point}</li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {moduleData.slug === "rehaexp" && (
+        <section className="page-block internship-offer" aria-label="Nabidka staze">
+          <div className="internship-media">
+            <img src="/Jakub.png" alt="MUDr. Jakub Jacisko, Ph.D." loading="lazy" />
+          </div>
+          <div className="internship-content">
+            <span className="badge">Staz</span>
+            <h2>Nabidka staze v muskuloskeletalni sonografii</h2>
+            <p>
+              Prakticky orientovana staz zamerena na vysetreni pohyboveho aparatu pod odbornym vedenim se zpetnou vazbou
+              ke klinickemu rozhodovani.
+            </p>
+            <p className="internship-meta">
+              <strong>Garant:</strong> MUDr. Jakub Jacisko, Ph.D.
+            </p>
+            <p className="internship-meta">
+              <strong>Misto:</strong> FN Motol
+            </p>
+          </div>
         </section>
       )}
 
