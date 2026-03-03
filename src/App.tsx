@@ -167,7 +167,7 @@ const calendarEvents: CalendarEvent[] = [
     isCzech: true
   },
   {
-    title: "Den myoskeletalni mediciny (Praha)",
+    title: "Den myoskeletální medicíny (Praha)",
     url: "https://www.csmm.cz/event/den-myoskeletalni-mediciny/",
     startDate: new Date(2026, 3, 23),
     endDate: new Date(2026, 3, 23),
