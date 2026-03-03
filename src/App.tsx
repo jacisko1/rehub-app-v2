@@ -334,20 +334,20 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
       {moduleData.slug === "rehaexp" && (
         <section className="page-block internship-offer" aria-label="Nabidka staze">
           <div className="internship-media">
-            <img src="/Jakub.png" alt="MUDr. Jakub Jacisko, Ph.D." loading="lazy" />
+            <img src="/Jakub.png" alt="MUDr. Jakub Jačisko, Ph.D." loading="lazy" />
           </div>
           <div className="internship-content">
-            <span className="badge">Staz</span>
-            <h2>Nabidka staze v muskuloskeletalni sonografii</h2>
+            <span className="badge">Stáž</span>
+            <h2>Muskuloskeletální ultrasonografie</h2>
             <p>
-              Prakticky orientovana staz zamerena na vysetreni pohyboveho aparatu pod odbornym vedenim se zpetnou vazbou
-              ke klinickemu rozhodovani.
+              Prakticky orientovaná stáž zaměřená na vyšetření pohybového aparátu pod odborným vedením se zpětnou vazbou
+              ke klinickému rozhodování.
             </p>
             <p className="internship-meta">
-              <strong>Garant:</strong> MUDr. Jakub Jacisko, Ph.D.
+              <strong>Garant:</strong> MUDr. Jakub Jačisko, Ph.D.
             </p>
             <p className="internship-meta">
-              <strong>Misto:</strong> FN Motol
+              <strong>Místo:</strong> FN Motol
             </p>
           </div>
         </section>
