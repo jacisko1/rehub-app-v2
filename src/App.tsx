@@ -508,7 +508,6 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       <div className={`rehaedu-drawer-backdrop ${activePreparedQuestion ? "open" : ""}`} onClick={() => setOpenQuestionKey(null)} />
       <aside className={`rehaedu-drawer ${activePreparedQuestion ? "open" : ""}`} aria-hidden={!activePreparedQuestion}>
         <div className="rehaedu-drawer-head">
-          <p className="rehaedu-drawer-kicker">Vypracovana otazka</p>
           <button type="button" className="rehaedu-drawer-close" onClick={() => setOpenQuestionKey(null)} aria-label="Zavrit detail otazky">
             ×
           </button>

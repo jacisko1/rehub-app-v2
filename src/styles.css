@@ -179,8 +179,11 @@ h1 {
 
 .questions-list {
   list-style: none;
-  padding-left: 0;
   margin: 2px 0 0;
+}
+
+.page-block ol.questions-list {
+  padding-left: 0;
 }
 
 .question-item {
@@ -322,17 +325,8 @@ h1 {
 .rehaedu-drawer-head {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 10px;
-}
-
-.rehaedu-drawer-kicker {
-  margin: 0;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #3b6663;
 }
 
 .rehaedu-drawer-close {
@@ -352,7 +346,7 @@ h1 {
 }
 
 .rehaedu-drawer-title {
-  margin: 12px 0 14px;
+  margin: 8px 0 14px;
   font-family: "Archivo", sans-serif;
   font-size: clamp(1.1rem, 1.7vw, 1.35rem);
   line-height: 1.22;
@@ -559,6 +553,14 @@ h1 {
 
   .calendar-grid {
     gap: 6px;
+  }
+
+  .question-item {
+    column-gap: 5px;
+  }
+
+  .question-number {
+    padding: 0 3px;
   }
 
   .rehaedu-drawer {
