@@ -243,6 +243,25 @@ function formatEventDate(event: CalendarEvent): string {
   return `${event.startDate.getDate()}. ${MONTH_FORMATTER.format(event.startDate)} ${event.startDate.getFullYear()} – ${event.endDate.getDate()}. ${MONTH_FORMATTER.format(event.endDate)} ${event.endDate.getFullYear()}`;
 }
 
+function EventRegionIcon({ isCzech }: { isCzech: boolean }) {
+  if (isCzech) {
+    return (
+      <svg
+        className="event-flag-icon"
+        viewBox="0 0 3 2"
+        aria-label="Česká republika"
+        role="img"
+      >
+        <rect width="3" height="2" fill="#D7141A" />
+        <rect width="3" height="1" fill="#FFFFFF" />
+        <polygon points="0,0 1.2,1 0,2" fill="#11457E" />
+      </svg>
+    );
+  }
+
+  return <span className="event-flag-globe" aria-hidden="true">🌍</span>;
+}
+
 function getRouteFromHash(): RouteState {
   const raw = window.location.hash.replace(/^#/, "");
   const clean = raw.startsWith("/") ? raw.slice(1) : raw;
@@ -418,7 +437,7 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
                   .map((event) => (
                     <li key={event.url}>
                       <strong>
-                        {event.isCzech ? "🇨🇿" : "🌍"} {formatEventDate(event)}:
+                        <EventRegionIcon isCzech={event.isCzech} /> {formatEventDate(event)}:
                       </strong>{" "}
                       <a href={event.url} target="_blank" rel="noreferrer">
                         {event.title}

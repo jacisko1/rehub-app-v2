@@ -473,6 +473,19 @@ h1 {
   margin-bottom: 8px;
 }
 
+.event-flag-icon {
+  width: 1.05em;
+  height: 0.75em;
+  vertical-align: -0.08em;
+  margin-right: 0.25em;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.event-flag-globe {
+  margin-right: 0.25em;
+}
+
 .calendar-events a {
   color: var(--primary);
   text-decoration: none;
