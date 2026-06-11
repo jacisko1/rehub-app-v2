@@ -103,6 +103,33 @@ function getPreparedQuestionLabel(questionKey: string): string | null {
   return `${questionIndex + 1}. ${topic.questions[questionIndex] ?? ""}`;
 }
 
+function createSafeFilenamePart(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-+/g, "-");
+}
+
+function getPreparedQuestionDocumentName(questionKey: string): string | null {
+  const [topicId, rawIndex] = questionKey.split(":");
+  const questionIndex = Number(rawIndex);
+  const topic = eduTopics.find((entry) => entry.id === topicId);
+  if (!topic || Number.isNaN(questionIndex)) {
+    return null;
+  }
+
+  const categoryLabel = topic.heading.replace(/\.$/, "").trim();
+  const questionLabel = topic.questions[questionIndex] ?? "";
+  const filename = [categoryLabel, `${questionIndex + 1}`, questionLabel]
+    .map(createSafeFilenamePart)
+    .filter(Boolean)
+    .join("_");
+
+  return filename ? `${filename}.doc` : null;
+}
+
 function getPreparedQuestionRoute(topicId: string, questionIndex: number): string {
   return `#/rehaedu/otazka/${topicId}/${questionIndex}`;
 }
@@ -1061,6 +1088,8 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       return;
     }
 
+    const documentName = getPreparedQuestionDocumentName(questionRouteKey) ?? `${questionRouteKey.replace(/[:/]/g, "-")}.doc`;
+
     const html = `<!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -1084,7 +1113,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     const objectUrl = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = objectUrl;
-    link.download = `${questionRouteKey.replace(/[:/]/g, "-")}.doc`;
+    link.download = documentName;
     document.body.appendChild(link);
     link.click();
     link.remove();
