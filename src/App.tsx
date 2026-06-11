@@ -31,7 +31,27 @@ type PreparedQuestion = {
   chapters: QuestionChapter[];
 };
 
+type YouTubeVideo = {
+  id: string;
+  title: string;
+  url: string;
+};
+
 const ROMAN_CHAPTERS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+const REHAGRAM_URL = "https://www.instagram.com/rehubproject/";
+const REHATUBE_CHANNEL_URL = "https://www.youtube.com/@ReHuBproject";
+const REHATUBE_VIDEOS: YouTubeVideo[] = [
+  {
+    id: "uQbd3mzGMVc",
+    title: "RehaTube video 1",
+    url: "https://youtu.be/uQbd3mzGMVc?si=hEHm45xCaRMJnDLX"
+  },
+  {
+    id: "TUeMnBy80IM",
+    title: "RehaTube video 2",
+    url: "https://youtu.be/TUeMnBy80IM?si=BSX6RbI_JYYyRh2a"
+  }
+];
 
 function hasOwnMarker(text: string): boolean {
   return /^(\d+[\.\)]|[A-Z][\.\)]|[IVXLCDM]+\.)\s/.test(text.trim());
@@ -354,6 +374,54 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
               <li key={point}>{point}</li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {moduleData.slug === "rehatube" && (
+        <section className="page-block video-block" aria-label="RehaTube videa">
+          <div className="video-block-head">
+            <div>
+              <h2>RehaTube kanal</h2>
+              <p className="video-block-copy">Otevrete si cely YouTube kanal nebo si rovnou pustte vybrana videa primo tady.</p>
+            </div>
+            <a className="btn primary" href={REHATUBE_CHANNEL_URL} target="_blank" rel="noreferrer">
+              Otevrit kanal
+            </a>
+          </div>
+
+          <div className="video-grid">
+            {REHATUBE_VIDEOS.map((video) => (
+              <article key={video.id} className="video-card">
+                <div className="video-embed">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+                    title={video.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+                <a href={video.url} target="_blank" rel="noreferrer">
+                  Otevrit video na YouTube
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {moduleData.slug === "rehagram" && (
+        <section className="page-block" aria-label="RehaGram Instagram">
+          <div className="video-block-head">
+            <div>
+              <h2>RehaGram Instagram</h2>
+              <p className="video-block-copy">Sledujte nas Instagram pro kratky obsah, novinky a sdileni z projektu ReHuB.</p>
+            </div>
+            <a className="btn primary" href={REHAGRAM_URL} target="_blank" rel="noreferrer">
+              Otevrit Instagram
+            </a>
+          </div>
         </section>
       )}
 
