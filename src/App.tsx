@@ -38,12 +38,6 @@ type Flashcard = {
   answer: string;
 };
 
-type ExamMessage = {
-  id: string;
-  role: "examiner" | "student";
-  text: string;
-};
-
 type YouTubeVideo = {
   id: string;
   title: string;
@@ -88,39 +82,6 @@ const REHATUBE_VIDEOS: YouTubeVideo[] = [
 
 function hasOwnMarker(text: string): boolean {
   return /^(\d+[\.\)]|[A-Z][\.\)]|[IVXLCDM]+\.)\s/.test(text.trim());
-}
-
-function normalizeForSearch(value: string): string {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s]/g, " ");
-}
-
-function extractKeywords(value: string): string[] {
-  const stopwords = new Set([
-    "a", "i", "v", "ve", "na", "do", "z", "ze", "je", "jsou", "by", "se", "si", "pro", "u", "o", "od", "po", "pod",
-    "nad", "k", "ke", "s", "za", "pri", "nebo", "jako", "ktere", "ktery", "ktera", "to", "ta", "ten", "ma", "mezi",
-    "pacienta", "pacienta", "pacient", "typu", "forma", "formy"
-  ]);
-
-  return Array.from(
-    new Set(
-      normalizeForSearch(value)
-        .split(/\s+/)
-        .filter((token) => token.length >= 4 && !stopwords.has(token))
-    )
-  );
-}
-
-function evaluateExamAnswer(answer: string, expected: string): { score: number; matched: string[]; missing: string[] } {
-  const answerTokens = new Set(extractKeywords(answer));
-  const expectedTokens = extractKeywords(expected);
-  const matched = expectedTokens.filter((token) => answerTokens.has(token));
-  const missing = expectedTokens.filter((token) => !answerTokens.has(token));
-  const score = expectedTokens.length === 0 ? 0 : matched.length / expectedTokens.length;
-  return { score, matched, missing };
 }
 
 function getPreparedQuestionLabel(questionKey: string): string | null {
@@ -170,21 +131,6 @@ function createFlashcards(questionKey: string, preparedQuestion: PreparedQuestio
   );
 }
 
-function createExamPrompts(preparedQuestion: PreparedQuestion): Array<{ prompt: string; expected: string }> {
-  return preparedQuestion.chapters.map((chapter) => ({
-    prompt: `Popište oblast: ${chapter.title}.`,
-    expected: chapter.points.join(" ")
-  }));
-}
-
-function createQuestionSourceText(preparedQuestion: PreparedQuestion): string {
-  return preparedQuestion.chapters
-    .map(
-      (chapter, chapterIndex) =>
-        `${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}\n${chapter.points.join("\n")}`
-    )
-    .join("\n\n");
-}
 
 const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
   "v-neurologie:10": {
@@ -754,10 +700,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const [openQuestionKey, setOpenQuestionKey] = useState<string | null>(null);
   const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({});
   const [revealedFlashcards, setRevealedFlashcards] = useState<Record<string, boolean>>({});
-  const [examMessages, setExamMessages] = useState<ExamMessage[]>([]);
-  const [examAnswer, setExamAnswer] = useState("");
-  const [examStep, setExamStep] = useState(0);
-  const [examActive, setExamActive] = useState(false);
+  const [activeFlashcardIndex, setActiveFlashcardIndex] = useState(0);
   const questionRouteKey = getQuestionKeyFromRoute(sectionId);
   const activeSection =
     questionRouteKey
@@ -778,14 +721,6 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const activeFlashcards = useMemo(
     () => (questionRouteKey && activeQuestionPage ? createFlashcards(questionRouteKey, activeQuestionPage) : []),
     [questionRouteKey, activeQuestionPage]
-  );
-  const activeExamPrompts = useMemo(
-    () => (activeQuestionPage ? createExamPrompts(activeQuestionPage) : []),
-    [activeQuestionPage]
-  );
-  const activeQuestionSourceText = useMemo(
-    () => (activeQuestionPage ? createQuestionSourceText(activeQuestionPage) : ""),
-    [activeQuestionPage]
   );
 
   useEffect(() => {
@@ -812,13 +747,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
 
   useEffect(() => {
     setRevealedFlashcards({});
-  }, [questionRouteKey]);
-
-  useEffect(() => {
-    setExamMessages([]);
-    setExamAnswer("");
-    setExamStep(0);
-    setExamActive(false);
+    setActiveFlashcardIndex(0);
   }, [questionRouteKey]);
 
   const toggleChapter = (chapterKey: string) => {
@@ -862,121 +791,6 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     link.click();
     link.remove();
     URL.revokeObjectURL(objectUrl);
-  };
-
-  const startExam = () => {
-    if (!activeQuestionPageLabel || activeExamPrompts.length === 0) {
-      return;
-    }
-
-    const openingPrompt = `Dobrý den, vytáhl jste si otázku ${activeQuestionPageLabel}. Tak nám o ní něco řekněte.`;
-    const followUpPrompt = `Začněme první oblastí. ${activeExamPrompts[0].prompt}`;
-    setExamMessages([
-      { id: "examiner:intro", role: "examiner", text: openingPrompt },
-      { id: "examiner:first", role: "examiner", text: followUpPrompt }
-    ]);
-    setExamAnswer("");
-    setExamStep(0);
-    setExamActive(true);
-  };
-
-  const submitExamAnswer = async () => {
-    const trimmed = examAnswer.trim();
-    if (!trimmed || !examActive || examStep >= activeExamPrompts.length) {
-      return;
-    }
-
-    const currentPrompt = activeExamPrompts[examStep];
-    const evaluation = evaluateExamAnswer(trimmed, currentPrompt.expected);
-    const studentMessage: ExamMessage = {
-      id: `student:${examStep}:${examMessages.length}`,
-      role: "student",
-      text: trimmed
-    };
-
-    const normalizedAnswer = normalizeForSearch(trimmed);
-    const answerWordCount = normalizedAnswer.split(/\s+/).filter(Boolean).length;
-    const nonsenseLike = answerWordCount < 4 || evaluation.matched.length === 0;
-    const nextStep = examStep + 1;
-    let feedbackText = "";
-    let nextPromptText: string | null = null;
-    let shouldFinish = nextStep >= activeExamPrompts.length;
-
-    try {
-      const response = await fetch("/api/rehaedu-exam", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          questionLabel: activeQuestionPageLabel,
-          sourceText: activeQuestionSourceText,
-          currentPrompt: currentPrompt.prompt,
-          expectedAnswer: currentPrompt.expected,
-          studentAnswer: trimmed,
-          nextPrompt: nextStep < activeExamPrompts.length ? activeExamPrompts[nextStep].prompt : null
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`API returned ${response.status}`);
-      }
-
-      const data = (await response.json()) as { feedback: string; nextPrompt: string | null; finish: boolean };
-      feedbackText = data.feedback;
-      nextPromptText = data.nextPrompt;
-      shouldFinish = data.finish;
-    } catch {
-      const feedbackParts: string[] = [];
-      if (nonsenseLike) {
-        feedbackParts.push("Tohle není správně a neodpovídá to obsahu vypracované otázky.");
-      } else if (evaluation.score >= 0.66) {
-        feedbackParts.push("Dobře, tohle je v zásadě správně.");
-      } else if (evaluation.score >= 0.33) {
-        feedbackParts.push("To je částečně správně, ale chtělo by to doplnit.");
-      } else {
-        feedbackParts.push("Tohle je zatím spíše nedostatečné, zkuste být konkrétnější.");
-      }
-
-      if (evaluation.matched.length > 0) {
-        feedbackParts.push(`Zaznělo například: ${evaluation.matched.slice(0, 4).join(", ")}.`);
-      }
-
-      if (evaluation.missing.length > 0) {
-        feedbackParts.push(`Ještě by bylo dobré zmínit: ${evaluation.missing.slice(0, 4).join(", ")}.`);
-      }
-
-      feedbackText = feedbackParts.join(" ");
-      nextPromptText = nextStep < activeExamPrompts.length ? `Dobře, pojďme dál. ${activeExamPrompts[nextStep].prompt}` : null;
-    }
-
-    const newMessages: ExamMessage[] = [
-      studentMessage,
-      {
-        id: `examiner:feedback:${examStep}`,
-        role: "examiner",
-        text: feedbackText
-      }
-    ];
-
-    if (!shouldFinish && nextPromptText) {
-      newMessages.push({
-        id: `examiner:next:${nextStep}`,
-        role: "examiner",
-        text: nextPromptText
-      });
-    } else {
-      newMessages.push({
-        id: "examiner:finish",
-        role: "examiner",
-        text: "Tím jsme prošli hlavní body otázky. Pro dnešek zkoušku ukončíme."
-      });
-      setExamActive(false);
-    }
-
-    setExamMessages((prev) => [...prev, ...newMessages]);
-    setExamAnswer("");
-    setExamStep(nextStep);
   };
 
   if (!activeSection) {
@@ -1111,67 +925,48 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
           <div className="flashcards-head">
             <div>
               <h2>{"U\u010den\u00ed pomoc\u00ed flashcards"}</h2>
-              <p className="section-copy">{"Kliknut\u00edm na karti\u010dku zobraz\u00edte odpov\u011b\u010f."}</p>
+              <p className="section-copy">{"Kliknut\u00edm na karti\u010dku zobraz\u00edte odpov\u011b\u010f. Flashcards se zobrazuj\u00ed po jedn\u00e9."}</p>
             </div>
           </div>
-          <div className="flashcards-grid">
-            {activeFlashcards.map((card, index) => (
+          {activeFlashcards.length > 0 && (
+            <>
               <button
-                key={card.id}
                 type="button"
-                className={`flashcard ${revealedFlashcards[card.id] ? "revealed" : ""}`}
-                onClick={() => toggleFlashcard(card.id)}
+                className={`flashcard flashcard-single ${revealedFlashcards[activeFlashcards[activeFlashcardIndex].id] ? "revealed" : ""}`}
+                onClick={() => toggleFlashcard(activeFlashcards[activeFlashcardIndex].id)}
               >
-                <span className="flashcard-index">{index + 1}</span>
-                <span className="flashcard-label">{card.prompt}</span>
+                <span className="flashcard-index">{activeFlashcardIndex + 1}</span>
+                <span className="flashcard-label">{activeFlashcards[activeFlashcardIndex].prompt}</span>
                 <span className="flashcard-body">
-                  {revealedFlashcards[card.id] ? card.answer : "Klikni pro zobrazen\u00ed odpov\u011bdi"}
+                  {revealedFlashcards[activeFlashcards[activeFlashcardIndex].id]
+                    ? activeFlashcards[activeFlashcardIndex].answer
+                    : "Klikni pro zobrazen\u00ed odpov\u011bdi"}
                 </span>
               </button>
-            ))}
-          </div>
-        </section>
 
-        <section className="page-block">
-          <div className="flashcards-head">
-            <div>
-              <h2>{"Simulace atesta\u010dn\u00edho zkou\u0161en\u00ed"}</h2>
-              <p className="section-copy">{"Zkou\u0161ej\u00edc\u00ed vych\u00e1z\u00ed pouze z vypracovan\u00e9ho textu t\u00e9to ot\u00e1zky."}</p>
-            </div>
-            <button className="btn primary" type="button" onClick={startExam}>
-              {"Za\u010d\u00edt zkou\u0161ku"}
-            </button>
-          </div>
-
-          <div className="exam-chat">
-            {examMessages.length === 0 ? (
-              <p className="section-copy">{"Po spu\u0161t\u011bn\u00ed zkou\u0161ky se zobraz\u00ed \u00favodn\u00ed zad\u00e1n\u00ed a navazuj\u00edc\u00ed ot\u00e1zky."}</p>
-            ) : (
-              examMessages.map((message) => (
-                <article key={message.id} className={`exam-message ${message.role}`}>
-                  <span className="exam-message-role">
-                    {message.role === "examiner" ? "Zkou\u0161ej\u00edc\u00ed" : "Vy"}
-                  </span>
-                  <p>{message.text}</p>
-                </article>
-              ))
-            )}
-          </div>
-
-          <div className="exam-compose">
-            <textarea
-              className="exam-input"
-              value={examAnswer}
-              onChange={(event) => setExamAnswer(event.target.value)}
-              placeholder="Napi\u0161te svoji odpov\u011b\u010f..."
-              rows={5}
-            />
-            <div className="actions">
-              <button className="btn primary" type="button" onClick={submitExamAnswer} disabled={!examActive || !examAnswer.trim()}>
-                {"Odeslat odpov\u011b\u010f"}
-              </button>
-            </div>
-          </div>
+              <div className="flashcard-nav">
+                <button
+                  className="btn"
+                  type="button"
+                  onClick={() => setActiveFlashcardIndex((prev) => Math.max(0, prev - 1))}
+                  disabled={activeFlashcardIndex === 0}
+                >
+                  {"P\u0159edchoz\u00ed"}
+                </button>
+                <span className="flashcard-progress">
+                  {activeFlashcardIndex + 1} / {activeFlashcards.length}
+                </span>
+                <button
+                  className="btn"
+                  type="button"
+                  onClick={() => setActiveFlashcardIndex((prev) => Math.min(activeFlashcards.length - 1, prev + 1))}
+                  disabled={activeFlashcardIndex === activeFlashcards.length - 1}
+                >
+                  {"Dal\u0161\u00ed"}
+                </button>
+              </div>
+            </>
+          )}
         </section>
       </>
     );
