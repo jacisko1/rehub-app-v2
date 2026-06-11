@@ -177,6 +177,15 @@ function createExamPrompts(preparedQuestion: PreparedQuestion): Array<{ prompt: 
   }));
 }
 
+function createQuestionSourceText(preparedQuestion: PreparedQuestion): string {
+  return preparedQuestion.chapters
+    .map(
+      (chapter, chapterIndex) =>
+        `${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}\n${chapter.points.join("\n")}`
+    )
+    .join("\n\n");
+}
+
 const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
   "v-neurologie:10": {
     flashcards: [
@@ -774,6 +783,10 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     () => (activeQuestionPage ? createExamPrompts(activeQuestionPage) : []),
     [activeQuestionPage]
   );
+  const activeQuestionSourceText = useMemo(
+    () => (activeQuestionPage ? createQuestionSourceText(activeQuestionPage) : ""),
+    [activeQuestionPage]
+  );
 
   useEffect(() => {
     if (!openQuestionKey) {
@@ -857,7 +870,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     }
 
     const openingPrompt = `Dobrý den, vytáhl jste si otázku ${activeQuestionPageLabel}. Tak nám o ní něco řekněte.`;
-    const followUpPrompt = `Začněme první oblastí: ${activeFlashcards[0].prompt}`;
+    const followUpPrompt = `Začněme první oblastí. ${activeExamPrompts[0].prompt}`;
     setExamMessages([
       { id: "examiner:intro", role: "examiner", text: openingPrompt },
       { id: "examiner:first", role: "examiner", text: followUpPrompt }
@@ -867,7 +880,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     setExamActive(true);
   };
 
-  const submitExamAnswer = () => {
+  const submitExamAnswer = async () => {
     const trimmed = examAnswer.trim();
     if (!trimmed || !examActive || examStep >= activeExamPrompts.length) {
       return;
@@ -884,38 +897,73 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     const normalizedAnswer = normalizeForSearch(trimmed);
     const answerWordCount = normalizedAnswer.split(/\s+/).filter(Boolean).length;
     const nonsenseLike = answerWordCount < 4 || evaluation.matched.length === 0;
-    const feedbackParts: string[] = [];
-    if (evaluation.score >= 0.66) {
-      feedbackParts.push("Dobře, tohle je v zásadě správně.");
-    } else if (evaluation.score >= 0.33) {
-      feedbackParts.push("To je částečně správně, ale chtělo by to doplnit.");
-    } else {
-      feedbackParts.push("Tohle je zatím příliš obecné, zkuste to upřesnit.");
-    }
-
-    if (evaluation.matched.length > 0) {
-      feedbackParts.push(`Zaznělo například: ${evaluation.matched.slice(0, 4).join(", ")}.`);
-    }
-
-    if (evaluation.missing.length > 0) {
-      feedbackParts.push(`Ještě by bylo dobré zmínit: ${evaluation.missing.slice(0, 4).join(", ")}.`);
-    }
-
     const nextStep = examStep + 1;
+    let feedbackText = "";
+    let nextPromptText: string | null = null;
+    let shouldFinish = nextStep >= activeExamPrompts.length;
+
+    try {
+      const response = await fetch("/api/rehaedu-exam", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          questionLabel: activeQuestionPageLabel,
+          sourceText: activeQuestionSourceText,
+          currentPrompt: currentPrompt.prompt,
+          expectedAnswer: currentPrompt.expected,
+          studentAnswer: trimmed,
+          nextPrompt: nextStep < activeExamPrompts.length ? activeExamPrompts[nextStep].prompt : null
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`API returned ${response.status}`);
+      }
+
+      const data = (await response.json()) as { feedback: string; nextPrompt: string | null; finish: boolean };
+      feedbackText = data.feedback;
+      nextPromptText = data.nextPrompt;
+      shouldFinish = data.finish;
+    } catch {
+      const feedbackParts: string[] = [];
+      if (nonsenseLike) {
+        feedbackParts.push("Tohle není správně a neodpovídá to obsahu vypracované otázky.");
+      } else if (evaluation.score >= 0.66) {
+        feedbackParts.push("Dobře, tohle je v zásadě správně.");
+      } else if (evaluation.score >= 0.33) {
+        feedbackParts.push("To je částečně správně, ale chtělo by to doplnit.");
+      } else {
+        feedbackParts.push("Tohle je zatím spíše nedostatečné, zkuste být konkrétnější.");
+      }
+
+      if (evaluation.matched.length > 0) {
+        feedbackParts.push(`Zaznělo například: ${evaluation.matched.slice(0, 4).join(", ")}.`);
+      }
+
+      if (evaluation.missing.length > 0) {
+        feedbackParts.push(`Ještě by bylo dobré zmínit: ${evaluation.missing.slice(0, 4).join(", ")}.`);
+      }
+
+      feedbackText = feedbackParts.join(" ");
+      nextPromptText = nextStep < activeExamPrompts.length ? `Dobře, pojďme dál. ${activeExamPrompts[nextStep].prompt}` : null;
+    }
+
     const newMessages: ExamMessage[] = [
       studentMessage,
       {
         id: `examiner:feedback:${examStep}`,
         role: "examiner",
-        text: feedbackParts.join(" ")
+        text: feedbackText
       }
     ];
 
-    if (nextStep < activeExamPrompts.length) {
+    if (!shouldFinish && nextPromptText) {
       newMessages.push({
         id: `examiner:next:${nextStep}`,
         role: "examiner",
-        text: `Dobře, pojďme dál. ${activeFlashcards[nextStep].prompt}`
+        text: nextPromptText
       });
     } else {
       newMessages.push({
