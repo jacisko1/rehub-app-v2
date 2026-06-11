@@ -1095,17 +1095,78 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
 <head>
   <meta charset="utf-8" />
   <title>${activeQuestionPageLabel}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 48px 56px;
+      font-family: Calibri, "Segoe UI", Arial, sans-serif;
+      color: #1f2a2a;
+      line-height: 1.6;
+      background: #ffffff;
+    }
+
+    .document-shell {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .document-eyebrow {
+      margin: 0 0 10px;
+      color: #0e8f7d;
+      font-size: 11pt;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 24pt;
+      line-height: 1.2;
+      color: #163433;
+    }
+
+    h2 {
+      margin: 28px 0 12px;
+      font-size: 15pt;
+      line-height: 1.3;
+      color: #163433;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin: 0 0 10px;
+      font-size: 11.5pt;
+      text-align: justify;
+    }
+
+    .chapter {
+      padding-top: 14px;
+      border-top: 1px solid #d9e4e3;
+      page-break-inside: avoid;
+    }
+
+    .chapter:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+  </style>
 </head>
 <body>
-  <h1>${activeQuestionPageLabel}</h1>
-  ${activeQuestionPage.chapters
+  <div class="document-shell">
+    <p class="document-eyebrow">RehaEdu</p>
+    <h1>${activeQuestionPageLabel}</h1>
+    ${activeQuestionPage.chapters
     .map(
       (chapter, chapterIndex) => `
-    <h2>${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}</h2>
-    ${chapter.points.map((point) => `<p>${point}</p>`).join("")}
+    <section class="chapter">
+      <h2>${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}</h2>
+      ${chapter.points.map((point) => `<p>${point}</p>`).join("")}
+    </section>
   `
     )
     .join("")}
+  </div>
 </body>
 </html>`;
 
@@ -1248,124 +1309,133 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
           ))}
         </section>
 
-        <section className="page-block">
-          <div className="flashcards-head">
-            <div>
-              <h2>{"U\u010den\u00ed pomoc\u00ed flashcards"}</h2>
-              <p className="section-copy">{"Kliknut\u00edm na karti\u010dku zobraz\u00edte odpov\u011b\u010f. Flashcards se zobrazuj\u00ed po jedn\u00e9."}</p>
-            </div>
-          </div>
-          {activeFlashcards.length > 0 && (
-            <>
-              <button
-                type="button"
-                className={`flashcard flashcard-single ${revealedFlashcards[activeFlashcards[activeFlashcardIndex].id] ? "revealed" : ""}`}
-                onClick={() => toggleFlashcard(activeFlashcards[activeFlashcardIndex].id)}
-              >
-                <span className="flashcard-index">{activeFlashcardIndex + 1}</span>
-                <span className="flashcard-label">{activeFlashcards[activeFlashcardIndex].prompt}</span>
-                <span className="flashcard-body">
-                  {revealedFlashcards[activeFlashcards[activeFlashcardIndex].id]
-                    ? activeFlashcards[activeFlashcardIndex].answer
-                    : "Klikni pro zobrazen\u00ed odpov\u011bdi"}
-                </span>
-              </button>
+        <section className="page-block study-hub">
+          <h2>{"Studijn\u00ed re\u017eimy"}</h2>
+          <p className="section-copy">{"Vyberte si, jestli se chcete u\u010dit pomoc\u00ed flashcards nebo si rovnou vyzkou\u0161et test."}</p>
 
-              <div className="flashcard-nav">
+          {activeFlashcards.length > 0 && (
+            <details className="study-panel">
+              <summary className="study-panel-summary">
+                <span className="study-panel-title">{"U\u010dit se pomoc\u00ed flashcards"}</span>
+                <span className="study-panel-meta">{`${activeFlashcards.length} karet`}</span>
+              </summary>
+              <div className="study-panel-body">
+                <p className="section-copy">{"Kliknut\u00edm na karti\u010dku zobraz\u00edte odpov\u011b\u010f. Flashcards se zobrazuj\u00ed po jedn\u00e9."}</p>
                 <button
-                  className="btn"
                   type="button"
-                  onClick={() => setActiveFlashcardIndex((prev) => Math.max(0, prev - 1))}
-                  disabled={activeFlashcardIndex === 0}
+                  className={`flashcard flashcard-single ${revealedFlashcards[activeFlashcards[activeFlashcardIndex].id] ? "revealed" : ""}`}
+                  onClick={() => toggleFlashcard(activeFlashcards[activeFlashcardIndex].id)}
                 >
-                  {"P\u0159edchoz\u00ed"}
+                  <span className="flashcard-index">{activeFlashcardIndex + 1}</span>
+                  <span className="flashcard-label">{activeFlashcards[activeFlashcardIndex].prompt}</span>
+                  <span className="flashcard-body">
+                    {revealedFlashcards[activeFlashcards[activeFlashcardIndex].id]
+                      ? activeFlashcards[activeFlashcardIndex].answer
+                      : "Klikni pro zobrazen\u00ed odpov\u011bdi"}
+                  </span>
                 </button>
-                <span className="flashcard-progress">
-                  {activeFlashcardIndex + 1} / {activeFlashcards.length}
-                </span>
-                <button
-                  className="btn"
-                  type="button"
-                  onClick={() => setActiveFlashcardIndex((prev) => Math.min(activeFlashcards.length - 1, prev + 1))}
-                  disabled={activeFlashcardIndex === activeFlashcards.length - 1}
-                >
-                  {"Dal\u0161\u00ed"}
-                </button>
+
+                <div className="flashcard-nav">
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={() => setActiveFlashcardIndex((prev) => Math.max(0, prev - 1))}
+                    disabled={activeFlashcardIndex === 0}
+                  >
+                    {"P\u0159edchoz\u00ed"}
+                  </button>
+                  <span className="flashcard-progress">
+                    {activeFlashcardIndex + 1} / {activeFlashcards.length}
+                  </span>
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={() => setActiveFlashcardIndex((prev) => Math.min(activeFlashcards.length - 1, prev + 1))}
+                    disabled={activeFlashcardIndex === activeFlashcards.length - 1}
+                  >
+                    {"Dal\u0161\u00ed"}
+                  </button>
+                </div>
               </div>
-            </>
+            </details>
+          )}
+
+          {activeQuizQuestions.length > 0 && (
+            <details className="study-panel">
+              <summary className="study-panel-summary">
+                <span className="study-panel-title">{"U\u010dit se pomoc\u00ed testu"}</span>
+                <span className="study-panel-meta">{`${activeQuizQuestions.length} ot\u00e1zek`}</span>
+              </summary>
+              <div className="study-panel-body">
+                <div className="flashcards-head">
+                  <div>
+                    <p className="section-copy">
+                      {"Ka\u017ed\u00e1 ot\u00e1zka m\u00e1 4 mo\u017enosti a spr\u00e1vn\u00fdch odpov\u011bd\u00ed m\u016f\u017ee b\u00fdt 0 a\u017e 4. Test vych\u00e1z\u00ed pouze z vypracovan\u00e9ho textu."}
+                    </p>
+                  </div>
+                  <button className="btn primary" type="button" onClick={() => setQuizSubmitted(true)}>
+                    {"Vyhodnotit test"}
+                  </button>
+                </div>
+
+                {quizSubmitted && (
+                  <p className="quiz-summary">
+                    {"Sk\u00f3re: "}
+                    <strong>
+                      {quizScore} / {activeQuizQuestions.length}
+                    </strong>
+                  </p>
+                )}
+
+                <div className="quiz-list">
+                  {activeQuizQuestions.map((question, questionIndex) => {
+                    const selected = quizSelections[question.id] ?? [];
+                    const isCorrect = areOptionSetsEqual(selected, question.correctOptionIndexes);
+
+                    return (
+                      <article
+                        key={question.id}
+                        className={`quiz-card ${quizSubmitted ? (isCorrect ? "correct" : "incorrect") : ""}`.trim()}
+                      >
+                        <h3>
+                          {questionIndex + 1}. {question.prompt}
+                        </h3>
+
+                        <div className="quiz-options">
+                          {question.options.map((option, optionIndex) => {
+                            const isSelected = selected.includes(optionIndex);
+                            const isCorrectOption = question.correctOptionIndexes.includes(optionIndex);
+                            const optionClassName = quizSubmitted
+                              ? `quiz-option ${isCorrectOption ? "is-correct" : isSelected ? "is-wrong" : ""}`.trim()
+                              : "quiz-option";
+
+                            return (
+                              <label key={`${question.id}:${optionIndex}`} className={optionClassName}>
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  onChange={() => toggleQuizOption(question.id, optionIndex)}
+                                  disabled={quizSubmitted}
+                                />
+                                <span>{option}</span>
+                              </label>
+                            );
+                          })}
+                        </div>
+
+                        {quizSubmitted && (
+                          <p className="quiz-explanation">
+                            {isCorrect ? "Spr\u00e1vn\u011b." : "Nespr\u00e1vn\u011b."} {question.explanation}
+                          </p>
+                        )}
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
+            </details>
           )}
         </section>
-
-        {activeQuizQuestions.length > 0 && (
-          <section className="page-block">
-            <div className="flashcards-head">
-              <div>
-                <h2>{"Test znalost\u00ed"}</h2>
-                <p className="section-copy">
-                  {"Ka\u017ed\u00e1 ot\u00e1zka m\u00e1 4 mo\u017enosti a spr\u00e1vn\u00fdch odpov\u011bd\u00ed m\u016f\u017ee b\u00fdt 0 a\u017e 4. Test vych\u00e1z\u00ed pouze z vypracovan\u00e9ho textu."}
-                </p>
-              </div>
-              <button className="btn primary" type="button" onClick={() => setQuizSubmitted(true)}>
-                {"Vyhodnotit test"}
-              </button>
-            </div>
-
-            {quizSubmitted && (
-              <p className="quiz-summary">
-                {"Sk\u00f3re: "}
-                <strong>
-                  {quizScore} / {activeQuizQuestions.length}
-                </strong>
-              </p>
-            )}
-
-            <div className="quiz-list">
-              {activeQuizQuestions.map((question, questionIndex) => {
-                const selected = quizSelections[question.id] ?? [];
-                const isCorrect = areOptionSetsEqual(selected, question.correctOptionIndexes);
-
-                return (
-                  <article
-                    key={question.id}
-                    className={`quiz-card ${quizSubmitted ? (isCorrect ? "correct" : "incorrect") : ""}`.trim()}
-                  >
-                    <h3>
-                      {questionIndex + 1}. {question.prompt}
-                    </h3>
-
-                    <div className="quiz-options">
-                      {question.options.map((option, optionIndex) => {
-                        const isSelected = selected.includes(optionIndex);
-                        const isCorrectOption = question.correctOptionIndexes.includes(optionIndex);
-                        const optionClassName = quizSubmitted
-                          ? `quiz-option ${isCorrectOption ? "is-correct" : isSelected ? "is-wrong" : ""}`.trim()
-                          : "quiz-option";
-
-                        return (
-                          <label key={`${question.id}:${optionIndex}`} className={optionClassName}>
-                            <input
-                              type="checkbox"
-                              checked={isSelected}
-                              onChange={() => toggleQuizOption(question.id, optionIndex)}
-                              disabled={quizSubmitted}
-                            />
-                            <span>{option}</span>
-                          </label>
-                        );
-                      })}
-                    </div>
-
-                    {quizSubmitted && (
-                      <p className="quiz-explanation">
-                        {isCorrect ? "Spr\u00e1vn\u011b." : "Nespr\u00e1vn\u011b."} {question.explanation}
-                      </p>
-                    )}
-                  </article>
-                );
-              })}
-            </div>
-          </section>
-        )}
       </>
     );
   }
