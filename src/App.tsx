@@ -93,6 +93,10 @@ function hasOwnMarker(text: string): boolean {
   return /^(\d+[\.\)]|[A-Z][\.\)]|[IVXLCDM]+\.)\s/.test(text.trim());
 }
 
+function normalizeQuestionPointText(text: string): string {
+  return text.replace(/^([A-Z])\)\s/, "$1. ");
+}
+
 function getPreparedQuestionLabel(questionKey: string): string | null {
   const [topicId, rawIndex] = questionKey.split(":");
   const questionIndex = Number(rawIndex);
@@ -1161,7 +1165,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       (chapter, chapterIndex) => `
     <section class="chapter">
       <h2>${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}</h2>
-      ${chapter.points.map((point) => `<p>${point}</p>`).join("")}
+      ${chapter.points.map((point) => `<p>${normalizeQuestionPointText(point)}</p>`).join("")}
     </section>
   `
     )
@@ -1301,7 +1305,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
               <div className="question-chapter-points">
                 {chapter.points.map((point) => (
                   <p key={point} className={`chapter-point ${hasOwnMarker(point) ? "with-marker" : "with-bullet"}`}>
-                    {point}
+                    {normalizeQuestionPointText(point)}
                   </p>
                 ))}
               </div>
@@ -1522,7 +1526,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                     <div className="chapter-points">
                       {chapter.points.map((point) => (
                         <p key={point} className={`chapter-point ${hasOwnMarker(point) ? "with-marker" : "with-bullet"}`}>
-                          {point}
+                          {normalizeQuestionPointText(point)}
                         </p>
                       ))}
                     </div>
