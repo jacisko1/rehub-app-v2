@@ -151,6 +151,54 @@ h1 {
   font-family: "Archivo", sans-serif;
 }
 
+.edu-hub {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.edu-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 8px 22px rgba(31, 42, 42, 0.08);
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(31, 42, 42, 0.12);
+}
+
+.edu-card h2 {
+  margin: 4px 0 10px;
+  font-family: "Archivo", sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+}
+
+.edu-card p,
+.section-copy {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.edu-card-large {
+  background:
+    radial-gradient(circle at top right, rgba(14, 143, 125, 0.12), transparent 30%),
+    var(--surface);
+}
+
+.edu-card-accent {
+  background:
+    radial-gradient(circle at top right, rgba(255, 122, 47, 0.14), transparent 32%),
+    var(--surface);
+}
+
 .page-block ul,
 .page-block ol {
   margin: 0;
@@ -774,6 +822,10 @@ h1 {
 }
 
 @media (max-width: 760px) {
+  .edu-hub {
+    grid-template-columns: 1fr;
+  }
+
   .topics-index {
     columns: 1;
   }

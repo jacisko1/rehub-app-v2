@@ -43,6 +43,7 @@ type InstagramPost = {
 };
 
 const ROMAN_CHAPTERS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+const REHAEDU_TOPIC_IDS = new Set(eduTopics.map((topic) => topic.id));
 const REHAGRAM_URL = "https://www.instagram.com/rehubproject/";
 const REHATUBE_CHANNEL_URL = "https://www.youtube.com/@ReHuBproject";
 const REHAGRAM_POSTS: InstagramPost[] = [
@@ -561,6 +562,12 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const [openQuestionKey, setOpenQuestionKey] = useState<string | null>(null);
   const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({});
+  const activeSection =
+    sectionId === "atestacni-otazky" || (sectionId && REHAEDU_TOPIC_IDS.has(sectionId))
+      ? "atestacni-otazky"
+      : sectionId === "klinicke-vysetreni" || sectionId === "neurologicke-vysetreni" || sectionId === "ortopedicke-vysetreni"
+        ? sectionId
+        : null;
 
   const activePreparedQuestion = openQuestionKey ? PREPARED_QUESTIONS[openQuestionKey] : null;
   const activeQuestionLabel = useMemo(() => {
@@ -601,6 +608,97 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const toggleChapter = (chapterKey: string) => {
     setOpenChapters((prev) => ({ ...prev, [chapterKey]: !prev[chapterKey] }));
   };
+
+  if (!activeSection) {
+    return (
+      <>
+        <section className="hero">
+          <span className="eyebrow">VzdÄ›lĂˇvĂˇnĂ­</span>
+          <h1>đź“ RehaEdu</h1>
+          <p className="lead">RozcestnĂ­k pro atestaÄŤnĂ­ pĹ™Ă­pravu a klinickĂ© vyĹˇetĹ™enĂ­ v rĂˇmci RehaEdu.</p>
+          <div className="actions">
+            <a className="btn primary" href="#/">
+              ZpÄ›t na pĹ™ehled
+            </a>
+          </div>
+        </section>
+
+        <section className="edu-hub" aria-label="Rozcestnik RehaEdu">
+          <a className="edu-card edu-card-large" href="#/rehaedu/atestacni-otazky">
+            <span className="badge">Studium</span>
+            <h2>AtestaÄŤnĂ­ otĂˇzky</h2>
+            <p>KompletnĂ­ pĹ™ehled tematickĂ˝ch oblastĂ­, otĂˇzek a rozpracovanĂ˝ch odpovÄ›dĂ­ pro systematickou pĹ™Ă­pravu.</p>
+          </a>
+          <a className="edu-card edu-card-accent" href="#/rehaedu/klinicke-vysetreni">
+            <span className="badge">Praxe</span>
+            <h2>KlinickĂ© vyĹˇetĹ™enĂ­</h2>
+            <p>PostupnÄ› budovanĂˇ sekce klinickĂ˝ch vyĹˇetĹ™enĂ­ s oddÄ›lenĂ˝mi podsekcemi podle zamÄ›Ĺ™enĂ­.</p>
+          </a>
+        </section>
+      </>
+    );
+  }
+
+  if (activeSection === "klinicke-vysetreni") {
+    return (
+      <>
+        <section className="hero">
+          <span className="eyebrow">VzdÄ›lĂˇvĂˇnĂ­</span>
+          <h1>đź“ RehaEdu</h1>
+          <p className="lead">KlinickĂ© vyĹˇetĹ™enĂ­ jako samostatnĂˇ vÄ›tev RehaEdu.</p>
+          <div className="actions">
+            <a className="btn primary" href="#/">
+              ZpÄ›t na pĹ™ehled
+            </a>
+            <a className="btn" href="#/rehaedu">
+              ZpÄ›t na rozcestnĂ­k
+            </a>
+          </div>
+        </section>
+
+        <section className="edu-hub" aria-label="Klinicke vysetreni">
+          <a className="edu-card" href="#/rehaedu/neurologicke-vysetreni">
+            <span className="badge">Podsekce</span>
+            <h2>NeurologickĂ© vyĹˇetĹ™enĂ­</h2>
+            <p>ZĂˇkladnĂ­ struktura a budoucĂ­ obsah neurologickĂ©ho klinickĂ©ho vyĹˇetĹ™enĂ­.</p>
+          </a>
+          <a className="edu-card" href="#/rehaedu/ortopedicke-vysetreni">
+            <span className="badge">Podsekce</span>
+            <h2>OrtopedickĂ© vyĹˇetĹ™enĂ­</h2>
+            <p>ZĂˇkladnĂ­ struktura a budoucĂ­ obsah ortopedickĂ©ho klinickĂ©ho vyĹˇetĹ™enĂ­.</p>
+          </a>
+        </section>
+      </>
+    );
+  }
+
+  if (activeSection === "neurologicke-vysetreni" || activeSection === "ortopedicke-vysetreni") {
+    const isNeuro = activeSection === "neurologicke-vysetreni";
+    return (
+      <>
+        <section className="hero">
+          <span className="eyebrow">VzdÄ›lĂˇvĂˇnĂ­</span>
+          <h1>đź“ RehaEdu</h1>
+          <p className="lead">{isNeuro ? "NeurologickĂ©" : "OrtopedickĂ©"} vyĹˇetĹ™enĂ­ jako samostatnĂˇ podsekce RehaEdu.</p>
+          <div className="actions">
+            <a className="btn primary" href="#/">
+              ZpÄ›t na pĹ™ehled
+            </a>
+            <a className="btn" href="#/rehaedu/klinicke-vysetreni">
+              ZpÄ›t na klinickĂ© vyĹˇetĹ™enĂ­
+            </a>
+          </div>
+        </section>
+
+        <section className="page-block">
+          <h2>{isNeuro ? "NeurologickĂ© vyĹˇetĹ™enĂ­" : "OrtopedickĂ© vyĹˇetĹ™enĂ­"}</h2>
+          <p className="section-copy">
+            Tato podsekce je pĹ™ipravenĂˇ pro budoucĂ­ doplnÄ›nĂ­ obsahu {isNeuro ? "neurologickĂ©ho" : "ortopedickĂ©ho"} vyĹˇetĹ™enĂ­.
+          </p>
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
