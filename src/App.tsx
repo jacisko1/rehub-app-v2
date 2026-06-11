@@ -613,12 +613,12 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     return (
       <>
         <section className="hero">
-          <span className="eyebrow">VzdÄ›lĂˇvĂˇnĂ­</span>
-          <h1>đź“ RehaEdu</h1>
-          <p className="lead">RozcestnĂ­k pro atestaÄŤnĂ­ pĹ™Ă­pravu a klinickĂ© vyĹˇetĹ™enĂ­ v rĂˇmci RehaEdu.</p>
+          <span className="eyebrow">{"Vzd\u011bl\u00e1v\u00e1n\u00ed"}</span>
+          <h1>{"\ud83d\udcd8 RehaEdu"}</h1>
+          <p className="lead">{"Rozcestn\u00edk pro atesta\u010dn\u00ed p\u0159\u00edpravu a klinick\u00e9 vy\u0161et\u0159en\u00ed v r\u00e1mci RehaEdu."}</p>
           <div className="actions">
             <a className="btn primary" href="#/">
-              ZpÄ›t na pĹ™ehled
+              {"Zp\u011bt na p\u0159ehled"}
             </a>
           </div>
         </section>
@@ -626,13 +626,13 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
         <section className="edu-hub" aria-label="Rozcestnik RehaEdu">
           <a className="edu-card edu-card-large" href="#/rehaedu/atestacni-otazky">
             <span className="badge">Studium</span>
-            <h2>AtestaÄŤnĂ­ otĂˇzky</h2>
-            <p>KompletnĂ­ pĹ™ehled tematickĂ˝ch oblastĂ­, otĂˇzek a rozpracovanĂ˝ch odpovÄ›dĂ­ pro systematickou pĹ™Ă­pravu.</p>
+            <h2>{"Atesta\u010dn\u00ed ot\u00e1zky"}</h2>
+            <p>{"Kompletn\u00ed p\u0159ehled tematick\u00fdch oblast\u00ed, ot\u00e1zek a rozpracovan\u00fdch odpov\u011bd\u00ed pro systematickou p\u0159\u00edpravu."}</p>
           </a>
           <a className="edu-card edu-card-accent" href="#/rehaedu/klinicke-vysetreni">
             <span className="badge">Praxe</span>
-            <h2>KlinickĂ© vyĹˇetĹ™enĂ­</h2>
-            <p>PostupnÄ› budovanĂˇ sekce klinickĂ˝ch vyĹˇetĹ™enĂ­ s oddÄ›lenĂ˝mi podsekcemi podle zamÄ›Ĺ™enĂ­.</p>
+            <h2>{"Klinick\u00e9 vy\u0161et\u0159en\u00ed"}</h2>
+            <p>{"Postupn\u011b budovan\u00e1 sekce klinick\u00fdch vy\u0161et\u0159en\u00ed s odd\u011blen\u00fdmi podsekcemi podle zam\u011b\u0159en\u00ed."}</p>
           </a>
         </section>
       </>
@@ -643,15 +643,15 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     return (
       <>
         <section className="hero">
-          <span className="eyebrow">VzdÄ›lĂˇvĂˇnĂ­</span>
-          <h1>đź“ RehaEdu</h1>
-          <p className="lead">KlinickĂ© vyĹˇetĹ™enĂ­ jako samostatnĂˇ vÄ›tev RehaEdu.</p>
+          <span className="eyebrow">{"Vzd\u011bl\u00e1v\u00e1n\u00ed"}</span>
+          <h1>{"\ud83d\udcd8 RehaEdu"}</h1>
+          <p className="lead">{"Klinick\u00e9 vy\u0161et\u0159en\u00ed jako samostatn\u00e1 v\u011btev RehaEdu."}</p>
           <div className="actions">
             <a className="btn primary" href="#/">
-              ZpÄ›t na pĹ™ehled
+              {"Zp\u011bt na p\u0159ehled"}
             </a>
             <a className="btn" href="#/rehaedu">
-              ZpÄ›t na rozcestnĂ­k
+              {"Zp\u011bt na rozcestn\u00edk"}
             </a>
           </div>
         </section>
@@ -659,13 +659,13 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
         <section className="edu-hub" aria-label="Klinicke vysetreni">
           <a className="edu-card" href="#/rehaedu/neurologicke-vysetreni">
             <span className="badge">Podsekce</span>
-            <h2>NeurologickĂ© vyĹˇetĹ™enĂ­</h2>
-            <p>ZĂˇkladnĂ­ struktura a budoucĂ­ obsah neurologickĂ©ho klinickĂ©ho vyĹˇetĹ™enĂ­.</p>
+            <h2>{"Neurologick\u00e9 vy\u0161et\u0159en\u00ed"}</h2>
+            <p>{"Z\u00e1kladn\u00ed struktura a budouc\u00ed obsah neurologick\u00e9ho klinick\u00e9ho vy\u0161et\u0159en\u00ed."}</p>
           </a>
           <a className="edu-card" href="#/rehaedu/ortopedicke-vysetreni">
             <span className="badge">Podsekce</span>
-            <h2>OrtopedickĂ© vyĹˇetĹ™enĂ­</h2>
-            <p>ZĂˇkladnĂ­ struktura a budoucĂ­ obsah ortopedickĂ©ho klinickĂ©ho vyĹˇetĹ™enĂ­.</p>
+            <h2>{"Ortopedick\u00e9 vy\u0161et\u0159en\u00ed"}</h2>
+            <p>{"Z\u00e1kladn\u00ed struktura a budouc\u00ed obsah ortopedick\u00e9ho klinick\u00e9ho vy\u0161et\u0159en\u00ed."}</p>
           </a>
         </section>
       </>
@@ -677,23 +677,25 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     return (
       <>
         <section className="hero">
-          <span className="eyebrow">VzdÄ›lĂˇvĂˇnĂ­</span>
-          <h1>đź“ RehaEdu</h1>
-          <p className="lead">{isNeuro ? "NeurologickĂ©" : "OrtopedickĂ©"} vyĹˇetĹ™enĂ­ jako samostatnĂˇ podsekce RehaEdu.</p>
+          <span className="eyebrow">{"Vzd\u011bl\u00e1v\u00e1n\u00ed"}</span>
+          <h1>{"\ud83d\udcd8 RehaEdu"}</h1>
+          <p className="lead">{isNeuro ? "Neurologick\u00e9" : "Ortopedick\u00e9"}{" vy\u0161et\u0159en\u00ed jako samostatn\u00e1 podsekce RehaEdu."}</p>
           <div className="actions">
             <a className="btn primary" href="#/">
-              ZpÄ›t na pĹ™ehled
+              {"Zp\u011bt na p\u0159ehled"}
             </a>
             <a className="btn" href="#/rehaedu/klinicke-vysetreni">
-              ZpÄ›t na klinickĂ© vyĹˇetĹ™enĂ­
+              {"Zp\u011bt na klinick\u00e9 vy\u0161et\u0159en\u00ed"}
             </a>
           </div>
         </section>
 
         <section className="page-block">
-          <h2>{isNeuro ? "NeurologickĂ© vyĹˇetĹ™enĂ­" : "OrtopedickĂ© vyĹˇetĹ™enĂ­"}</h2>
+          <h2>{isNeuro ? "Neurologick\u00e9 vy\u0161et\u0159en\u00ed" : "Ortopedick\u00e9 vy\u0161et\u0159en\u00ed"}</h2>
           <p className="section-copy">
-            Tato podsekce je pĹ™ipravenĂˇ pro budoucĂ­ doplnÄ›nĂ­ obsahu {isNeuro ? "neurologickĂ©ho" : "ortopedickĂ©ho"} vyĹˇetĹ™enĂ­.
+            {"Tato podsekce je p\u0159ipravena pro budouc\u00ed dopln\u011bn\u00ed obsahu "}
+            {isNeuro ? "neurologick\u00e9ho" : "ortopedick\u00e9ho"}
+            {" vy\u0161et\u0159en\u00ed."}
           </p>
         </section>
       </>
