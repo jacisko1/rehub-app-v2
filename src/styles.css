@@ -591,8 +591,6 @@ h1 {
   grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
   gap: 24px;
   align-items: center;
-  text-decoration: none;
-  color: inherit;
   padding: 4px;
 }
 
@@ -631,44 +629,36 @@ h1 {
 }
 
 .instagram-post {
+  display: block;
   position: relative;
   min-height: 144px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 12px 24px rgba(31, 42, 42, 0.1);
   isolation: isolate;
+  text-decoration: none;
+  color: inherit;
+}
+
+.instagram-post::before,
+.instagram-post-sheen {
+  position: absolute;
+  inset: 0;
 }
 
 .instagram-post::before {
   content: "";
-  position: absolute;
-  inset: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 38%),
-    linear-gradient(0deg, rgba(20, 18, 31, 0.42), rgba(20, 18, 31, 0.05) 45%, rgba(255, 255, 255, 0.08));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 38%),
+    linear-gradient(0deg, rgba(20, 18, 31, 0.58), rgba(20, 18, 31, 0.08) 45%, rgba(255, 255, 255, 0.08));
   z-index: 1;
 }
 
-.instagram-post-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.03);
-  filter: saturate(1.05) contrast(1.02);
-}
-
-.post-one .instagram-post-image {
-  object-position: center top;
-}
-
-.post-two .instagram-post-image {
-  object-position: center;
-}
-
-.post-three .instagram-post-image {
-  object-position: center 22%;
+.instagram-post-sheen {
+  background:
+    radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.24), transparent 20%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 52%);
+  z-index: 0;
 }
 
 .post-one {
@@ -701,6 +691,22 @@ h1 {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   z-index: 2;
+}
+
+.instagram-post-link {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  z-index: 2;
+  backdrop-filter: blur(8px);
 }
 
 .video-grid {
