@@ -30,12 +30,21 @@ type QuestionChapter = {
 type PreparedQuestion = {
   chapters: QuestionChapter[];
   flashcards?: Flashcard[];
+  quizQuestions?: QuizQuestion[];
 };
 
 type Flashcard = {
   id: string;
   prompt: string;
   answer: string;
+};
+
+type QuizQuestion = {
+  id: string;
+  prompt: string;
+  options: string[];
+  correctOptionIndexes: number[];
+  explanation: string;
 };
 
 type YouTubeVideo = {
@@ -131,6 +140,14 @@ function createFlashcards(questionKey: string, preparedQuestion: PreparedQuestio
   );
 }
 
+function areOptionSetsEqual(left: number[], right: number[]): boolean {
+  if (left.length !== right.length) {
+    return false;
+  }
+
+  return left.every((value, index) => value === right[index]);
+}
+
 
 const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
   "v-neurologie:10": {
@@ -214,6 +231,268 @@ const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
         id: "v-neurologie:10:flashcard:16",
         prompt: "Na čem je založeno posudkové hodnocení pacienta s DMO?",
         answer: "Na funkčním dopadu onemocnění, zejména na soběstačnosti, mobilitě, mentálním stavu a potřebě asistence."
+      },
+      {
+        id: "v-neurologie:10:flashcard:17",
+        prompt: "Kdy b\u00fdv\u00e1 v \u010cR diagn\u00f3za DMO \u010dasto stanovena?",
+        answer: "V \u010cR b\u00fdv\u00e1 diagnostika DMO \u010dasto mezi 1. a 2. rokem v\u011bku."
+      },
+      {
+        id: "v-neurologie:10:flashcard:18",
+        prompt: "Jak\u00e9 testy lze pou\u017e\u00edt k objektivizaci efektu terapie u DMO?",
+        answer: "Nap\u0159\u00edklad 6MWT, 10MWT, TUG, 9HPT a Box and Block test."
+      },
+      {
+        id: "v-neurologie:10:flashcard:19",
+        prompt: "Co je typick\u00e9 pro dlouhodob\u00fd rehabilita\u010dn\u00ed program ve v\u011bku 0\u20133 roky?",
+        answer: "Pohybov\u00e1 terapie, n\u00e1vaznost na ranou p\u00e9\u010di, logopedie, ergoterapie a \u0159e\u0161en\u00ed intern\u00edch komplikac\u00ed."
+      },
+      {
+        id: "v-neurologie:10:flashcard:20",
+        prompt: "Jak\u00e9 jsou mo\u017enosti pracovn\u00edho za\u0159azen\u00ed podle t\u00ed\u017ee DMO?",
+        answer: "Lehk\u00e9 formy mohou pracovat na b\u011b\u017en\u00e9m trhu s \u00fapravou podm\u00ednek, st\u0159edn\u00ed formy v chr\u00e1n\u011bn\u00e9m zam\u011bstn\u00e1n\u00ed a t\u011b\u017ek\u00e9 formy odpov\u00eddaj\u00ed zpravidla pln\u00e9 invalidit\u011b."
+      }
+    ],
+    quizQuestions: [
+      {
+        id: "v-neurologie:10:quiz:1",
+        prompt: "Kter\u00e1 tvrzen\u00ed odpov\u00eddaj\u00ed definici DMO?",
+        options: [
+          "Jde o neprogresivn\u00ed neurologick\u00fd syndrom.",
+          "Vznik\u00e1 na podklad\u011b l\u00e9ze nezral\u00e9ho mozku.",
+          "Jde p\u0159edev\u0161\u00edm o poruchu r\u016fstu kost\u00ed bez neurologick\u00e9 slo\u017eky.",
+          "Porucha se t\u00fdk\u00e1 v\u00fdvoje pohybu a postury."
+        ],
+        correctOptionIndexes: [0, 1, 3],
+        explanation: "DMO je neprogresivn\u00ed syndrom z l\u00e9ze nezral\u00e9ho mozku a vede k poru\u0161e v\u00fdvoje pohybu a postury."
+      },
+      {
+        id: "v-neurologie:10:quiz:2",
+        prompt: "Ve kter\u00fdch obdob\u00edch m\u016f\u017ee vzniknout l\u00e9ze vedouc\u00ed k DMO?",
+        options: [
+          "Prenat\u00e1ln\u011b.",
+          "Perinat\u00e1ln\u011b.",
+          "\u010casn\u011b postnat\u00e1ln\u011b.",
+          "Pouze v dosp\u011blosti."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Text uv\u00e1d\u00ed prenat\u00e1ln\u00ed, perinat\u00e1ln\u00ed i \u010dasn\u011b postnat\u00e1ln\u00ed obdob\u00ed."
+      },
+      {
+        id: "v-neurologie:10:quiz:3",
+        prompt: "Kter\u00e1 tvrzen\u00ed o prevalenci DMO jsou spr\u00e1vn\u00e1?",
+        options: [
+          "Prevalence je p\u0159ibli\u017en\u011b 2\u20133 na 1000 \u017eiv\u011b narozen\u00fdch d\u011bt\u00ed.",
+          "V\u00fdskyt je vy\u0161\u0161\u00ed u nedono\u0161en\u00fdch d\u011bt\u00ed.",
+          "Jde o velmi vz\u00e1cn\u00e9 onemocn\u011bn\u00ed s prevalenc\u00ed pod 0,1 na 1000.",
+          "DMO je nej\u010dast\u011bj\u0161\u00ed onemocn\u011bn\u00ed pohybov\u00e9ho apar\u00e1tu v d\u011btsk\u00e9m v\u011bku."
+        ],
+        correctOptionIndexes: [0, 1, 3],
+        explanation: "Text uv\u00e1d\u00ed prevalenci 2\u20133/1000, vy\u0161\u0161\u00ed v\u00fdskyt u nedono\u0161en\u00fdch a ozna\u010duje DMO za nej\u010dast\u011bj\u0161\u00ed onemocn\u011bn\u00ed pohybov\u00e9ho apar\u00e1tu v d\u011btsk\u00e9m v\u011bku."
+      },
+      {
+        id: "v-neurologie:10:quiz:4",
+        prompt: "Co m\u016f\u017ee motorickou poruchu u DMO doprov\u00e1zet?",
+        options: [
+          "Kognitivn\u00ed poruchy.",
+          "Senzorick\u00e9 poruchy zraku nebo sluchu.",
+          "Epilepsie.",
+          "Sekund\u00e1rn\u00ed muskuloskelet\u00e1ln\u00ed zm\u011bny."
+        ],
+        correctOptionIndexes: [0, 1, 2, 3],
+        explanation: "V\u0161echny uveden\u00e9 mo\u017enosti text u DMO zmi\u0148uje jako mo\u017en\u00fd doprovod."
+      },
+      {
+        id: "v-neurologie:10:quiz:5",
+        prompt: "Kter\u00e9 polo\u017eky pat\u0159\u00ed mezi prenat\u00e1ln\u00ed etiologick\u00e9 faktory?",
+        options: [
+          "IUGR.",
+          "Preeklampsie.",
+          "Kongenit\u00e1ln\u00ed infekce.",
+          "Ventrikuloperitone\u00e1ln\u00ed shunt."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Text mezi prenat\u00e1ln\u00ed faktory uv\u00e1d\u00ed IUGR, preeklampsii i kongenit\u00e1ln\u00ed infekce."
+      },
+      {
+        id: "v-neurologie:10:quiz:6",
+        prompt: "Co text \u0159ad\u00ed mezi perinat\u00e1ln\u00ed p\u0159\u00ed\u010diny DMO?",
+        options: [
+          "Hypoxii.",
+          "Porodn\u00ed trauma.",
+          "Intraventrikul\u00e1rn\u00ed hemoragii.",
+          "Chronickou artritidu."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Perinat\u00e1ln\u011b jsou v textu uvedeny hypoxie, porodn\u00ed trauma a IVH."
+      },
+      {
+        id: "v-neurologie:10:quiz:7",
+        prompt: "Kter\u00e9 tvrzen\u00ed o spastick\u00e9m typu DMO jsou spr\u00e1vn\u00e9?",
+        options: [
+          "Je nej\u010dast\u011bj\u0161\u00ed.",
+          "Je spojen s po\u0161kozen\u00edm pyramidov\u00e9 dr\u00e1hy.",
+          "Pat\u0159\u00ed sem dipar\u00e9za, kvadrupar\u00e9za a hemipar\u00e9za.",
+          "V\u017edy je bez posti\u017een\u00ed horn\u00edch kon\u010detin."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Spastick\u00fd typ je nej\u010dast\u011bj\u0161\u00ed, souvis\u00ed s pyramidovou dr\u00e1hou a zahrnuje dipar\u00e9zu, kvadrupar\u00e9zu i hemipar\u00e9zu."
+      },
+      {
+        id: "v-neurologie:10:quiz:8",
+        prompt: "Co je v textu typick\u00e9 pro spastickou dipar\u00e9zu?",
+        options: [
+          "Horn\u00ed kon\u010detiny b\u00fdvaj\u00ed funk\u010dn\u011b lep\u0161\u00ed.",
+          "\u010casto je riziko luxace ky\u010dl\u00ed.",
+          "\u010casto se objevuje pes equinus.",
+          "Jde o \u010dist\u011b unilater\u00e1ln\u00ed posti\u017een\u00ed."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Dipar\u00e9za m\u00e1 lep\u0161\u00ed funkci HK, riziko luxace ky\u010dl\u00ed a pes equinus; unilater\u00e1ln\u00ed je hemipar\u00e9za."
+      },
+      {
+        id: "v-neurologie:10:quiz:9",
+        prompt: "Kter\u00e9 znaky odpov\u00eddaj\u00ed spastick\u00e9 kvadrupar\u00e9ze?",
+        options: [
+          "T\u011b\u017ek\u00e1 l\u00e9ze CNS.",
+          "Bulb\u00e1rn\u00ed symptomatika.",
+          "Respira\u010dn\u00ed komplikace.",
+          "V\u017edy zachovan\u00e1 pln\u00e1 sob\u011bsta\u010dnost."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Text popisuje t\u011b\u017ekou l\u00e9zi CNS, bulb\u00e1rn\u00ed symptomatiku i respira\u010dn\u00ed komplikace."
+      },
+      {
+        id: "v-neurologie:10:quiz:10",
+        prompt: "Co je v textu typick\u00e9 pro spastickou hemipar\u00e9zu?",
+        options: [
+          "Unilater\u00e1ln\u00ed posti\u017een\u00ed.",
+          "\u010cast\u00e1 \u010dasn\u00e1 vertikalizace.",
+          "Equinovar\u00f3zn\u00ed postaven\u00ed.",
+          "Epilepsie se m\u016f\u017ee vyskytovat asi ve 27\u201344 %."
+        ],
+        correctOptionIndexes: [0, 1, 2, 3],
+        explanation: "V\u0161echny \u010dty\u0159i body jsou v textu p\u0159\u00edmo uvedeny u spastick\u00e9 hemipar\u00e9zy."
+      },
+      {
+        id: "v-neurologie:10:quiz:11",
+        prompt: "Co charakterizuje dyskinetick\u00fd typ DMO?",
+        options: [
+          "Dystonick\u00e9 nebo choreo-atetotick\u00e9 projevy.",
+          "Ztr\u00e1tu kontroly pohybu.",
+          "Labilitu trupu.",
+          "Poruchy orofaci\u00e1ln\u00ed motoriky."
+        ],
+        correctOptionIndexes: [0, 1, 2, 3],
+        explanation: "Text uv\u00e1d\u00ed v\u0161echny tyto projevy jako typick\u00e9 pro dyskinetick\u00fd typ."
+      },
+      {
+        id: "v-neurologie:10:quiz:12",
+        prompt: "Kter\u00e9 projevy pat\u0159\u00ed k ataktick\u00e9mu typu DMO?",
+        options: [
+          "Centra\u0301ln\u00ed hypotonie.",
+          "Ataxie trupu a kon\u010detin.",
+          "Hypermetrie a inten\u010dn\u00ed tremor.",
+          "Porucha koordinace o\u010dn\u00edch bulb\u016f."
+        ],
+        correctOptionIndexes: [0, 1, 2, 3],
+        explanation: "V\u0161echny uveden\u00e9 projevy jsou v textu u ataktick\u00e9ho typu p\u0159\u00edmo zm\u00edn\u011bny."
+      },
+      {
+        id: "v-neurologie:10:quiz:13",
+        prompt: "Kter\u00e1 tvrzen\u00ed o diagnostice DMO jsou spr\u00e1vn\u00e1?",
+        options: [
+          "Sou\u010d\u00e1st\u00ed je klinick\u00e9 a neurologick\u00e9 vy\u0161et\u0159en\u00ed.",
+          "Vyu\u017e\u00edvaj\u00ed se SONO a MRI.",
+          "Lze doplnit EEG, metabolick\u00e9 a genetick\u00e9 vy\u0161et\u0159en\u00ed.",
+          "Diagn\u00f3zu lze stanovit pouze podle jednoho laboratorn\u00edho markeru."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Text stav\u00ed diagnostiku na klinice, zobrazovac\u00edch metod\u00e1ch a dopl\u0148uj\u00edc\u00edch vy\u0161et\u0159en\u00edch, ne na jednom markeru."
+      },
+      {
+        id: "v-neurologie:10:quiz:14",
+        prompt: "Kter\u00e1 tvrzen\u00ed o hodnocen\u00ed t\u00ed\u017ee posti\u017een\u00ed jsou spr\u00e1vn\u00e1?",
+        options: [
+          "GMFCS klasifikuje hrubou motoriku a funk\u010dn\u00ed schopnosti.",
+          "GMFM slou\u017e\u00ed ke kvantifikaci hrub\u00e9 motoriky.",
+          "6MWT, 10MWT, TUG, 9HPT a Box and Block lze pou\u017e\u00edt k objektivizaci efektu terapie.",
+          "GMFCS m\u00e1 12 stup\u0148\u016f."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "GMFCS je p\u011btistup\u0148ov\u00fd syst\u00e9m, GMFM kvantifikuje motoriku a text uv\u00e1d\u00ed i standardizovan\u00e9 testy."
+      },
+      {
+        id: "v-neurologie:10:quiz:15",
+        prompt: "Co pat\u0159\u00ed do komplexn\u00ed rehabilita\u010dn\u00ed l\u00e9\u010dby u DMO?",
+        options: [
+          "Interdisciplin\u00e1rn\u00ed p\u0159\u00edstup zam\u011b\u0159en\u00fd na nez\u00e1vislost a kvalitu \u017eivota.",
+          "L\u00e9\u010dba spasticity nap\u0159\u00edklad elektrostimulac\u00ed, botulotoxinem a ort\u00e9zami.",
+          "Pohybov\u00e1 terapie v\u010detn\u011b Vojtova principu, Bobath konceptu a funk\u010dn\u00edho tr\u00e9ninku.",
+          "Ignorov\u00e1n\u00ed komplikac\u00ed, proto\u017ee nejsou pro funkci podstatn\u00e9."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Komplexn\u00ed rehabilitace zahrnuje interdisciplin\u00e1rn\u00ed p\u0159\u00edstup, l\u00e9\u010dbu spasticity, pohybovou terapii i aktivn\u00ed \u0159e\u0161en\u00ed komplikac\u00ed."
+      },
+      {
+        id: "v-neurologie:10:quiz:16",
+        prompt: "Kter\u00e9 c\u00edle nebo obsahy odpov\u00eddaj\u00ed kr\u00e1tkodob\u00e9mu rehabilita\u010dn\u00edmu programu?",
+        options: [
+          "Stanoven\u00ed hlavn\u00edho probl\u00e9mu a konkr\u00e9tn\u00edho kr\u00e1tkodob\u00e9ho c\u00edle.",
+          "V\u00fdb\u011br vhodn\u00e9 terapeutick\u00e9 techniky.",
+          "Objektivn\u00ed kontrola efektu standardizovan\u00fdm testov\u00e1n\u00edm.",
+          "Nap\u0159\u00edklad zlep\u0161en\u00ed stability sedu nebo prevence kontraktur."
+        ],
+        correctOptionIndexes: [0, 1, 2, 3],
+        explanation: "V\u0161echny \u010dty\u0159i body text v kr\u00e1tkodob\u00e9m programu zmi\u0148uje."
+      },
+      {
+        id: "v-neurologie:10:quiz:17",
+        prompt: "Co je podle textu typick\u00e9 pro dlouhodob\u00fd program ve v\u011bku 0\u20133 roky?",
+        options: [
+          "Pohybov\u00e1 terapie a dozr\u00e1v\u00e1n\u00ed hrub\u00e9 motoriky.",
+          "N\u00e1vaznost na ranou p\u00e9\u010di.",
+          "Logopedie, ergoterapie a \u0159e\u0161en\u00ed intern\u00edch komplikac\u00ed.",
+          "D\u016fraz hlavn\u011b na pracovn\u00ed za\u0159azen\u00ed na b\u011b\u017en\u00e9m trhu."
+        ],
+        correctOptionIndexes: [0, 1, 2],
+        explanation: "Pracovn\u00ed za\u0159azen\u00ed pat\u0159\u00ed a\u017e do pozd\u011bj\u0161\u00edho \u017eivota, ne do programu 0\u20133 roky."
+      },
+      {
+        id: "v-neurologie:10:quiz:18",
+        prompt: "Kter\u00e9 polo\u017eky text \u0159ad\u00ed mezi limity rehabilita\u010dn\u00ed terapie?",
+        options: [
+          "Ment\u00e1ln\u00ed deficit.",
+          "Poruchy senzorick\u00e9ho zpracov\u00e1n\u00ed a PAS.",
+          "Nedostate\u010dnou motivaci a nespolupr\u00e1ci rodiny.",
+          "Nutnost respektovat hranice motorick\u00fdch a ment\u00e1ln\u00edch mo\u017enost\u00ed pacienta."
+        ],
+        correctOptionIndexes: [0, 1, 2, 3],
+        explanation: "Text mezi limity uv\u00e1d\u00ed v\u0161echny \u010dty\u0159i polo\u017eky."
+      },
+      {
+        id: "v-neurologie:10:quiz:19",
+        prompt: "Kter\u00e1 tvrzen\u00ed o posudkov\u00e9m \u0159e\u0161en\u00ed a pracovn\u00edm za\u0159azen\u00ed jsou spr\u00e1vn\u00e1?",
+        options: [
+          "Rozhoduj\u00edc\u00ed je funk\u010dn\u00ed dopad onemocn\u011bn\u00ed, ne samotn\u00e1 diagn\u00f3za.",
+          "Mezi mo\u017enosti pat\u0159\u00ed p\u0159\u00edsp\u011bvek na p\u00e9\u010di, ZTP/ZTP-P, pom\u016fcky a invalidn\u00ed d\u016fchod.",
+          "Lehk\u00e9 formy mohou pracovat na b\u011b\u017en\u00e9m trhu s \u00fapravou podm\u00ednek.",
+          "T\u011b\u017ek\u00e9 formy odpov\u00eddaj\u00ed zpravidla pln\u00e9 invalidit\u011b."
+        ],
+        correctOptionIndexes: [0, 1, 2, 3],
+        explanation: "V\u0161echna tvrzen\u00ed odpov\u00eddaj\u00ed textu o posudkov\u00e9m \u0159e\u0161en\u00ed a pracovn\u00edm za\u0159azen\u00ed."
+      },
+      {
+        id: "v-neurologie:10:quiz:20",
+        prompt: "Kter\u00e9 z n\u00e1sleduj\u00edc\u00edch tvrzen\u00ed je podle vypracovan\u00e9ho textu spr\u00e1vn\u00e9?",
+        options: [
+          "DMO je progresivn\u00ed degenerativn\u00ed onemocn\u011bn\u00ed perifern\u00edho nervu.",
+          "MRI je v\u017edy norm\u00e1ln\u00ed a diagnosticky nepou\u017eiteln\u00e1.",
+          "GMFM slou\u017e\u00ed k hodnocen\u00ed sluchov\u00fdch funkc\u00ed.",
+          "Spastick\u00fd typ je v\u017edy m\u00e9n\u011b \u010dast\u00fd ne\u017e ataktick\u00fd."
+        ],
+        correctOptionIndexes: [],
+        explanation: "Ani jedno z tvrzen\u00ed neodpov\u00edd\u00e1 textu. DMO je neprogresivn\u00ed, MRI m\u00e1 v diagnostice m\u00edsto, GMFM hodnot\u00ed hrubou motoriku a spastick\u00fd typ je nej\u010dast\u011bj\u0161\u00ed."
       }
     ],
     chapters: [
@@ -701,6 +980,8 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({});
   const [revealedFlashcards, setRevealedFlashcards] = useState<Record<string, boolean>>({});
   const [activeFlashcardIndex, setActiveFlashcardIndex] = useState(0);
+  const [quizSelections, setQuizSelections] = useState<Record<string, number[]>>({});
+  const [quizSubmitted, setQuizSubmitted] = useState(false);
   const questionRouteKey = getQuestionKeyFromRoute(sectionId);
   const activeSection =
     questionRouteKey
@@ -722,6 +1003,11 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     () => (questionRouteKey && activeQuestionPage ? createFlashcards(questionRouteKey, activeQuestionPage) : []),
     [questionRouteKey, activeQuestionPage]
   );
+  const activeQuizQuestions = activeQuestionPage?.quizQuestions ?? [];
+  const quizScore = activeQuizQuestions.reduce((score, question) => {
+    const selected = quizSelections[question.id] ?? [];
+    return score + (areOptionSetsEqual(selected, question.correctOptionIndexes) ? 1 : 0);
+  }, 0);
 
   useEffect(() => {
     if (!openQuestionKey) {
@@ -748,6 +1034,8 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   useEffect(() => {
     setRevealedFlashcards({});
     setActiveFlashcardIndex(0);
+    setQuizSelections({});
+    setQuizSubmitted(false);
   }, [questionRouteKey]);
 
   const toggleChapter = (chapterKey: string) => {
@@ -756,6 +1044,16 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
 
   const toggleFlashcard = (cardId: string) => {
     setRevealedFlashcards((prev) => ({ ...prev, [cardId]: !prev[cardId] }));
+  };
+
+  const toggleQuizOption = (questionId: string, optionIndex: number) => {
+    setQuizSelections((prev) => {
+      const current = prev[questionId] ?? [];
+      const next = current.includes(optionIndex)
+        ? current.filter((value) => value !== optionIndex)
+        : [...current, optionIndex].sort((a, b) => a - b);
+      return { ...prev, [questionId]: next };
+    });
   };
 
   const downloadQuestionDoc = () => {
@@ -968,6 +1266,77 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
             </>
           )}
         </section>
+
+        {activeQuizQuestions.length > 0 && (
+          <section className="page-block">
+            <div className="flashcards-head">
+              <div>
+                <h2>{"Test znalost\u00ed"}</h2>
+                <p className="section-copy">
+                  {"Ka\u017ed\u00e1 ot\u00e1zka m\u00e1 4 mo\u017enosti a spr\u00e1vn\u00fdch odpov\u011bd\u00ed m\u016f\u017ee b\u00fdt 0 a\u017e 4. Test vych\u00e1z\u00ed pouze z vypracovan\u00e9ho textu."}
+                </p>
+              </div>
+              <button className="btn primary" type="button" onClick={() => setQuizSubmitted(true)}>
+                {"Vyhodnotit test"}
+              </button>
+            </div>
+
+            {quizSubmitted && (
+              <p className="quiz-summary">
+                {"Sk\u00f3re: "}
+                <strong>
+                  {quizScore} / {activeQuizQuestions.length}
+                </strong>
+              </p>
+            )}
+
+            <div className="quiz-list">
+              {activeQuizQuestions.map((question, questionIndex) => {
+                const selected = quizSelections[question.id] ?? [];
+                const isCorrect = areOptionSetsEqual(selected, question.correctOptionIndexes);
+
+                return (
+                  <article
+                    key={question.id}
+                    className={`quiz-card ${quizSubmitted ? (isCorrect ? "correct" : "incorrect") : ""}`.trim()}
+                  >
+                    <h3>
+                      {questionIndex + 1}. {question.prompt}
+                    </h3>
+
+                    <div className="quiz-options">
+                      {question.options.map((option, optionIndex) => {
+                        const isSelected = selected.includes(optionIndex);
+                        const isCorrectOption = question.correctOptionIndexes.includes(optionIndex);
+                        const optionClassName = quizSubmitted
+                          ? `quiz-option ${isCorrectOption ? "is-correct" : isSelected ? "is-wrong" : ""}`.trim()
+                          : "quiz-option";
+
+                        return (
+                          <label key={`${question.id}:${optionIndex}`} className={optionClassName}>
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={() => toggleQuizOption(question.id, optionIndex)}
+                              disabled={quizSubmitted}
+                            />
+                            <span>{option}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
+
+                    {quizSubmitted && (
+                      <p className="quiz-explanation">
+                        {isCorrect ? "Spr\u00e1vn\u011b." : "Nespr\u00e1vn\u011b."} {question.explanation}
+                      </p>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        )}
       </>
     );
   }
