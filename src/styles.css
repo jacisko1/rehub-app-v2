@@ -287,6 +287,101 @@ h1 {
   color: var(--primary);
 }
 
+.question-link {
+  text-decoration: none;
+}
+
+.question-article {
+  display: grid;
+  gap: 18px;
+}
+
+.question-chapter {
+  border-top: 1px solid rgba(18, 45, 44, 0.1);
+  padding-top: 16px;
+}
+
+.question-chapter:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.question-chapter h3 {
+  margin: 0 0 10px;
+  font-family: "Archivo", sans-serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+}
+
+.question-chapter-points {
+  display: grid;
+  gap: 8px;
+}
+
+.flashcards-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.flashcards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.flashcard {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+  border: 1px solid rgba(18, 45, 44, 0.12);
+  border-radius: 18px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at top right, rgba(14, 143, 125, 0.08), transparent 28%),
+    rgba(255, 255, 255, 0.76);
+  color: inherit;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(31, 42, 42, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.flashcard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(31, 42, 42, 0.12);
+  border-color: rgba(14, 143, 125, 0.24);
+}
+
+.flashcard.revealed {
+  background:
+    radial-gradient(circle at top right, rgba(255, 122, 47, 0.1), transparent 30%),
+    rgba(255, 255, 255, 0.82);
+}
+
+.flashcard-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(14, 143, 125, 0.12);
+  color: #0b6358;
+  font-weight: 800;
+}
+
+.flashcard-label {
+  font-family: "Archivo", sans-serif;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.flashcard-body {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .question-details {
   grid-column: 1 / -1;
   width: 100%;
@@ -848,6 +943,10 @@ h1 {
 
   .question-item {
     column-gap: 5px;
+  }
+
+  .flashcards-grid {
+    grid-template-columns: 1fr;
   }
 
   .question-number {

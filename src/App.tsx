@@ -29,6 +29,13 @@ type QuestionChapter = {
 
 type PreparedQuestion = {
   chapters: QuestionChapter[];
+  flashcards?: Flashcard[];
+};
+
+type Flashcard = {
+  id: string;
+  prompt: string;
+  answer: string;
 };
 
 type YouTubeVideo = {
@@ -77,8 +84,137 @@ function hasOwnMarker(text: string): boolean {
   return /^(\d+[\.\)]|[A-Z][\.\)]|[IVXLCDM]+\.)\s/.test(text.trim());
 }
 
+function getPreparedQuestionLabel(questionKey: string): string | null {
+  const [topicId, rawIndex] = questionKey.split(":");
+  const questionIndex = Number(rawIndex);
+  const topic = eduTopics.find((entry) => entry.id === topicId);
+  if (!topic || Number.isNaN(questionIndex)) {
+    return null;
+  }
+  return `${questionIndex + 1}. ${topic.questions[questionIndex] ?? ""}`;
+}
+
+function getPreparedQuestionRoute(topicId: string, questionIndex: number): string {
+  return `#/rehaedu/otazka/${topicId}/${questionIndex}`;
+}
+
+function getQuestionKeyFromRoute(sectionId: string | null): string | null {
+  if (!sectionId?.startsWith("otazka/")) {
+    return null;
+  }
+
+  const parts = sectionId.split("/");
+  if (parts.length !== 3) {
+    return null;
+  }
+
+  const [, topicId, rawIndex] = parts;
+  const questionIndex = Number(rawIndex);
+  if (!topicId || Number.isNaN(questionIndex)) {
+    return null;
+  }
+
+  return `${topicId}:${questionIndex}`;
+}
+
+function createFlashcards(questionKey: string, preparedQuestion: PreparedQuestion): Flashcard[] {
+  if (preparedQuestion.flashcards?.length) {
+    return preparedQuestion.flashcards;
+  }
+
+  return preparedQuestion.chapters.flatMap((chapter, chapterIndex) =>
+    chapter.points.map((point, pointIndex) => ({
+      id: `${questionKey}:${chapterIndex}:${pointIndex}`,
+      prompt: `${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}`,
+      answer: point
+    }))
+  );
+}
+
 const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
   "v-neurologie:10": {
+    flashcards: [
+      {
+        id: "v-neurologie:10:flashcard:1",
+        prompt: "Co je dětská mozková obrna a jaký je její základní charakter?",
+        answer: "DMO je neprogresivní neurologický syndrom vznikající na podkladě léze nezralého mozku. Jde o poruchu vývoje pohybu a postury."
+      },
+      {
+        id: "v-neurologie:10:flashcard:2",
+        prompt: "V jakém období nejčastěji vzniká léze vedoucí k DMO?",
+        answer: "V prenatálním, perinatálním nebo časně postnatálním období."
+      },
+      {
+        id: "v-neurologie:10:flashcard:3",
+        prompt: "Jaká je přibližná prevalence DMO?",
+        answer: "Přibližně 2 až 3 případy na 1000 živě narozených dětí, častěji u nedonošených."
+      },
+      {
+        id: "v-neurologie:10:flashcard:4",
+        prompt: "Jaké hlavní skupiny etiologie DMO rozlišujeme?",
+        answer: "Prenatální, perinatální a postnatální."
+      },
+      {
+        id: "v-neurologie:10:flashcard:5",
+        prompt: "Jaký typ DMO je nejčastější?",
+        answer: "Spastický typ."
+      },
+      {
+        id: "v-neurologie:10:flashcard:6",
+        prompt: "Jaké základní formy spastické DMO znáš?",
+        answer: "Spastická diparéza, kvadruparéza a hemiparéza."
+      },
+      {
+        id: "v-neurologie:10:flashcard:7",
+        prompt: "Co je typické pro dyskinetický typ DMO?",
+        answer: "Dystonické nebo choreo-atetotické mimovolní pohyby, ztráta kontroly pohybu a časté poruchy orofaciální motoriky."
+      },
+      {
+        id: "v-neurologie:10:flashcard:8",
+        prompt: "Co je typické pro ataktický typ DMO?",
+        answer: "Centrální hypotonie, ataxie, hypermetrie, intenční tremor a porucha koordinace."
+      },
+      {
+        id: "v-neurologie:10:flashcard:9",
+        prompt: "Jaké zobrazovací metody se používají v diagnostice DMO?",
+        answer: "Nejčastěji ultrazvuk a MRI."
+      },
+      {
+        id: "v-neurologie:10:flashcard:10",
+        prompt: "K čemu slouží GMFCS?",
+        answer: "Ke klasifikaci hrubé motoriky a funkčních schopností pacienta v pěti stupních."
+      },
+      {
+        id: "v-neurologie:10:flashcard:11",
+        prompt: "K čemu slouží GMFM?",
+        answer: "Ke kvantifikaci hrubé motoriky a ke sledování efektu terapie."
+      },
+      {
+        id: "v-neurologie:10:flashcard:12",
+        prompt: "Jaké jsou hlavní cíle komplexní rehabilitační léčby u DMO?",
+        answer: "Maximální nezávislost, zlepšení funkce, prevence komplikací, podpora participace a kvality života."
+      },
+      {
+        id: "v-neurologie:10:flashcard:13",
+        prompt: "Jaké přístupy se používají v pohybové terapii u DMO?",
+        answer: "Například Vojtův princip, Bobath koncept, funkční trénink chůze, práce s vozíkem a sportovní aktivity."
+      },
+      {
+        id: "v-neurologie:10:flashcard:14",
+        prompt: "Jaké komplikace je potřeba u DMO aktivně sledovat?",
+        answer: "Luxace kyčlí, skoliózu, deformity dolních končetin, osteoporózu, epilepsii, poruchy příjmu potravy a neurogenní močový měchýř či střevo."
+      },
+      {
+        id: "v-neurologie:10:flashcard:15",
+        prompt: "Co patří mezi limity rehabilitační terapie u DMO?",
+        answer: "Mentální deficit, poruchy senzorického zpracování, PAS, nedostatečná motivace a nízká spolupráce rodiny."
+      },
+      {
+        id: "v-neurologie:10:flashcard:16",
+        prompt: "Na čem je založeno posudkové hodnocení pacienta s DMO?",
+        answer: "Na funkčním dopadu onemocnění, zejména na soběstačnosti, mobilitě, mentálním stavu a potřebě asistence."
+      }
+    ],
     chapters: [
       {
         title: "Definice a charakteristika",
@@ -312,7 +448,7 @@ function getRouteFromHash(): RouteState {
   const parts = clean.split("/").filter(Boolean);
   return {
     slug: parts[0] ?? null,
-    sectionId: parts[1] ?? null
+    sectionId: parts.length > 1 ? parts.slice(1).join("/") : null
   };
 }
 
@@ -562,26 +698,28 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const [openQuestionKey, setOpenQuestionKey] = useState<string | null>(null);
   const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({});
+  const [revealedFlashcards, setRevealedFlashcards] = useState<Record<string, boolean>>({});
+  const questionRouteKey = getQuestionKeyFromRoute(sectionId);
   const activeSection =
-    sectionId === "atestacni-otazky" || (sectionId && REHAEDU_TOPIC_IDS.has(sectionId))
+    questionRouteKey
+      ? "detail-otazky"
+      : sectionId === "atestacni-otazky" || (sectionId && REHAEDU_TOPIC_IDS.has(sectionId))
       ? "atestacni-otazky"
       : sectionId === "klinicke-vysetreni" || sectionId === "neurologicke-vysetreni" || sectionId === "ortopedicke-vysetreni"
         ? sectionId
         : null;
 
   const activePreparedQuestion = openQuestionKey ? PREPARED_QUESTIONS[openQuestionKey] : null;
-  const activeQuestionLabel = useMemo(() => {
-    if (!openQuestionKey) {
-      return null;
-    }
-    const [topicId, rawIndex] = openQuestionKey.split(":");
-    const questionIndex = Number(rawIndex);
-    const topic = eduTopics.find((entry) => entry.id === topicId);
-    if (!topic || Number.isNaN(questionIndex)) {
-      return null;
-    }
-    return `${questionIndex + 1}. ${topic.questions[questionIndex] ?? ""}`;
-  }, [openQuestionKey]);
+  const activeQuestionLabel = useMemo(() => (openQuestionKey ? getPreparedQuestionLabel(openQuestionKey) : null), [openQuestionKey]);
+  const activeQuestionPage = questionRouteKey ? PREPARED_QUESTIONS[questionRouteKey] : null;
+  const activeQuestionPageLabel = useMemo(
+    () => (questionRouteKey ? getPreparedQuestionLabel(questionRouteKey) : null),
+    [questionRouteKey]
+  );
+  const activeFlashcards = useMemo(
+    () => (questionRouteKey && activeQuestionPage ? createFlashcards(questionRouteKey, activeQuestionPage) : []),
+    [questionRouteKey, activeQuestionPage]
+  );
 
   useEffect(() => {
     if (!openQuestionKey) {
@@ -605,8 +743,51 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     setOpenChapters({});
   }, [openQuestionKey]);
 
+  useEffect(() => {
+    setRevealedFlashcards({});
+  }, [questionRouteKey]);
+
   const toggleChapter = (chapterKey: string) => {
     setOpenChapters((prev) => ({ ...prev, [chapterKey]: !prev[chapterKey] }));
+  };
+
+  const toggleFlashcard = (cardId: string) => {
+    setRevealedFlashcards((prev) => ({ ...prev, [cardId]: !prev[cardId] }));
+  };
+
+  const downloadQuestionDoc = () => {
+    if (!questionRouteKey || !activeQuestionPage || !activeQuestionPageLabel) {
+      return;
+    }
+
+    const html = `<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <title>${activeQuestionPageLabel}</title>
+</head>
+<body>
+  <h1>${activeQuestionPageLabel}</h1>
+  ${activeQuestionPage.chapters
+    .map(
+      (chapter, chapterIndex) => `
+    <h2>${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}</h2>
+    ${chapter.points.map((point) => `<p>${point}</p>`).join("")}
+  `
+    )
+    .join("")}
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: "application/msword;charset=utf-8" });
+    const objectUrl = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = objectUrl;
+    link.download = `${questionRouteKey.replace(/[:/]/g, "-")}.doc`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(objectUrl);
   };
 
   if (!activeSection) {
@@ -702,6 +883,69 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     );
   }
 
+  if (activeSection === "detail-otazky" && questionRouteKey && activeQuestionPage && activeQuestionPageLabel) {
+    return (
+      <>
+        <section className="hero">
+          <span className="eyebrow">{"Vzd\u011bl\u00e1v\u00e1n\u00ed"}</span>
+          <h1>{"\ud83d\udcd8 RehaEdu"}</h1>
+          <p className="lead">{activeQuestionPageLabel}</p>
+          <div className="actions">
+            <a className="btn primary" href="#/rehaedu/atestacni-otazky">
+              {"Zp\u011bt na atesta\u010dn\u00ed ot\u00e1zky"}
+            </a>
+            <button className="btn" type="button" onClick={downloadQuestionDoc}>
+              {"St\u00e1hnout Word dokument"}
+            </button>
+          </div>
+        </section>
+
+        <section className="page-block question-article">
+          <h2>{"Vypracovan\u00e1 ot\u00e1zka"}</h2>
+          {activeQuestionPage.chapters.map((chapter, chapterIndex) => (
+            <section key={`${questionRouteKey}:${chapterIndex}`} className="question-chapter">
+              <h3>
+                {ROMAN_CHAPTERS[chapterIndex] ?? `${chapterIndex + 1}`}. {chapter.title}
+              </h3>
+              <div className="question-chapter-points">
+                {chapter.points.map((point) => (
+                  <p key={point} className={`chapter-point ${hasOwnMarker(point) ? "with-marker" : "with-bullet"}`}>
+                    {point}
+                  </p>
+                ))}
+              </div>
+            </section>
+          ))}
+        </section>
+
+        <section className="page-block">
+          <div className="flashcards-head">
+            <div>
+              <h2>{"U\u010den\u00ed pomoc\u00ed flashcards"}</h2>
+              <p className="section-copy">{"Kliknut\u00edm na karti\u010dku zobraz\u00edte odpov\u011b\u010f."}</p>
+            </div>
+          </div>
+          <div className="flashcards-grid">
+            {activeFlashcards.map((card, index) => (
+              <button
+                key={card.id}
+                type="button"
+                className={`flashcard ${revealedFlashcards[card.id] ? "revealed" : ""}`}
+                onClick={() => toggleFlashcard(card.id)}
+              >
+                <span className="flashcard-index">{index + 1}</span>
+                <span className="flashcard-label">{card.prompt}</span>
+                <span className="flashcard-body">
+                  {revealedFlashcards[card.id] ? card.answer : "Klikni pro zobrazen\u00ed odpov\u011bdi"}
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       <section className="hero">
@@ -744,9 +988,9 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                       {questionIndex + 1}.
                     </span>
                     {isPrepared ? (
-                      <button type="button" className="question-toggle" onClick={() => setOpenQuestionKey(isOpen ? null : questionKey)}>
+                      <a className="question-toggle question-link" href={getPreparedQuestionRoute(topic.id, questionIndex)}>
                         {question}
-                      </button>
+                      </a>
                     ) : (
                     <span>{question}</span>
                     )}
