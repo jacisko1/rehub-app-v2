@@ -379,15 +379,17 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 
       {moduleData.slug === "rehatube" && (
         <section className="page-block video-block" aria-label="RehaTube videa">
-          <div className="video-block-head">
-            <div>
-              <h2>RehaTube kanal</h2>
-              <p className="video-block-copy">Otevrete si cely YouTube kanal nebo si rovnou pustte vybrana videa primo tady.</p>
+          <a className="channel-card" href={REHATUBE_CHANNEL_URL} target="_blank" rel="noreferrer">
+            <div className="channel-mark" aria-hidden="true">
+              <span className="channel-play" />
             </div>
-            <a className="btn primary" href={REHATUBE_CHANNEL_URL} target="_blank" rel="noreferrer">
-              Otevrit kanal
-            </a>
-          </div>
+            <div className="channel-copy">
+              <span className="badge">YouTube kanal</span>
+              <h2>ReHuBproject</h2>
+              <p className="video-block-copy">Otevrete si cely kanal a pod nim si pustte vybrana videa primo v aplikaci.</p>
+            </div>
+            <span className="channel-cta">Otevrit kanal</span>
+          </a>
 
           <div className="video-grid">
             {REHATUBE_VIDEOS.map((video) => (
@@ -402,9 +404,6 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
                     allowFullScreen
                   />
                 </div>
-                <a href={video.url} target="_blank" rel="noreferrer">
-                  Otevrit video na YouTube
-                </a>
               </article>
             ))}
           </div>
@@ -412,16 +411,27 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
       )}
 
       {moduleData.slug === "rehagram" && (
-        <section className="page-block" aria-label="RehaGram Instagram">
-          <div className="video-block-head">
-            <div>
-              <h2>RehaGram Instagram</h2>
-              <p className="video-block-copy">Sledujte nas Instagram pro kratky obsah, novinky a sdileni z projektu ReHuB.</p>
+        <section className="page-block instagram-block" aria-label="RehaGram Instagram">
+          <a className="instagram-card" href={REHAGRAM_URL} target="_blank" rel="noreferrer">
+            <div className="instagram-copy">
+              <span className="badge">Instagram</span>
+              <h2>@rehubproject</h2>
+              <p className="video-block-copy">Kratsi obsah, novinky z projektu a sdileni z rehabilitacni komunity na jednom miste.</p>
+              <span className="instagram-cta">Otevrit Instagram</span>
             </div>
-            <a className="btn primary" href={REHAGRAM_URL} target="_blank" rel="noreferrer">
-              Otevrit Instagram
-            </a>
-          </div>
+
+            <div className="instagram-preview" aria-hidden="true">
+              <div className="instagram-post post-one">
+                <span className="instagram-post-tag">Reels</span>
+              </div>
+              <div className="instagram-post post-two">
+                <span className="instagram-post-tag">Post</span>
+              </div>
+              <div className="instagram-post post-three">
+                <span className="instagram-post-tag">Stories</span>
+              </div>
+            </div>
+          </a>
         </section>
       )}
 
