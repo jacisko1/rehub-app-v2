@@ -39,8 +39,7 @@ type YouTubeVideo = {
 
 type InstagramPost = {
   url: string;
-  label: string;
-  accentClass: string;
+  title: string;
 };
 
 const ROMAN_CHAPTERS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
@@ -49,18 +48,15 @@ const REHATUBE_CHANNEL_URL = "https://www.youtube.com/@ReHuBproject";
 const REHAGRAM_POSTS: InstagramPost[] = [
   {
     url: "https://www.instagram.com/p/DZIDDeKq2K7/",
-    label: "Prispevek 1",
-    accentClass: "post-one"
+    title: "Instagram příspěvek 1"
   },
   {
     url: "https://www.instagram.com/p/DZPLTDsK3UV/",
-    label: "Prispevek 2",
-    accentClass: "post-two"
+    title: "Instagram příspěvek 2"
   },
   {
     url: "https://www.instagram.com/p/DZU0r5cqnjH/",
-    label: "Prispevek 3",
-    accentClass: "post-three"
+    title: "Instagram příspěvek 3"
   }
 ];
 const REHATUBE_VIDEOS: YouTubeVideo[] = [
@@ -407,11 +403,11 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
               <span className="channel-play" />
             </div>
             <div className="channel-copy">
-              <span className="badge">YouTube kanal</span>
+              <span className="badge">YouTube kanál</span>
               <h2>ReHuBproject</h2>
-              <p className="video-block-copy">Otevrete si cely kanal. Pod nim si muzete pustit vybrana videa primo v aplikaci.</p>
+              <p className="video-block-copy">Otevřete si celý kanál. Pod ním si můžete pustit vybraná videa přímo v aplikaci.</p>
             </div>
-            <span className="channel-cta">Otevrit kanal</span>
+            <span className="channel-cta">Otevřít kanál</span>
           </a>
 
           <div className="video-grid">
@@ -439,25 +435,27 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
             <div className="instagram-copy">
               <span className="badge">Instagram</span>
               <h2>@rehubproject</h2>
-              <p className="video-block-copy">Kratsi obsah, novinky z projektu a sdileni z rehabilitacni komunity najdete na jednom miste.</p>
+              <p className="video-block-copy">Kratší obsah, novinky z projektu a sdílení z rehabilitační komunity najdete na jednom místě.</p>
               <a className="instagram-cta" href={REHAGRAM_URL} target="_blank" rel="noreferrer">
-                Otevrit Instagram
+                Otevřít Instagram
               </a>
             </div>
 
             <div className="instagram-preview">
               {REHAGRAM_POSTS.map((post) => (
-                <a
+                <article
                   key={post.url}
-                  className={`instagram-post ${post.accentClass}`}
-                  href={post.url}
-                  target="_blank"
-                  rel="noreferrer"
+                  className="instagram-post"
                 >
-                  <span className="instagram-post-sheen" aria-hidden="true" />
-                  <span className="instagram-post-tag">{post.label}</span>
-                  <span className="instagram-post-link">Otevrit na Instagramu</span>
-                </a>
+                  <div className="instagram-post-frame">
+                    <iframe
+                      src={`${post.url}embed/captioned/`}
+                      title={post.title}
+                      loading="lazy"
+                      allowTransparency={true}
+                    />
+                  </div>
+                </article>
               ))}
             </div>
           </div>

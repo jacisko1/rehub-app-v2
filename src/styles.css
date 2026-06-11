@@ -617,96 +617,34 @@ h1 {
 
 .instagram-preview {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  padding: 10px;
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at top left, rgba(255, 122, 24, 0.18), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.18), transparent 34%),
-    rgba(255, 255, 255, 0.66);
-  border: 1px solid rgba(244, 63, 94, 0.1);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
 }
 
 .instagram-post {
-  display: block;
-  position: relative;
-  min-height: 144px;
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
+  border: 1px solid rgba(18, 45, 44, 0.1);
+  background: rgba(255, 255, 255, 0.82);
   box-shadow: 0 12px 24px rgba(31, 42, 42, 0.1);
-  isolation: isolate;
-  text-decoration: none;
-  color: inherit;
 }
 
-.instagram-post::before,
-.instagram-post-sheen {
+.instagram-post-frame {
   position: absolute;
   inset: 0;
 }
 
-.instagram-post::before {
-  content: "";
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 38%),
-    linear-gradient(0deg, rgba(20, 18, 31, 0.58), rgba(20, 18, 31, 0.08) 45%, rgba(255, 255, 255, 0.08));
-  z-index: 1;
+.instagram-post {
+  position: relative;
+  aspect-ratio: 9 / 16;
 }
 
-.instagram-post-sheen {
-  background:
-    radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.24), transparent 20%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 52%);
-  z-index: 0;
-}
-
-.post-one {
-  background:
-    linear-gradient(145deg, rgba(249, 115, 22, 0.26) 0%, rgba(244, 63, 94, 0.28) 55%, rgba(124, 58, 237, 0.3) 100%);
-}
-
-.post-two {
-  background:
-    linear-gradient(155deg, rgba(14, 165, 233, 0.26) 0%, rgba(20, 184, 166, 0.28) 48%, rgba(34, 197, 94, 0.28) 100%);
-}
-
-.post-three {
-  grid-column: 1 / -1;
-  min-height: 172px;
-  background:
-    linear-gradient(145deg, rgba(124, 58, 237, 0.28) 0%, rgba(236, 72, 153, 0.3) 48%, rgba(251, 113, 133, 0.28) 100%);
-}
-
-.instagram-post-tag {
-  position: absolute;
-  left: 14px;
-  bottom: 14px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #1f2a2a;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  z-index: 2;
-}
-
-.instagram-post-link {
-  position: absolute;
-  left: 14px;
-  top: 14px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  z-index: 2;
-  backdrop-filter: blur(8px);
+.instagram-post-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #ffffff;
 }
 
 .video-grid {
@@ -893,9 +831,16 @@ h1 {
 
   .instagram-preview {
     width: 100%;
+    grid-template-columns: 1fr;
   }
 
   .internship-media {
     max-height: 360px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1040px) {
+  .instagram-preview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
