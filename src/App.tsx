@@ -170,6 +170,13 @@ function createFlashcards(questionKey: string, preparedQuestion: PreparedQuestio
   );
 }
 
+function createExamPrompts(preparedQuestion: PreparedQuestion): Array<{ prompt: string; expected: string }> {
+  return preparedQuestion.chapters.map((chapter) => ({
+    prompt: `Popište oblast: ${chapter.title}.`,
+    expected: chapter.points.join(" ")
+  }));
+}
+
 const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
   "v-neurologie:10": {
     flashcards: [
@@ -763,6 +770,10 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     () => (questionRouteKey && activeQuestionPage ? createFlashcards(questionRouteKey, activeQuestionPage) : []),
     [questionRouteKey, activeQuestionPage]
   );
+  const activeExamPrompts = useMemo(
+    () => (activeQuestionPage ? createExamPrompts(activeQuestionPage) : []),
+    [activeQuestionPage]
+  );
 
   useEffect(() => {
     if (!openQuestionKey) {
@@ -841,7 +852,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   };
 
   const startExam = () => {
-    if (!activeQuestionPageLabel || activeFlashcards.length === 0) {
+    if (!activeQuestionPageLabel || activeExamPrompts.length === 0) {
       return;
     }
 
@@ -858,18 +869,21 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
 
   const submitExamAnswer = () => {
     const trimmed = examAnswer.trim();
-    if (!trimmed || !examActive || examStep >= activeFlashcards.length) {
+    if (!trimmed || !examActive || examStep >= activeExamPrompts.length) {
       return;
     }
 
-    const currentCard = activeFlashcards[examStep];
-    const evaluation = evaluateExamAnswer(trimmed, currentCard.answer);
+    const currentPrompt = activeExamPrompts[examStep];
+    const evaluation = evaluateExamAnswer(trimmed, currentPrompt.expected);
     const studentMessage: ExamMessage = {
       id: `student:${examStep}:${examMessages.length}`,
       role: "student",
       text: trimmed
     };
 
+    const normalizedAnswer = normalizeForSearch(trimmed);
+    const answerWordCount = normalizedAnswer.split(/\s+/).filter(Boolean).length;
+    const nonsenseLike = answerWordCount < 4 || evaluation.matched.length === 0;
     const feedbackParts: string[] = [];
     if (evaluation.score >= 0.66) {
       feedbackParts.push("Dobře, tohle je v zásadě správně.");
@@ -897,7 +911,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       }
     ];
 
-    if (nextStep < activeFlashcards.length) {
+    if (nextStep < activeExamPrompts.length) {
       newMessages.push({
         id: `examiner:next:${nextStep}`,
         role: "examiner",
