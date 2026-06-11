@@ -38,6 +38,12 @@ type Flashcard = {
   answer: string;
 };
 
+type ExamMessage = {
+  id: string;
+  role: "examiner" | "student";
+  text: string;
+};
+
 type YouTubeVideo = {
   id: string;
   title: string;
@@ -82,6 +88,39 @@ const REHATUBE_VIDEOS: YouTubeVideo[] = [
 
 function hasOwnMarker(text: string): boolean {
   return /^(\d+[\.\)]|[A-Z][\.\)]|[IVXLCDM]+\.)\s/.test(text.trim());
+}
+
+function normalizeForSearch(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ");
+}
+
+function extractKeywords(value: string): string[] {
+  const stopwords = new Set([
+    "a", "i", "v", "ve", "na", "do", "z", "ze", "je", "jsou", "by", "se", "si", "pro", "u", "o", "od", "po", "pod",
+    "nad", "k", "ke", "s", "za", "pri", "nebo", "jako", "ktere", "ktery", "ktera", "to", "ta", "ten", "ma", "mezi",
+    "pacienta", "pacienta", "pacient", "typu", "forma", "formy"
+  ]);
+
+  return Array.from(
+    new Set(
+      normalizeForSearch(value)
+        .split(/\s+/)
+        .filter((token) => token.length >= 4 && !stopwords.has(token))
+    )
+  );
+}
+
+function evaluateExamAnswer(answer: string, expected: string): { score: number; matched: string[]; missing: string[] } {
+  const answerTokens = new Set(extractKeywords(answer));
+  const expectedTokens = extractKeywords(expected);
+  const matched = expectedTokens.filter((token) => answerTokens.has(token));
+  const missing = expectedTokens.filter((token) => !answerTokens.has(token));
+  const score = expectedTokens.length === 0 ? 0 : matched.length / expectedTokens.length;
+  return { score, matched, missing };
 }
 
 function getPreparedQuestionLabel(questionKey: string): string | null {
@@ -699,6 +738,10 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const [openQuestionKey, setOpenQuestionKey] = useState<string | null>(null);
   const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({});
   const [revealedFlashcards, setRevealedFlashcards] = useState<Record<string, boolean>>({});
+  const [examMessages, setExamMessages] = useState<ExamMessage[]>([]);
+  const [examAnswer, setExamAnswer] = useState("");
+  const [examStep, setExamStep] = useState(0);
+  const [examActive, setExamActive] = useState(false);
   const questionRouteKey = getQuestionKeyFromRoute(sectionId);
   const activeSection =
     questionRouteKey
@@ -747,6 +790,13 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     setRevealedFlashcards({});
   }, [questionRouteKey]);
 
+  useEffect(() => {
+    setExamMessages([]);
+    setExamAnswer("");
+    setExamStep(0);
+    setExamActive(false);
+  }, [questionRouteKey]);
+
   const toggleChapter = (chapterKey: string) => {
     setOpenChapters((prev) => ({ ...prev, [chapterKey]: !prev[chapterKey] }));
   };
@@ -788,6 +838,83 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     link.click();
     link.remove();
     URL.revokeObjectURL(objectUrl);
+  };
+
+  const startExam = () => {
+    if (!activeQuestionPageLabel || activeFlashcards.length === 0) {
+      return;
+    }
+
+    const openingPrompt = `Dobrý den, vytáhl jste si otázku ${activeQuestionPageLabel}. Tak nám o ní něco řekněte.`;
+    const followUpPrompt = `Začněme první oblastí: ${activeFlashcards[0].prompt}`;
+    setExamMessages([
+      { id: "examiner:intro", role: "examiner", text: openingPrompt },
+      { id: "examiner:first", role: "examiner", text: followUpPrompt }
+    ]);
+    setExamAnswer("");
+    setExamStep(0);
+    setExamActive(true);
+  };
+
+  const submitExamAnswer = () => {
+    const trimmed = examAnswer.trim();
+    if (!trimmed || !examActive || examStep >= activeFlashcards.length) {
+      return;
+    }
+
+    const currentCard = activeFlashcards[examStep];
+    const evaluation = evaluateExamAnswer(trimmed, currentCard.answer);
+    const studentMessage: ExamMessage = {
+      id: `student:${examStep}:${examMessages.length}`,
+      role: "student",
+      text: trimmed
+    };
+
+    const feedbackParts: string[] = [];
+    if (evaluation.score >= 0.66) {
+      feedbackParts.push("Dobře, tohle je v zásadě správně.");
+    } else if (evaluation.score >= 0.33) {
+      feedbackParts.push("To je částečně správně, ale chtělo by to doplnit.");
+    } else {
+      feedbackParts.push("Tohle je zatím příliš obecné, zkuste to upřesnit.");
+    }
+
+    if (evaluation.matched.length > 0) {
+      feedbackParts.push(`Zaznělo například: ${evaluation.matched.slice(0, 4).join(", ")}.`);
+    }
+
+    if (evaluation.missing.length > 0) {
+      feedbackParts.push(`Ještě by bylo dobré zmínit: ${evaluation.missing.slice(0, 4).join(", ")}.`);
+    }
+
+    const nextStep = examStep + 1;
+    const newMessages: ExamMessage[] = [
+      studentMessage,
+      {
+        id: `examiner:feedback:${examStep}`,
+        role: "examiner",
+        text: feedbackParts.join(" ")
+      }
+    ];
+
+    if (nextStep < activeFlashcards.length) {
+      newMessages.push({
+        id: `examiner:next:${nextStep}`,
+        role: "examiner",
+        text: `Dobře, pojďme dál. ${activeFlashcards[nextStep].prompt}`
+      });
+    } else {
+      newMessages.push({
+        id: "examiner:finish",
+        role: "examiner",
+        text: "Tím jsme prošli hlavní body otázky. Pro dnešek zkoušku ukončíme."
+      });
+      setExamActive(false);
+    }
+
+    setExamMessages((prev) => [...prev, ...newMessages]);
+    setExamAnswer("");
+    setExamStep(nextStep);
   };
 
   if (!activeSection) {
@@ -940,6 +1067,48 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                 </span>
               </button>
             ))}
+          </div>
+        </section>
+
+        <section className="page-block">
+          <div className="flashcards-head">
+            <div>
+              <h2>{"Simulace atesta\u010dn\u00edho zkou\u0161en\u00ed"}</h2>
+              <p className="section-copy">{"Zkou\u0161ej\u00edc\u00ed vych\u00e1z\u00ed pouze z vypracovan\u00e9ho textu t\u00e9to ot\u00e1zky."}</p>
+            </div>
+            <button className="btn primary" type="button" onClick={startExam}>
+              {"Za\u010d\u00edt zkou\u0161ku"}
+            </button>
+          </div>
+
+          <div className="exam-chat">
+            {examMessages.length === 0 ? (
+              <p className="section-copy">{"Po spu\u0161t\u011bn\u00ed zkou\u0161ky se zobraz\u00ed \u00favodn\u00ed zad\u00e1n\u00ed a navazuj\u00edc\u00ed ot\u00e1zky."}</p>
+            ) : (
+              examMessages.map((message) => (
+                <article key={message.id} className={`exam-message ${message.role}`}>
+                  <span className="exam-message-role">
+                    {message.role === "examiner" ? "Zkou\u0161ej\u00edc\u00ed" : "Vy"}
+                  </span>
+                  <p>{message.text}</p>
+                </article>
+              ))
+            )}
+          </div>
+
+          <div className="exam-compose">
+            <textarea
+              className="exam-input"
+              value={examAnswer}
+              onChange={(event) => setExamAnswer(event.target.value)}
+              placeholder="Napi\u0161te svoji odpov\u011b\u010f..."
+              rows={5}
+            />
+            <div className="actions">
+              <button className="btn primary" type="button" onClick={submitExamAnswer} disabled={!examActive || !examAnswer.trim()}>
+                {"Odeslat odpov\u011b\u010f"}
+              </button>
+            </div>
           </div>
         </section>
       </>

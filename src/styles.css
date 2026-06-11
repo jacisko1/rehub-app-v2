@@ -382,6 +382,69 @@ h1 {
   line-height: 1.5;
 }
 
+.exam-chat {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.exam-message {
+  max-width: min(760px, 100%);
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 20px rgba(31, 42, 42, 0.08);
+}
+
+.exam-message.examiner {
+  justify-self: start;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(18, 45, 44, 0.12);
+}
+
+.exam-message.student {
+  justify-self: end;
+  background: rgba(14, 143, 125, 0.12);
+  border: 1px solid rgba(14, 143, 125, 0.16);
+}
+
+.exam-message-role {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #335250;
+}
+
+.exam-message p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.exam-compose {
+  display: grid;
+  gap: 12px;
+}
+
+.exam-input {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  border: 1px solid rgba(18, 45, 44, 0.14);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font: inherit;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.exam-input:focus {
+  outline: 2px solid rgba(14, 143, 125, 0.18);
+  border-color: rgba(14, 143, 125, 0.3);
+}
+
 .question-details {
   grid-column: 1 / -1;
   width: 100%;
