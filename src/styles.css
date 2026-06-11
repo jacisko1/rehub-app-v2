@@ -1056,6 +1056,10 @@ h1 {
 }
 
 @media (max-width: 760px) {
+  .page-block {
+    padding: 18px 16px;
+  }
+
   .edu-hub {
     grid-template-columns: 1fr;
   }
@@ -1086,6 +1090,86 @@ h1 {
 
   .question-number {
     padding: 0 3px;
+  }
+
+  .study-hub {
+    gap: 12px;
+  }
+
+  .study-panel-summary {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 16px;
+  }
+
+  .study-panel-meta {
+    white-space: normal;
+  }
+
+  .study-panel-body {
+    padding: 14px 12px 14px;
+  }
+
+  .flashcards-head {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .flashcard-single {
+    margin-bottom: 12px;
+    padding: 15px;
+  }
+
+  .flashcard-label {
+    font-size: 0.96rem;
+  }
+
+  .flashcard-body {
+    font-size: 0.96rem;
+  }
+
+  .flashcard-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .flashcard-nav .btn {
+    flex: 1 1 140px;
+    min-height: 42px;
+  }
+
+  .flashcard-progress {
+    width: 100%;
+    text-align: center;
+    order: -1;
+  }
+
+  .quiz-card {
+    padding: 14px;
+  }
+
+  .quiz-card h3 {
+    font-size: 0.96rem;
+  }
+
+  .quiz-options {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .quiz-option {
+    gap: 10px;
+    padding: 10px 11px;
+  }
+
+  .quiz-option span {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .quiz-explanation {
+    font-size: 0.95rem;
   }
 
   .rehaedu-drawer {
