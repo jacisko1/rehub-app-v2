@@ -422,12 +422,15 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
 
             <div className="instagram-preview" aria-hidden="true">
               <div className="instagram-post post-one">
+                <img src="/Jakub.png" alt="" className="instagram-post-image" loading="lazy" />
                 <span className="instagram-post-tag">Reels</span>
               </div>
               <div className="instagram-post post-two">
+                <img src="/Jakub.png" alt="" className="instagram-post-image" loading="lazy" />
                 <span className="instagram-post-tag">Post</span>
               </div>
               <div className="instagram-post post-three">
+                <img src="/Jakub.png" alt="" className="instagram-post-image" loading="lazy" />
                 <span className="instagram-post-tag">Stories</span>
               </div>
             </div>
