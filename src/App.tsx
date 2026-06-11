@@ -1158,7 +1158,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
 </head>
 <body>
   <div class="document-shell">
-    <p class="document-eyebrow">RehaEdu</p>
+    <p class="document-eyebrow">ReHuB</p>
     <h1>${activeQuestionPageLabel}</h1>
     ${activeQuestionPage.chapters
     .map(
