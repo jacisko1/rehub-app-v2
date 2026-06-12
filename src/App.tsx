@@ -2688,19 +2688,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                       {"Ka\u017ed\u00e1 ot\u00e1zka m\u00e1 4 mo\u017enosti a spr\u00e1vn\u00fdch odpov\u011bd\u00ed m\u016f\u017ee b\u00fdt 0 a\u017e 4. Test vych\u00e1z\u00ed pouze z vypracovan\u00e9ho textu."}
                     </p>
                   </div>
-                  <button className="btn primary" type="button" onClick={() => setQuizSubmitted(true)}>
-                    {"Vyhodnotit test"}
-                  </button>
                 </div>
-
-                {quizSubmitted && (
-                  <p className="quiz-summary">
-                    {"Sk\u00f3re: "}
-                    <strong>
-                      {quizScore} / {activeQuizQuestions.length}
-                    </strong>
-                  </p>
-                )}
 
                 <div className="quiz-list">
                   {activeQuizQuestions.map((question, questionIndex) => {
@@ -2746,6 +2734,21 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                       </article>
                     );
                   })}
+                </div>
+
+                <div className="quiz-actions">
+                  {quizSubmitted && (
+                    <p className="quiz-summary">
+                      {"Sk\u00f3re: "}
+                      <strong>
+                        {quizScore} / {activeQuizQuestions.length}
+                      </strong>
+                    </p>
+                  )}
+
+                  <button className="btn primary" type="button" onClick={() => setQuizSubmitted(true)}>
+                    {"Vyhodnotit test"}
+                  </button>
                 </div>
               </div>
             </details>

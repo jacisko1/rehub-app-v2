@@ -442,13 +442,22 @@ h1 {
 }
 
 .quiz-summary {
-  margin: 0 0 18px;
+  margin: 0;
   color: var(--muted);
 }
 
 .quiz-list {
   display: grid;
   gap: 16px;
+}
+
+.quiz-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 18px;
+  flex-wrap: wrap;
 }
 
 .quiz-card {
