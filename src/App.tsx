@@ -1174,6 +1174,774 @@ PREPARED_QUESTIONS["v-neurologie:10"] = {
   ]
 };
 
+PREPARED_QUESTIONS["vii-ortopedie-a-tramatologie:0"] = {
+  flashcards: [
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:1",
+      prompt: "Jak je dnes definována skolióza?",
+      answer: "Skolióza je stranové zakřivení páteře s Cobbovým úhlem větším než 10 stupňů na RTG. Do 10 stupňů jde spíše o posturální odchylku indikovanou k rehabilitaci."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:2",
+      prompt: "Co je nestrukturální skolióza?",
+      answer: "Zakřivení podmíněné jinou poruchou, například zkratem DK, kontrakturou kyčle nebo antalgickým držením. Křivka je pružná, flexibilní a při pohybu proti konvexitě se napřimuje."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:3",
+      prompt: "Co je strukturální skolióza?",
+      answer: "Vlastní postižení páteře s fixovanou křivkou, rotací a torzí obratlů. Jde o 3D deformitu ve frontální, sagitální i transverzální rovině."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:4",
+      prompt: "Jak SOSORT klasifikuje skoliózy?",
+      answer: "Na kongenitální, neuromuskulární, idiopatické a jiné, například při neurofibromatóze, Marfanově syndromu, Ehlers-Danlosově syndromu, traumatech, tumorech nebo osteochondrodystrofiích."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:5",
+      prompt: "Jak se dělí idiopatická skolióza podle věku?",
+      answer: "Na infantilní do 3 let, juvenilní 3-10 let, adolescentní v období poslední růstové akcelerace a adultní skoliózu u dospělých."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:6",
+      prompt: "Co sledujeme při klinickém vyšetření skoliózy?",
+      answer: "Stoj, osu páteře, asymetrii paravertebrálních valů, ramen, lopatek, taille, pánve a DK, Adamsův test, chůzi, podřep na jedné DK, lezení, přechodové pozice a schopnost aktivní korekce."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:7",
+      prompt: "Jaké jsou rizikové znaky progrese křivky?",
+      answer: "Hypermobilita, minimální mozečková symptomatika, dekompenzace křivky, primární křivka v cervikothorakálním přechodu a dyspraxie."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:8",
+      prompt: "Co znamená dekompenzace křivky?",
+      answer: "Vychýlení olovnice o více než 1 cm, které svědčí pro aktivní, progredující deformitu s nedokončeným vývojem sekundární křivky."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:9",
+      prompt: "Jaký je zlatý standard zobrazování skoliózy?",
+      answer: "RTG páteře ve stoje v dlouhém formátu, AP/PA a bočná projekce, ideálně se zachycením hlavy a pánve včetně kyčelních kloubů."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:10",
+      prompt: "Co hodnotíme na RTG u skoliózy?",
+      answer: "Cobbův úhel, rotaci obratlového těla podle Nashe-Moa a Risserovo znamení jako ukazatel skeletální zralosti."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:11",
+      prompt: "Jaké je základní léčebné schéma podle velikosti křivky?",
+      answer: "Do 20 stupňů bazální konzervativní terapie, 20-40 stupňů korzetoterapie a nad 40 stupňů operační terapie; u juvenilních skolióz se korzet zvažuje už od 15 stupňů při riziku progrese."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:12",
+      prompt: "Jaké jsou cíle konzervativní léčby skoliózy?",
+      answer: "Zabránit progresi křivky, předejít komplikacím, bolestem a kompresi hrudních či břišních orgánů. Křivka nad 50 stupňů dle Cobba je rizikem kardiorespiračních potíží."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:13",
+      prompt: "Jaké metody LTV se používají u skolióz?",
+      answer: "Vojtova terapie, DNS, Klappovo lezení, metoda dle Schrothové, SMS, techniky vnímání osy těla, RFT, manuální ošetření a mobilizace a prvky jógy."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:14",
+      prompt: "Jaké režimy korzetoterapie se uvádějí?",
+      answer: "23+1 hodin denně, 16 hodin denně zejména na noc a statické aktivity, nebo pouze na noc, protože páteř roste v noci a korzet má formativní vliv."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:flashcard:15",
+      prompt: "Jaké jsou principy chirurgického řešení skoliózy?",
+      answer: "Korekce a stabilizace křivky, prevence další progrese, zlepšení kardiopulmonálních funkcí a u neurogenních skolióz stabilní sed. Používá se uvolnění deformity, instrumentace, nefúzní výkony nebo kostní fúze."
+    }
+  ],
+  quizQuestions: [
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:1",
+      prompt: "Která tvrzení odpovídají definici skoliózy?",
+      options: [
+        "Jde o stranové zakřivení páteře nad 10 stupňů dle Cobba.",
+        "Hodnotí se na RTG.",
+        "Do 10 stupňů jde spíše o posturální odchylku.",
+        "Skolióza je vždy jen čistě funkční porucha bez rotace."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Skolióza je při Cobbově úhlu nad 10 stupňů; strukturální forma je 3D deformita s rotací."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:2",
+      prompt: "Co charakterizuje nestrukturální skoliózu?",
+      options: [
+        "Může být podmíněna zkratem DK nebo kontrakturou kyčle.",
+        "Křivka je pružná a flexibilní.",
+        "Při pohybu proti konvexitě dochází k napřímení.",
+        "Vždy je přítomný fixovaný val z rotace obratlů."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Fixovaný val a torze obratlů patří ke strukturální skolióze."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:3",
+      prompt: "Co je typické pro strukturální skoliózu?",
+      options: [
+        "Vlastní postižení páteře.",
+        "Fixovaný val na konvexitě křivky.",
+        "Torze obratlů a 3D deformita.",
+        "Plná korekce při úklonu proti konvexitě."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Strukturální křivka nemá normální flexibilitu a při pohybu se plně nenapřimuje."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:4",
+      prompt: "Které skupiny patří do klasifikace SOSORT?",
+      options: [
+        "Kongenitální skoliózy.",
+        "Neuromuskulární skoliózy.",
+        "Idiopatické skoliózy.",
+        "Výhradně poúrazové skoliózy bez dalších typů."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "SOSORT uvádí kongenitální, neuromuskulární, idiopatické a jiné skoliózy."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:5",
+      prompt: "Co platí pro idiopatickou skoliózu?",
+      options: [
+        "Je strukturální skoliózou.",
+        "Dělí se podle věku na infantilní, juvenilní, adolescentní a adultní.",
+        "U adultní formy je terapie zaměřena hlavně na dynamiku páteře a prevenci bolestí.",
+        "Infantilní forma je vždy indikovaná k okamžité operaci."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Infantilní skoliózy mohou dobře reagovat na terapii a sádrování, operace není automatická."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:6",
+      prompt: "Co patří do klinického vyšetření skoliózy?",
+      options: [
+        "Vyšetření stoje a předklonu.",
+        "Adamsův test.",
+        "Chůze, podřep na jedné DK a přechodové pozice.",
+        "Pouze laboratorní vyšetření bez kliniky."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Klinické vyšetření je statické i dynamické a hodnotí také schopnost aktivní korekce."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:7",
+      prompt: "Které faktory patří mezi rizika progrese křivky?",
+      options: [
+        "Hypermobilita.",
+        "Minimální mozečková symptomatika.",
+        "Dekomp. křivky a primární křivka v CTh přechodu.",
+        "Vždy pouze nízký věk bez dalších znaků."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Riziko progrese se hodnotí z více klinických znaků, ne pouze podle věku."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:8",
+      prompt: "Co je správně o zobrazovacích metodách?",
+      options: [
+        "Zlatým standardem je RTG páteře ve stoje v dlouhém formátu.",
+        "Používá se AP/PA a bočná projekce.",
+        "Na RTG se hodnotí Cobbův úhel, rotace a Risserovo znamení.",
+        "RTG se u skoliózy nikdy nepoužívá."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "RTG ve stoje je základ pro potvrzení a měření křivky."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:9",
+      prompt: "Jaké je základní schéma léčby dle velikosti křivky?",
+      options: [
+        "Do 20 stupňů bazální konzervativní terapie.",
+        "20-40 stupňů korzetoterapie.",
+        "Nad 40 stupňů operační terapie.",
+        "Nad 5 stupňů vždy spondylodéza."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Zdroj uvádí schéma do 20, 20-40 a nad 40 stupňů."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:10",
+      prompt: "Co patří mezi cíle konzervativní léčby?",
+      options: [
+        "Zabránit progresi křivky.",
+        "Předejít bolestem a kompresi orgánů.",
+        "Udržet stabilitu a dynamiku páteře.",
+        "Zakázat veškerou pohybovou aktivitu."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Pohybové aktivity se obecně nezakazují, ale fyzioterapie se upravuje podle zátěže."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:11",
+      prompt: "Které metody mohou být součástí LTV u skolióz?",
+      options: [
+        "Vojtova terapie a DNS.",
+        "Klappovo lezení a metoda dle Schrothové.",
+        "SMS, RFT a techniky vnímání osy těla.",
+        "Výhradně imobilizace bez cvičení."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "LTV kombinuje aktivní korekční a stabilizační postupy."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:12",
+      prompt: "Co platí pro korzetoterapii?",
+      options: [
+        "Doplňuje pohybovou terapii.",
+        "Může mít režim 23+1 hodin denně.",
+        "Kontroluje se RTG po nasazení nového korzetu.",
+        "Plně se vysazuje hned po prvním zlepšení křivky."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Plné vysazení korzetu se plánuje až v období skeletální zralosti."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:13",
+      prompt: "Co patří mezi cíle chirurgického řešení?",
+      options: [
+        "Korekce a stabilizace křivky.",
+        "Prevence další progrese.",
+        "Zlepšení kardiopulmonálních funkcí.",
+        "U neurogenních skolióz znemožnění sedu ve vozíku."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "U neurogenních skolióz je cílem naopak stabilní sed ve vozíku."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:14",
+      prompt: "Co platí pro nefúzní výkony?",
+      options: [
+        "Patří sem rostoucí tyče.",
+        "Mohou umožnit další růst páteře.",
+        "Indikují se u juvenilní skoliózy do 10-12 let před akcelerací růstu.",
+        "Vždy definitivně znehybní všechny segmenty páteře."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Nefúzní výkony jsou růstově šetrnější než definitivní fúze."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:0:quiz:15",
+      prompt: "Co platí pro kostní fúzi u skoliózy?",
+      options: [
+        "Jde o spondylodézu.",
+        "Zpevňuje dvě a více obratlových těl.",
+        "Používá instrumentaci a kostní štěpy.",
+        "Nemá žádný vztah ke stabilizaci křivky."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Fúze je stabilizační výkon s instrumentací a kostními štěpy."
+    }
+  ],
+  chapters: [
+    {
+      title: "Definice a charakteristika",
+      points: [
+        "Dříve se skolióza popisovala jako patologické zakřivení páteře doprava nebo doleva ve frontální rovině.",
+        "Současně se skolióza definuje jako stranové zakřivení páteře s úhlem více než 10 stupňů dle Cobba na RTG.",
+        "Pokud je úhel do 10 stupňů, jde spíše o posturální odchylku, která je indikovaná k rehabilitaci, aby neprogredovala do skoliózy.",
+        "SOSORT je mezinárodní odborná společnost vytvářející pravidla pro ortopedickou a rehabilitační léčbu skolióz."
+      ]
+    },
+    {
+      title: "Dělení skolióz",
+      points: [
+        "1. Nestrukturální skolióza: zakřivení podmíněné jinou poruchou, například zkratem DK, kontrakturou kyčelního kloubu, antalgickým držením nebo hysterickou reakcí.",
+        "Nestrukturální křivka má normální flexibilitu, je pružná a elastická, úklon je plynulý a v předklonu jsou paravertebrální valy symetrické. Při pohybu proti konvexitě dojde k napřímení a chybí fixovaný val z rotace.",
+        "2. Strukturální skolióza: vlastní postižení páteře, při kterém křivka nemá normální flexibilitu a při pohybu proti konvexitě se nenapřímí.",
+        "Na konvexitě strukturální křivky je fixovaný val daný rotací obratlových těl. Jde o poruchu zakřivení ve třech rovinách, tedy 3D deformitu, a je přítomna torze obratle."
+      ]
+    },
+    {
+      title: "Klasifikace dle SOSORT",
+      points: [
+        "Kongenitální skoliózy vznikají při poruše segmentace nebo formace obratlů.",
+        "Neuromuskulární skoliózy se dělí na myopatické, například při artrogrypóze nebo svalových dystrofiích, a neuropatické při syndromech horního či dolního motoneuronu.",
+        "Idiopatická skolióza je strukturální skolióza s fixovanou deformitou danou vlastním postižením páteře.",
+        "Jiné skoliózy mohou souviset s neurofibromatózou, mesenchymálními chorobami, Marfanovým syndromem, Ehlers-Danlosovým syndromem, traumatem, tumory nebo osteochondrodystrofiemi.",
+        "Idiopatická skolióza se podle věku dělí na infantilní do 3 let, juvenilní 3-10 let, adolescentní v období poslední růstové akcelerace a adultní u dospělých."
+      ]
+    },
+    {
+      title: "Diagnostika",
+      points: [
+        "Klinické vyšetření zahrnuje statické hodnocení stoje, předklonu a vyšetření ve vývojové řadě.",
+        "Ve stoji hodnotíme osu páteře, asymetrii paravertebrálních valů, postavení ramen, lopatek, taille, pánve a DK.",
+        "Adamsův test hodnotí asymetrii paravertebrálních valů a fixovanou rotaci v předklonu.",
+        "Dynamicky hodnotíme chůzi, stoj a podřep na jedné DK, lezení, otáčení, přechodové pozice vývojové řady a schopnost aktivní korekce křivky.",
+        "Rizika progrese zahrnují hypermobilitu, minimální mozečkovou symptomatiku, dekompenzaci křivky, primární křivku v CTh přechodu a dyspraxii.",
+        "Známkou dekompenzace je vychýlení olovnice o více než 1 cm, které svědčí o aktivní progredující deformitě s nedokončeným vývojem sekundární křivky."
+      ]
+    },
+    {
+      title: "Zobrazovací a doplňková vyšetření",
+      points: [
+        "Zlatým standardem je RTG páteře ve stoje v dlouhém formátu, v AP/PA a bočné projekci, se zachycením hlavy a pánve včetně kyčelních kloubů.",
+        "Indikace RTG vychází z kliniky, pozitivního Adamsova testu a asymetrie. Primární křivka je větší a těžší.",
+        "Dalšími možnostmi jsou CT, MRI, UZV a Moiré.",
+        "Na RTG hodnotíme Cobbův úhel, rotaci obratlového těla dle Nashe-Moa a Risserovo znamení jako ukazatel skeletální zralosti.",
+        "Antropometricky lze využít RTG levé ruky k predikci růstu a posouzení kostní zralosti. Funkčně lze doplnit spirometrii."
+      ]
+    },
+    {
+      title: "Léčba",
+      points: [
+        "Základní léčba je konzervativní, tedy rehabilitace a korzetoterapie, nebo operativní.",
+        "Podle velikosti křivky dle Vlacha platí: do 20 stupňů bazální konzervativní terapie, 20-40 stupňů korzetoterapie a nad 40 stupňů operační terapie.",
+        "U juvenilních skolióz se při předpokladu progrese zvažuje korzetoterapie už od 15 stupňů.",
+        "Cílem konzervativní léčby je zabránit progresi křivky a předejít komplikacím, bolestem a kompresi hrudních či břišních orgánů. Křivka nad 50 stupňů dle Cobba je rizikem kardiorespiračních potíží."
+      ]
+    },
+    {
+      title: "Fyzioterapie a režim",
+      points: [
+        "Cílem LTV je stabilita a udržení dynamiky páteře.",
+        "Používají se Vojtova terapie, DNS, Klappovo lezení, metoda dle Schrothové, SMS, techniky s vnímáním osy těla, RFT, manuální ošetření a mobilizace a prvky jógy.",
+        "Nutná je spolupráce pacienta při domácím cvičení.",
+        "Pohybové aktivity obecně nezakazujeme, včetně TV, výkonnostního a vrcholového sportu. Fyzioterapie se upravuje podle specifik sportovní zátěže a doplňuje se kompenzačními cviky."
+      ]
+    },
+    {
+      title: "Korzetoterapie",
+      points: [
+        "Korzetoterapie doplňuje pohybovou terapii.",
+        "Režimy korzetování mohou být 23+1 hodin denně, 16 hodin denně na noc a statické aktivity během dne nebo pouze na noc.",
+        "Noční režim využívá fakt, že páteř roste v noci a korzet má formativní vliv.",
+        "Efekt korzetu se kontroluje RTG po nasazení nového korzetu kvůli mechanické korekci křivek.",
+        "Dlouhodobý efekt se posuzuje RTG 24 hodin bez korzetu za 6-12 měsíců. Plné vysazení korzetu je až v období skeletální zralosti."
+      ]
+    },
+    {
+      title: "Chirurgické řešení",
+      points: [
+        "Cílem operace je korekce a stabilizace křivky, prevence další progrese, zlepšení kardiopulmonálních funkcí a u neurogenních skolióz zajištění stabilního sedu ve vozíku.",
+        "Principem je uvolnění deformity, zmenšení patologického zakřivení a udržení korigované pozice pomocí vnitřní instrumentace nebo kostní fúze.",
+        "Nefúzní výkony zahrnují rostoucí tyče nebo metodu usměrňovaného růstu. Jsou indikované u juvenilní skoliózy do 10-12 let před akcelerací růstu a umožňují další růst páteře.",
+        "Kostní fúze neboli spondylodéza zpevňuje dvě a více obratlových těl, používá transpedikulární šrouby, tyče, 3D korekci a kostní štěpy.",
+        "Po operaci je důležitá fyzioterapie nestabilizovaných segmentů, které mají tendenci k hypermobilitě. Čím později se operuje, tím tužší a rigidnější křivka bývá a výsledek operace může být horší."
+      ]
+    }
+  ]
+};
+
+PREPARED_QUESTIONS["vii-ortopedie-a-tramatologie:1"] = {
+  flashcards: [
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:1",
+      prompt: "Co je osteoartróza?",
+      answer: "Nejčastější degenerativní onemocnění kloubů. Jde o heterogenní skupinu onemocnění s podobným klinickým průběhem, postihující kloub, přilehlý kostěný a vazivový aparát."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:2",
+      prompt: "Jaké jsou obecné rizikové faktory osteoartrózy?",
+      answer: "Dědičnost, genetika, vrozené dysplazie a vady pohybového aparátu, dna, DM, obezita, BMI nad 27 a nedostatek pohybu."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:3",
+      prompt: "Jaké jsou lokální rizikové faktory osteoartrózy?",
+      answer: "Trauma, sport s drobnými traumaty, nedoléčené zranění, jednostranná profesní zátěž a nevhodná obuv."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:4",
+      prompt: "Jaký je rozdíl mezi preartrózou a pravou artrózou?",
+      answer: "Preartróza je reverzibilní porucha kloubní kongruence bez typických degenerativních strukturálních změn. Pravá artróza má subchondrální sklerózu, zúženou kloubní štěrbinu, poruchu sféricity, nerovnosti ploch a osteofyty."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:5",
+      prompt: "Jaké jsou komplikace artrózy?",
+      answer: "Zkrácení končetiny, změna osy, kontraktura kloubního pouzdra a přilehlých svalů."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:6",
+      prompt: "Jak se dělí artróza podle příčiny?",
+      answer: "Na primární idiopatickou, kde příčina není jasná a základem je dysregulace metabolismu chrupavky, a sekundární, která je důsledkem jiných patologických procesů."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:7",
+      prompt: "Jaké jsou typické klinické projevy artrózy?",
+      answer: "Startovací bolest, ranní ztuhlost, bolest po zátěži zlepšující se klidem, horší hybnost, noční a klidové bolesti, otoky, výpotek, kontraktury, zkrácení končetiny a změna osy."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:8",
+      prompt: "Jaké postavení je typické pro koxartrózu?",
+      answer: "Kyčel se často staví do zevní rotace, addukce a mírné flexe."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:9",
+      prompt: "Jaké jsou typické příčiny sekundární koxartrózy?",
+      answer: "Vývojová dysplazie kyčle, m. Perthes, adolescentní coxa vara, traumata, luxace, intraartikulární fraktury, metabolická, zánětlivá, postinfekční, systémová a autoimunitní onemocnění."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:10",
+      prompt: "Jaké lokalizace koxartrózy se uvádějí?",
+      answer: "Superolaterální, mediokaudální a koncentrická. Superolaterální je nejčastější, mediokaudální souvisí se snížením kolodiafyzárního úhlu a retroverzí hlavice."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:11",
+      prompt: "Kam se typicky propaguje bolest u koxartrózy?",
+      answer: "Bolest bývá v inguině a šíří se po vnitřní straně stehna až ke kolenu. Bolest v oblasti velkého trochanteru ukazuje spíše na burzitidu."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:12",
+      prompt: "Co je Trendelenburgův příznak u koxartrózy?",
+      answer: "Při oslabení m. gluteus medius a abduktorů kyčle poklesne pánev na protilehlé straně od postižené končetiny."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:13",
+      prompt: "Jaké jsou cíle rehabilitace u koxartrózy?",
+      answer: "Zmírnit bolest, zabránit atrofii z inaktivity, zlepšit laterální stabilitu pánve, ovlivnit svalové dysbalance v oblasti Lp a kyčle, zlepšit ROM a funkční kapacitu."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:14",
+      prompt: "Jaký pohybový režim je vhodný u koxartrózy?",
+      answer: "Nepřetěžovat a odlehčovat kyčel, redukovat hmotnost a volit přiměřenou aktivitu: kolo, rotoped, chůzi nebo nordic walking."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:15",
+      prompt: "Co je TEP kyčelního kloubu?",
+      answer: "Totální endoprotéza je náhrada krčku, hlavice a jamky kyčelního kloubu. Cílem je návrat do běžného života s co nejmenším omezením pohybu a bez bolesti."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:16",
+      prompt: "Jaké jsou fáze rehabilitace po TEP kyčle?",
+      answer: "Předoperační fáze, pooperační fáze na ortopedickém lůžku a následná rehabilitace po propuštění, například rehabilitační lůžko, ústav, lázně nebo ambulantní fyzioterapie."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:17",
+      prompt: "Jaké jsou antiluxační zásady po TEP kyčle?",
+      answer: "Vyhýbat se flexi nad 90 stupňů, hlubokému sedu, vnitřní rotaci a kombinaci zevní rotace s addukcí. Doporučují se vyšší tvrdé židle, nepřekládat DK a při otáčení používat klín mezi DK."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:flashcard:18",
+      prompt: "Jak se provádí trojbodová chůze po TEP?",
+      answer: "Nejprve berle, potom operovaná DK a následně dokročení zdravou DK. Zátěž operované končetiny určuje operatér."
+    }
+  ],
+  quizQuestions: [
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:1",
+      prompt: "Co platí pro osteoartrózu?",
+      options: [
+        "Je nejčastějším degenerativním onemocněním kloubů.",
+        "Incidence stoupá s věkem.",
+        "Postihuje kloub i přilehlý kostěný a vazivový aparát.",
+        "Je vždy akutní infekční onemocnění."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Osteoartróza je degenerativní onemocnění s pozvolným rozvojem."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:2",
+      prompt: "Které položky patří mezi obecné rizikové faktory osteoartrózy?",
+      options: [
+        "Dědičnost a genetické faktory.",
+        "Obezita a BMI nad 27.",
+        "Dna, DM a nedostatek pohybu.",
+        "Pouze akutní virová infekce."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Zdroj uvádí genetiku, metabolické faktory, obezitu i nedostatek pohybu."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:3",
+      prompt: "Co platí pro preartrózu?",
+      options: [
+        "Je reverzibilní.",
+        "Může jít o poruchu kloubní kongruence bez RTG projevu.",
+        "Kloubní štěrbina může být normální a osteofyty chybí.",
+        "Vždy jde o nevratnou ankylózu."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Preartróza je časná, potenciálně reverzibilní fáze bez typických osteofytů."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:4",
+      prompt: "Co patří k pravé artróze na RTG?",
+      options: [
+        "Subchondrální skleróza.",
+        "Snížená kloubní štěrbina.",
+        "Osteofyty.",
+        "Vždy normální kloubní plochy bez nerovností."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Pravá artróza má strukturální degenerativní známky."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:5",
+      prompt: "Které projevy patří ke klinice artrózy?",
+      options: [
+        "Startovací bolest a ranní ztuhlost.",
+        "Bolest po zátěži zlepšující se klidem.",
+        "Noční a klidové bolesti jako nepříznivý znak.",
+        "Bolest nikdy nepropaguje do sousedních oblastí."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Bolest se může propagovat do sousedních oblastí a obtíže nemusí odpovídat RTG nálezu."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:6",
+      prompt: "Co platí pro léčbu artrózy?",
+      options: [
+        "Neexistuje jednoznačná kauzální terapie.",
+        "Cílem je zmírnit bolest, zpomalit průběh a zlepšit rozsah pohybu.",
+        "Součástí je úprava životního stylu a redukce hmotnosti.",
+        "Základní léčbou je vždy úplná imobilizace bez pohybu."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Pohyb je dávkovaný a šetrný, ne absolutní imobilizace."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:7",
+      prompt: "Co platí pro rehabilitaci artrózy?",
+      options: [
+        "Cílem je ovlivnit svalovou dysbalanci.",
+        "Cílem je zlepšit funkční kapacitu kloubu.",
+        "Je nutné zabránit atrofii z inaktivity.",
+        "Vhodné jsou švihové pohyby přes bolest."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Švihové pohyby a dotahování do maxima přes bolest jsou nevhodné."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:8",
+      prompt: "Co je typické pro koxartrózu?",
+      options: [
+        "Kyčel se staví do zevní rotace, addukce a mírné flexe.",
+        "Klidová bolest může souviset s intraostální hypertenzí v subchondrální kosti.",
+        "Sekundární forma je častá po předchozím postižení kyčle.",
+        "Bolest je vždy pouze v oblasti velkého trochanteru."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Bolest v oblasti velkého trochanteru odpovídá spíše burzitidě."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:9",
+      prompt: "Které stavy jsou preartrózou nebo rizikem koxartrózy?",
+      options: [
+        "M. Perthes.",
+        "Adolescentní coxa vara.",
+        "Vývojová dysplazie kyčelního kloubu.",
+        "Akutní rýma bez vztahu ke kloubu."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Tyto stavy mění biomechaniku kyčle a mohou vést ke koxartróze."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:10",
+      prompt: "Co patří ke klinice koxartrózy?",
+      options: [
+        "Bolest v inguině s propagací po vnitřní straně stehna ke kolenu.",
+        "Zkrat DK a změna statiky páteře.",
+        "Kachní chůze při oslabení abduktorů.",
+        "Pozitivní Trendelenburg při oslabení m. gluteus medius."
+      ],
+      correctOptionIndexes: [0, 1, 2, 3],
+      explanation: "Všechny uvedené body odpovídají koxartróze."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:11",
+      prompt: "Jaké jsou cíle rehabilitace u koxartrózy?",
+      options: [
+        "Zmírnit bolest.",
+        "Zabránit atrofii z inaktivity.",
+        "Zlepšit laterální stabilitu pánevního kruhu.",
+        "Maximálně přetěžovat postižený kloub."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Postižený kloub se nepřetěžuje, cílem je šetrná funkční obnova."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:12",
+      prompt: "Která fyzikální terapie může být použita u koxartrózy?",
+      options: [
+        "TENS, interferenční a diadynamické proudy.",
+        "UZ, magnetoterapie a fototerapie.",
+        "Priznitzovy obklady, studené obklady a ledování do 20 minut.",
+        "Dlouhé ledování bez časového omezení."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Ledování má být časově omezené, ve zdroji do 20 minut."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:13",
+      prompt: "Co platí pro pohybový režim u koxartrózy?",
+      options: [
+        "Odlehčovat a nepřetěžovat postižený kloub.",
+        "Redukovat hmotnost.",
+        "Volit přiměřenou aktivitu jako kolo, rotoped, chůzi nebo nordic walking.",
+        "Doporučit pouze skokové sporty přes bolest."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Režim má být šetrný a přiměřený věku, kondici a zdravotnímu stavu."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:14",
+      prompt: "Co platí pro TEP kyčle?",
+      options: [
+        "Nahrazuje krček, hlavici a jamku.",
+        "Cílem je návrat do běžného života s minimálním omezením a bez bolesti.",
+        "Existují cementované, necementované a hybridní náhrady.",
+        "Po TEP není potřeba rehabilitace."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Rehabilitace před i po TEP je zásadní."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:15",
+      prompt: "Které komplikace TEP se uvádějí?",
+      options: [
+        "Periprotetická fraktura, luxace a infekce.",
+        "HŽT a plicní embolie.",
+        "Poranění nervu, krvácení a rozdílná délka končetin.",
+        "Jisté úplné vyléčení bez rizik."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "TEP má peroperační, časná i pozdní rizika."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:16",
+      prompt: "Co patří do prevence TEN po TEP?",
+      options: [
+        "Bandáž, punčochy a cvičení s DK.",
+        "Časná mobilizace.",
+        "LMWH.",
+        "Trvalý klid na lůžku bez pohybu."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Prevence TEN stojí na kompresi, cvičení, časné mobilizaci a antikoagulaci."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:17",
+      prompt: "Které antiluxační zásady po TEP jsou správné?",
+      options: [
+        "Vyhnout se flexi nad 90 stupňů.",
+        "Vyhnout se hlubokému sedu a rizikovým rotacím.",
+        "Nepřekládat DK a používat klín při otáčení.",
+        "Doporučit nízkou měkkou židli a překládání DK."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Rizikové polohy zvyšují možnost luxace endoprotézy."
+    },
+    {
+      id: "vii-ortopedie-a-tramatologie:1:quiz:18",
+      prompt: "Co patří mezi fyzioterapeutické intervence po TEP?",
+      options: [
+        "Péče o jizvu, myofasciální a relaxační techniky.",
+        "Protažení zkrácených struktur a optimalizace svalového napětí.",
+        "Dynamická stabilizace pánevního pletence a Lp a nácvik chůze.",
+        "Zákaz nácviku soběstačnosti a ADL."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Součástí je i ergoterapie, ergonomické poradenství a nácvik ADL."
+    }
+  ],
+  chapters: [
+    {
+      title: "Osteoartróza - obecný úvod",
+      points: [
+        "Osteoartróza je nejčastější degenerativní onemocnění kloubů. Jde o heterogenní skupinu onemocnění v různých lokalizacích s relativně podobným klinickým průběhem.",
+        "Postihuje přibližně 12 % populace, incidence stoupá s věkem a nad 70 let se uvádí až u 80 % osob.",
+        "Postižen je váhonosný kloub, přilehlý kostěný a vazivový aparát. Rozvoj onemocnění je pozvolný, často v horizontu let.",
+        "S věkem klesá schopnost reparace chrupavky, chrupavka se ztenčuje a její povrch je rozvlákněný.",
+        "Pro kloub je ideální centrované postavení s optimální statikou a synchronní aktivitou svalových antagonistů."
+      ]
+    },
+    {
+      title: "Biomechanika a rizikové faktory",
+      points: [
+        "Staticky nevýhodné postavení kloubu vede k biomechanickým změnám, přetížení úponů koaktivačně zapojených svalů, poruše centrace a zvýšení intraartikulárního tlaku.",
+        "Osteofyty zhoršují mechanické vlastnosti kloubu a omezují pohyblivost.",
+        "Destrukce chrupavky může vyvolat hypertrofii a hypervaskularizaci synoviální výstelky a opakované kloubní náplně.",
+        "Všeobecné rizikové faktory: dědičnost, genetické faktory, vývojové dysplazie, vrozené vady pohybového aparátu, dna, DM, obezita, BMI nad 27 a nedostatek pohybu.",
+        "Lokální rizikové faktory: trauma, sport s drobnými traumaty, nedoléčené zranění, jednostranná profesní zátěž a nevhodná obuv. Na rozvoji artrózy se obvykle podílí kombinace faktorů."
+      ]
+    },
+    {
+      title: "Preartróza, pravá artróza a dělení",
+      points: [
+        "Preartróza je reverzibilní porucha kloubní kongruence, která se na RTG nemusí projevit. Kloubní štěrbina je zachovaná, nejsou typické degenerativní strukturální změny ani osteofyty, ale mohou být subchondrální cysty.",
+        "Chrupavka sama o sobě nebolí, protože není inervovaná. Bolest vzniká při rozvoji kostních strukturálních změn, pokročilém zúžení kloubní štěrbiny nebo postižením okolních tkání.",
+        "Pravá artróza má subchondrální sklerózu, zúženou kloubní štěrbinu, poruchu sféricity, nerovnosti kloubních ploch, nepravidelný trabekulární systém spongiózy a osteofyty.",
+        "Komplikace artrózy zahrnují zkrácení končetiny, změnu osy a kontrakturu kloubního pouzdra i přilehlých svalů.",
+        "Primární artróza je idiopatická, tvoří asi 60 % a základem je dysregulace metabolismu kloubní chrupavky. Sekundární artróza vzniká při jiných patologických procesech a v terapii je nutné řešit základní onemocnění."
+      ]
+    },
+    {
+      title: "Klinika a obecná terapie artrózy",
+      points: [
+        "RTG hodnotí velikost a počet osteofytů, šíři kloubní štěrbiny a nerovnost kloubních ploch. Těžký stupeň se uvádí od 3. stadia, někteří autoři popisují 5. stadium jako ankylózu.",
+        "Klinicky je typická startovací bolest, ranní ztuhlost, bolest po zátěži, postupné zhoršování hybnosti, noční bolesti a v pokročilém stavu ankylóza.",
+        "Námahová bolest se zlepšuje klidem, klidová bolest je nepříznivým znakem. Bolest se může propagovat do sousedních oblastí a subjektivní obtíže nemusí odpovídat RTG nálezu.",
+        "Terapie není jednoznačně kauzální. Cílem je obnova nebo zlepšení rozsahu pohybu, zpomalení průběhu onemocnění a zmírnění bolesti.",
+        "Konzervativní terapie zahrnuje úpravu životního stylu, redukci hmotnosti, fyzioterapii s odlehčením postižených kloubů a farmakoterapii. Nevhodné jsou švihové pohyby a dotahování do maximálních rozsahů přes bolest."
+      ]
+    },
+    {
+      title: "Kyčelní kloub a koxartróza",
+      points: [
+        "Kyčelní kloub je kulovitý, má hlubokou jamku, vysokou stabilitu a velké rozsahy pohybu. Během krokového stereotypu nese zátěž přibližně trojnásobku tělesné hmotnosti.",
+        "Ortopedická onemocnění kyčle s tendencí ke koxartróze zahrnují vrozenou dysplazii kyčle, dislokující osteochondrózu hlavice femuru, idiopatickou avaskulární nekrózu hlavice femuru a lupavou kyčel.",
+        "U koxartrózy se kyčel typicky staví do zevní rotace, addukce a mírné flexe.",
+        "Klidová bolest může souviset s poruchou venózního odtoku z hlavice femuru při hyperémii a intraostální hypertenzi v subchondrální kosti.",
+        "Primární koxartróza je idiopatická, sekundární se vyvíjí v kloubu dříve postiženém patologickým procesem, úrazem nebo jiným onemocněním."
+      ]
+    },
+    {
+      title: "Typy a klinika koxartrózy",
+      points: [
+        "Preartrózami kyčle jsou m. Perthes, adolescentní coxa vara a vývojová dysplazie kyčelního kloubu.",
+        "Lokalizace koxartrózy: superolaterální asi 60 %, mediokaudální asi 25 % a koncentrická jako méně časná forma spojená s degenerativními změnami bederní páteře.",
+        "Bolest bývá v oblasti inguiny a šíří se po vnitřní straně stehna až ke kolenu. Bolest v oblasti velkého trochanteru ukazuje spíše na burzitidu.",
+        "Zkrat DK a pohybové omezení vedou k anteverzi a rotaci pánve a ke změně statiky celé páteře.",
+        "Může se změnit stereotyp chůze až do kachní chůze při oslabení abduktorů. Inhibice m. gluteus medius vede k pozitivnímu Trendelenburgovu příznaku, tedy poklesu pánve na protilehlé straně od postižené DK.",
+        "Typicky je omezená vnitřní rotace a extenze, oslabené jsou abduktory a extenzory a přetížené adduktory. Diferenciálně diagnosticky je nutné myslet i na poruchu v segmentu L3/4 a bolesti v kříži."
+      ]
+    },
+    {
+      title: "Rehabilitace a fyzikální terapie u koxartrózy",
+      points: [
+        "Program volíme podle stadia a aktivity choroby. Postižený kloub nepřetěžujeme a vyhýbáme se švihovým pohybům a dotahování do maxima přes bolest.",
+        "Cílem rehabilitace je zmírnit bolest, zabránit atrofii z inaktivity, zlepšit laterální stabilitu pánevního kruhu, ovlivnit svalové dysbalance v oblasti Lp a kyčle, zlepšit ROM a nacvičit staticky optimální postavení kolene při zátěži.",
+        "Principy zahrnují stabilitu pánve, centraci kyčelního kloubu a práci s rozsahy pohybu.",
+        "Fyzikální terapie může zahrnovat elektroanalgezii, TENS, interferenční a diadynamické proudy, UZ, magnetoterapii, termoterapii, Priznitzovy obklady, studené obklady a ledování do 20 minut.",
+        "Vodoléčba využívá koupele do 37 stupňů, hydrostatický vztlak, hydrostatický tlak s antiedematózním účinkem, střídavé koupele DK, šlapací koupele a podvodní masáže. Fototerapie zahrnuje laser a biolampu.",
+        "Ve stabilizované fázi je vhodná LTV a vodoléčba. V aktivované fázi s klidovými bolestmi je důraz na analgetický a antiedematózní účinek."
+      ]
+    },
+    {
+      title: "Pohybový režim a pomůcky",
+      points: [
+        "Pohybový režim zahrnuje odlehčování postiženého kloubu, redukci hmotnosti a pohybovou aktivitu přiměřenou věku, kondici a zdravotnímu stavu.",
+        "Vhodné mohou být kolo, rotoped, chůze a nordic walking.",
+        "Protetické a podpůrné pomůcky odlehčují postižený kloub, například ortézy, vložky do bot, francouzské hole nebo vycházková hůl."
+      ]
+    },
+    {
+      title: "TEP kyčelního kloubu",
+      points: [
+        "Totální endoprotéza nahrazuje krček, hlavici a jamku kyčelního kloubu. Cílem je návrat do běžného života s co nejmenším omezením pohybu a bez bolesti.",
+        "Fáze rehabilitace zahrnují předoperační fázi, pooperační fázi na ortopedickém lůžku a následnou rehabilitaci po propuštění, například rehabilitační lůžka, rehabilitační ústav, lázně nebo ambulantní fyzioterapii.",
+        "Endoprotézy se dělí na cervikokapitální, cementované, necementované z titanu a jeho slitin a hybridní náhrady.",
+        "Komplikace mohou být peroperační, časné a pozdní. Patří sem periprotetická fraktura, luxace, infekce, krvácení, poranění nervu, HŽT, plicní embolie, bolest a rozdílná délka končetin.",
+        "Prevence TEN zahrnuje bandáž, cvičení DK, časnou mobilizaci, kompresní punčochy a LMWH."
+      ]
+    },
+    {
+      title: "Rehabilitace po TEP",
+      points: [
+        "Předoperační fáze zahrnuje nácvik chůze o francouzských holích, posílení HK, nácvik sedu, stoje a pohybu na lůžku, edukaci antiluxačních zásad, protažení zkrácených struktur a zvýšení kondice.",
+        "Pooperačně se řeší vertikalizace, chůze o francouzských holích s odlehčením, elementární soběstačnost, polohování DK ve vnitřní rotaci a abdukci, klín mezi DK a bandážování.",
+        "Antiluxační kontraindikace zahrnují flexi nad 90 stupňů, hluboký sed, rizikovou vnitřní rotaci a zevní rotaci s addukcí.",
+        "Trojbodová chůze probíhá v pořadí berle, operovaná DK a dokročení zdravou DK. Zátěž operované DK stanovuje operatér.",
+        "Doporučují se vysoké tvrdé židle, nepřekládat DK a při otáčení používat klín mezi DK.",
+        "Fyzioterapeutické intervence zahrnují péči o jizvu, myofasciální a relaxační techniky, protažení zkrácených struktur, optimalizaci svalového napětí, facilitaci svalů pletence kyčle, dynamickou stabilizaci pánve a Lp, mobilizace, posílení HK, aktivaci plosky, nácvik sedu, dýchání a chůze.",
+        "Ergoterapie zahrnuje ergonomické poradenství a nácvik ADL. Fyzikální terapie může zahrnovat biolampu, lymfodrenáže, elektrogymnastiku oslabených svalů, magnetoterapii, motodlahu a hydroterapii."
+      ]
+    }
+  ]
+};
+
 const calendarEvents: CalendarEvent[] = [
   {
     title: "Neuromuskulární sonografie (Tábor)",
