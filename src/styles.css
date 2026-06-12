@@ -1032,6 +1032,11 @@ h1 {
   border-color: transparent;
 }
 
+.question-actions .btn {
+  flex: 1 1 230px;
+  min-height: 42px;
+}
+
 .foot {
   margin-top: 34px;
   border-top: 1px solid var(--line);

@@ -1828,7 +1828,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
           <span className="eyebrow">{"Vzd\u011bl\u00e1v\u00e1n\u00ed"}</span>
           <h1>{"\ud83d\udcd8 RehaEdu"}</h1>
           <p className="lead">{activeQuestionPageLabel}</p>
-          <div className="actions">
+          <div className="actions question-actions">
             <a className="btn primary" href="#/rehaedu/atestacni-otazky">
               {"Zp\u011bt na atesta\u010dn\u00ed ot\u00e1zky"}
             </a>
