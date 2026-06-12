@@ -1684,7 +1684,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     p {
       margin: 0 0 10px;
       font-size: 11.5pt;
-      text-align: justify;
+      text-align: left;
     }
 
     .chapter {
