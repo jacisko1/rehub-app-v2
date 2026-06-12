@@ -631,6 +631,549 @@ const PREPARED_QUESTIONS: Record<string, PreparedQuestion> = {
   }
 };
 
+PREPARED_QUESTIONS["v-neurologie:10"] = {
+  flashcards: [
+    {
+      id: "v-neurologie:10:flashcard:1",
+      prompt: "Co je DMO a jaký je její základní charakter?",
+      answer: "Dětská mozková obrna je neprogresivní neurologický syndrom z léze nezralého mozku. Jde o skupinu poruch vývoje pohybu a postury; léze je uzavřený děj, ale klinická manifestace se mění s růstem a vývojem dítěte."
+    },
+    {
+      id: "v-neurologie:10:flashcard:2",
+      prompt: "Kdy může vzniknout léze vedoucí k DMO?",
+      answer: "V prenatálním, perinatálním nebo časně postnatálním období, tedy ve vyvíjejícím se fetálním nebo dětském mozku."
+    },
+    {
+      id: "v-neurologie:10:flashcard:3",
+      prompt: "Jaká je prevalence DMO a u koho je vyšší?",
+      answer: "Přibližně 2-3/1000 živě narozených dětí. U nedonošených, zejména extrémně nezralých dětí, je výskyt výrazně vyšší."
+    },
+    {
+      id: "v-neurologie:10:flashcard:4",
+      prompt: "Co může doprovázet motorickou poruchu u DMO?",
+      answer: "Kognitivní deficit, poruchy zraku a sluchu, komunikační a percepční poruchy, poruchy chování a PAS, epilepsie a sekundární muskuloskeletální změny."
+    },
+    {
+      id: "v-neurologie:10:flashcard:5",
+      prompt: "Jaké etiologické skupiny DMO rozlišujeme?",
+      answer: "Prenatální, perinatální a postnatální. Všechny představují neprogresivní změny ve vyvíjejícím se mozku."
+    },
+    {
+      id: "v-neurologie:10:flashcard:6",
+      prompt: "Proč je u nedonošených významná germinální matrix?",
+      answer: "Periventrikulární germinální matrix má křehkou cévní síť a nezralou regulaci průtoku, proto je náchylná k ischemii a krvácení."
+    },
+    {
+      id: "v-neurologie:10:flashcard:7",
+      prompt: "Co charakterizuje spastický typ DMO?",
+      answer: "Je nejčastější, vzniká při postižení pyramidové dráhy a projevuje se chudou, stereotypní, generalizovanou motorikou s omezenou cílenou hybností."
+    },
+    {
+      id: "v-neurologie:10:flashcard:8",
+      prompt: "Jaké formy spastické DMO znáš?",
+      answer: "Spastickou diparézu, triparézu, kvadruparézu a hemiparézu."
+    },
+    {
+      id: "v-neurologie:10:flashcard:9",
+      prompt: "Co je typické pro spastickou diparézu?",
+      answer: "HK bývají funkčně lepší, DK jsou často kratší a drobnější, bývá hypoplazie pletence pánevního, riziko luxace kyčlí a pes equinus. Epilepsie se uvádí asi u 16-27 %."
+    },
+    {
+      id: "v-neurologie:10:flashcard:10",
+      prompt: "Co je typické pro spastickou kvadruparézu?",
+      answer: "Těžká léze CNS, často po IVH a komplikacích hydrocefalu, těžké postižení HK i DK, mentální retardace, bulbární symptomatika, senzorické odchylky, poruchy p.o. příjmu, respirační komplikace, skolióza a poruchy vyprazdňování."
+    },
+    {
+      id: "v-neurologie:10:flashcard:11",
+      prompt: "Co je typické pro spastickou hemiparézu?",
+      answer: "Unilaterální postižení, HK bývá funkčně horší než DK, častá časná vertikalizace, equinovarózní postavení, kyčel obvykle není riziková pro luxaci a epilepsie se uvádí asi u 27-44 %."
+    },
+    {
+      id: "v-neurologie:10:flashcard:12",
+      prompt: "Co charakterizuje dyskinetický typ DMO?",
+      answer: "Tvoří asi 10 %, vzniká při postižení extrapyramidové dráhy a může být dystonický nebo choreo-atetotický. Dítě má představu pohybu, ale nedokáže ji dobře realizovat; chybí opora a trup je labilní."
+    },
+    {
+      id: "v-neurologie:10:flashcard:13",
+      prompt: "Jaké orofaciální souvislosti má dyskinetický typ?",
+      answer: "Časté jsou slinění, podvýživa, vytlačování jídla jazykem, rozdíl mezi p.o. příjmem a energetickým výdejem, dystonické ataky při krmení a často potřeba PEG."
+    },
+    {
+      id: "v-neurologie:10:flashcard:14",
+      prompt: "Co je důležité v terapii dyskinetické formy?",
+      answer: "Metodou volby je nabídnout oporu. Sádrová fixace může negativně zasáhnout posturální funkce a bývá špatně tolerovaná."
+    },
+    {
+      id: "v-neurologie:10:flashcard:15",
+      prompt: "Co je typické pro ataktický typ DMO?",
+      answer: "Tvoří asi 4-15 %, je mozečkový, s centrální hypotonií, ataxií trupu a končetin, hypermetrií, intenčním tremorem, poruchou koordinace očních bulbů, nestabilním sedem a chůzí často až ve 3.-4. roce."
+    },
+    {
+      id: "v-neurologie:10:flashcard:16",
+      prompt: "Jaké riziko má terapie u ataktické formy s mentálním deficitem?",
+      answer: "Hrozí přetížení terapií, stagnace nebo zhoršení vývoje; někdy je vhodná terapeutická pauza."
+    },
+    {
+      id: "v-neurologie:10:flashcard:17",
+      prompt: "Jaké nálezy na MRI lze u DMO čekat?",
+      answer: "Asi 86 % dětí s DMO má abnormální MRI nález, ale přibližně 14 % klinicky diagnostikovaných dětí nález na MRI nemá; nejčastěji jde o děti s ataktickou formou."
+    },
+    {
+      id: "v-neurologie:10:flashcard:18",
+      prompt: "Kdy bývá v ČR stanovena diagnóza DMO?",
+      answer: "Často mezi 1. a 2. rokem věku. Do 1 roku se spíše mluví o centrální koordinační poruše."
+    },
+    {
+      id: "v-neurologie:10:flashcard:19",
+      prompt: "K čemu slouží GMFCS, GMFM a standardizované testy?",
+      answer: "GMFCS klasifikuje hrubou motoriku a funkční schopnosti v pěti stupních, GMFM kvantifikuje hrubou motoriku. Efekt terapie lze objektivizovat testy 6MWT, 10MWT, TUG, 9HPT a Box and Block."
+    },
+    {
+      id: "v-neurologie:10:flashcard:20",
+      prompt: "Jaké věkové mezníky se zohledňují v rehabilitaci DMO?",
+      answer: "Hrubá motorika dozrává zhruba do 3 let, jemná motorika a koordinace mezi 3.-6./7. rokem, 8.-12. rok je zlatý věk motorického učení a po 12. roce často klesá spontánní chuť k pohybu."
+    },
+    {
+      id: "v-neurologie:10:flashcard:21",
+      prompt: "Jaké přístupy se používají v pohybové terapii?",
+      answer: "Vojtův princip pro kvalitu motoriky, Bobath koncept se stimulací ve vývojové řadě a kvantitu, funkční trénink chůze nebo práce s vozíkem a sportovní aktivity."
+    },
+    {
+      id: "v-neurologie:10:flashcard:22",
+      prompt: "Jaké komplikace je potřeba u DMO aktivně sledovat?",
+      answer: "Luxace kyčlí, skoliózu, deformity DK, osteoporózu, epilepsii, poruchy příjmu potravy včetně NG sondy nebo PEG a neurogenní měchýř a střevo."
+    },
+    {
+      id: "v-neurologie:10:flashcard:23",
+      prompt: "Co je typické pro dlouhodobý program ve věku 0-3 roky?",
+      answer: "Pohybová terapie včetně VRL, návaznost na ranou péči, logopedie pro p.o. příjem a polykání, ergoterapie včetně kompenzačních a polohovacích pomůcek a řešení interních komplikací."
+    },
+    {
+      id: "v-neurologie:10:flashcard:24",
+      prompt: "Co patří mezi limity rehabilitační terapie?",
+      answer: "Mentální deficit, poruchy senzorického zpracování, PAS, nedostatečná motivace, nespolupráce rodiny a nutnost respektovat hranice motorických a mentálních možností pacienta."
+    },
+    {
+      id: "v-neurologie:10:flashcard:25",
+      prompt: "Na čem stojí posudkové hodnocení a pracovní zařazení?",
+      answer: "Rozhoduje funkční dopad: GMFCS, ADL, mobilita, mentální stav a potřeba asistence. Lehké formy mohou na běžný pracovní trh, střední do chráněného zaměstnání a těžké formy zpravidla odpovídají plné invaliditě."
+    }
+  ],
+  quizQuestions: [
+    {
+      id: "v-neurologie:10:quiz:1",
+      prompt: "Která tvrzení odpovídají definici DMO?",
+      options: [
+        "Jde o neprogresivní neurologický syndrom.",
+        "Vzniká na podkladě léze nezralého mozku.",
+        "Popisuje skupinu poruch vývoje pohybu a postury.",
+        "Jde o primárně progresivní degenerativní onemocnění periferního nervu."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "DMO je neprogresivní syndrom z léze nezralého mozku a týká se vývoje pohybu a postury."
+    },
+    {
+      id: "v-neurologie:10:quiz:2",
+      prompt: "Co je správně o prevalenci a doprovodných projevech DMO?",
+      options: [
+        "Prevalence je přibližně 2-3/1000 živě narozených dětí.",
+        "Výskyt je výrazně vyšší u nedonošených dětí.",
+        "Kognitivní deficit může být významný až asi u poloviny dětí.",
+        "DMO nikdy není doprovázena epilepsií."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Zdroj uvádí prevalenci 2-3/1000, vyšší výskyt u nedonošených a možné kognitivní, senzorické i epileptické doprovody."
+    },
+    {
+      id: "v-neurologie:10:quiz:3",
+      prompt: "Které položky patří mezi prenatální etiologické faktory?",
+      options: [
+        "IUGR a chronická hypoxie.",
+        "Preeklampsie a vícečetné těhotenství.",
+        "Kongenitální infekce, intoxikace a VVV CNS.",
+        "Pouze úraz v dospělosti."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Prenatální skupina zahrnuje IUGR, chronickou hypoxii, preeklampsii, vícečetné těhotenství, infekce, intoxikace a VVV CNS."
+    },
+    {
+      id: "v-neurologie:10:quiz:4",
+      prompt: "Co text řadí mezi perinatální a postnatální příčiny DMO?",
+      options: [
+        "Perinatálně hypoxii, porodní trauma a IVH.",
+        "Postnatálně infekce CNS.",
+        "Postnatálně hyperbilirubinémii s rizikem dyskineticko-dystonické formy.",
+        "Chronickou artritidu jako hlavní perinatální příčinu."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Perinatálně jsou uvedeny hypoxie, trauma a IVH; postnatálně infekce CNS a hyperbilirubinémie."
+    },
+    {
+      id: "v-neurologie:10:quiz:5",
+      prompt: "Která tvrzení o germinální matrix jsou správná?",
+      options: [
+        "Je významná hlavně u nedonošených dětí.",
+        "Nachází se v periventrikulární oblasti.",
+        "Je zranitelná kvůli křehké cévní síti a nezralé regulaci průtoku.",
+        "Je vždy plně vyzrálá a odolná vůči ischemii."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Vulnerabilita germinální matrix u nedonošených zvyšuje riziko ischemie a krvácení."
+    },
+    {
+      id: "v-neurologie:10:quiz:6",
+      prompt: "Co charakterizuje spastický typ DMO?",
+      options: [
+        "Postižení pyramidové dráhy.",
+        "Chudá, stereotypní a redukovaná motorika.",
+        "Omezená schopnost diferencované cílené hybnosti.",
+        "Výhradně mozečkové postižení."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Spastický typ souvisí s pyramidovou dráhou a chudou stereotypní motorikou."
+    },
+    {
+      id: "v-neurologie:10:quiz:7",
+      prompt: "Co je typické pro spastickou diparézu?",
+      options: [
+        "HK jsou často funkčně lepší než DK.",
+        "Bývá hypoplazie pletence pánevního a DK mohou být kratší a drobnější.",
+        "Je riziko luxace kyčlí a pes equinus.",
+        "Jde o čistě jednostranné postižení."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Diparéza je bilaterální forma s lepší funkcí HK, změnami pletence a rizikem kyčelní luxace i pes equinus."
+    },
+    {
+      id: "v-neurologie:10:quiz:8",
+      prompt: "Které znaky odpovídají spastické kvadruparéze?",
+      options: [
+        "Těžká léze CNS, často po IVH a komplikacích hydrocefalu.",
+        "Těžké postižení HK i DK.",
+        "Bulbární symptomatika, poruchy p.o. příjmu, respirační komplikace a skolióza.",
+        "Vždy plně zachovaná soběstačnost bez senzorických odchylek."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Kvadruparéza je těžká forma s postižením všech končetin a četnými systémovými komplikacemi."
+    },
+    {
+      id: "v-neurologie:10:quiz:9",
+      prompt: "Co je typické pro spastickou hemiparézu?",
+      options: [
+        "Unilaterální postižení.",
+        "HK bývá funkčně horší než DK.",
+        "Častá časná vertikalizace a equinovarózní postavení.",
+        "Kyčelní kloub je typicky nejrizikovější pro luxaci."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Hemiparéza je jednostranná, s horší funkcí HK, časnou vertikalizací a equinovarózním postavením; kyčel nebývá riziková pro luxaci."
+    },
+    {
+      id: "v-neurologie:10:quiz:10",
+      prompt: "Co charakterizuje dyskinetický typ DMO?",
+      options: [
+        "Postižení extrapyramidové dráhy.",
+        "Dystonický nebo choreo-atetotický typ.",
+        "Ztráta kontroly pohybu, chybění opory a labilita trupu.",
+        "Epilepsie je u něj častější než u všech ostatních forem."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Dyskinetický typ je extrapyramidový, dystonický nebo choreo-atetotický; epilepsie je podle textu méně častá až vzácná."
+    },
+    {
+      id: "v-neurologie:10:quiz:11",
+      prompt: "Které projevy a souvislosti patří k dyskinetickému typu?",
+      options: [
+        "Dítě může mít představu pohybu, ale nedokáže ji realizovat.",
+        "Na podněty reaguje generalizovanou, energeticky náročnou hybností.",
+        "Může být porucha orofaciální motoriky, slinění, podvýživa a potřeba PEG.",
+        "Sádrová fixace je vždy metodou první volby bez rizika."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Zdroj zdůrazňuje energeticky náročnou generalizovanou hybnost a orofaciální obtíže; na sádrovou fixaci upozorňuje jako na rizikovou."
+    },
+    {
+      id: "v-neurologie:10:quiz:12",
+      prompt: "Které projevy patří k ataktickému typu DMO?",
+      options: [
+        "Centrální hypotonie.",
+        "Ataxie trupu a končetin, hypermetrie a intenční tremor.",
+        "Porucha koordinace očních bulbů a nestabilní sed.",
+        "Vždy časná samostatná chůze před 1. rokem."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Ataktický typ je mozečkový, s hypotonií, ataxií, tremorem a často pozdní chůzí ve 3.-4. roce."
+    },
+    {
+      id: "v-neurologie:10:quiz:13",
+      prompt: "Co je správně o diagnostice DMO?",
+      options: [
+        "Součástí je klinické a neurologické vyšetření.",
+        "Vojtův diagnosticko-terapeutický koncept sleduje spontánní motoriku, milníky, polohové reakce a dynamiku reflexů.",
+        "Používá se SONO a MRI.",
+        "Diagnózu lze spolehlivě stanovit jediným laboratorním markerem."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Diagnostika stojí na klinice, neurologii, vývojovém vyšetření a zobrazovacích či doplňujících metodách."
+    },
+    {
+      id: "v-neurologie:10:quiz:14",
+      prompt: "Která tvrzení o MRI u DMO jsou správná?",
+      options: [
+        "Asi 86 % dětí s DMO má abnormální MRI nález.",
+        "Asi 14 % klinicky diagnostikovaných dětí nemusí mít nález na MRI.",
+        "Bez normálního MRI nelze DMO klinicky zvažovat.",
+        "Chybějící MRI nález se často týká ataktické formy."
+      ],
+      correctOptionIndexes: [0, 1, 3],
+      explanation: "MRI je důležité, ale normální nález DMO nevylučuje, zejména u části ataktických forem."
+    },
+    {
+      id: "v-neurologie:10:quiz:15",
+      prompt: "Která tvrzení o hodnocení tíže postižení jsou správná?",
+      options: [
+        "GMFCS má stupně I-V.",
+        "GMFM kvantifikuje hrubou motoriku.",
+        "6MWT, 10MWT, TUG, 9HPT a Box and Block lze použít k objektivizaci efektu terapie.",
+        "GMFCS hodnotí pouze sluch."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "GMFCS a GMFM se týkají motoriky, další testy slouží k objektivizaci funkčního efektu."
+    },
+    {
+      id: "v-neurologie:10:quiz:16",
+      prompt: "Co patří do komplexní rehabilitační léčby DMO?",
+      options: [
+        "Interdisciplinární proces se zaměřením na nezávislost, kvalitu života a sociální integraci.",
+        "Zohlednění typu a tíže postižení, věku, milníků vývoje a individuálních potřeb.",
+        "Léčba spasticity elektrostimulací, botulotoxinem a ortézováním.",
+        "Ignorování komplikací, protože pro funkci nejsou významné."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Komplexní rehabilitace je interdisciplinární, individualizovaná a zahrnuje i léčbu spasticity a komplikací."
+    },
+    {
+      id: "v-neurologie:10:quiz:17",
+      prompt: "Které věkové mezníky zdroj uvádí?",
+      options: [
+        "Hrubá motorika zhruba do 3 let.",
+        "Jemná motorika a koordinace přibližně 3-6/7 let.",
+        "Zlatý věk motorického učení 8-12 let.",
+        "Po 12. roce se vždy spontánní pohybová motivace výrazně zvyšuje."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Po 12. roce text naopak upozorňuje na riziko poklesu spontánní chuti k pohybu."
+    },
+    {
+      id: "v-neurologie:10:quiz:18",
+      prompt: "Co odpovídá krátkodobému rehabilitačnímu programu?",
+      options: [
+        "Stanovení hlavního problému.",
+        "Definice konkrétního krátkodobého cíle.",
+        "Výběr vhodné terapeutické techniky.",
+        "Objektivní kontrola efektu standardizovaným testováním."
+      ],
+      correctOptionIndexes: [0, 1, 2, 3],
+      explanation: "Všechny uvedené body jsou součástí krátkodobého rehabilitačního programu."
+    },
+    {
+      id: "v-neurologie:10:quiz:19",
+      prompt: "Co je typické pro dlouhodobý program ve věku 0-3 roky?",
+      options: [
+        "Pohybová terapie včetně VRL a dozrávání hrubé motoriky.",
+        "Návaznost na ranou péči.",
+        "Logopedie pro p.o. příjem a polykání.",
+        "Primární řešení pracovního zařazení na běžný trh."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Pracovní zařazení patří až do pozdějších fází života."
+    },
+    {
+      id: "v-neurologie:10:quiz:20",
+      prompt: "Co je typické pro program 3-6/8 let?",
+      options: [
+        "Rozvoj jemné motoriky, koordinace a senzorického vnímání.",
+        "Trénink ADL a předškolní příprava.",
+        "Kompenzační pomůcky, komunikace verbální či alternativní.",
+        "Řešení spasticity a deformit."
+      ],
+      correctOptionIndexes: [0, 1, 2, 3],
+      explanation: "Tato fáze pracuje s jemnou motorikou, ADL, předškolní přípravou, komunikací, pomůckami i spasticitou."
+    },
+    {
+      id: "v-neurologie:10:quiz:21",
+      prompt: "Co patří k programu 12 let až dospělost?",
+      options: [
+        "Riziko zhoršení mobility při nižší motivaci a růstové akceleraci.",
+        "U GMFCS IV riziko usednutí na vozík.",
+        "Zaměření na kvalitu pohybových vzorů a udržení kvantity pohybu.",
+        "Úplné ukončení pohybové terapie."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "V adolescenci je naopak potřeba pohybovou terapii zintenzivnit a udržet kvalitu i kvantitu pohybu."
+    },
+    {
+      id: "v-neurologie:10:quiz:22",
+      prompt: "Které položky patří mezi limity rehabilitační terapie?",
+      options: [
+        "Mentální deficit.",
+        "Poruchy senzorického zpracování a PAS.",
+        "Nedostatečná motivace a nespolupráce rodiny.",
+        "Nutnost respektovat hranice motorických a mentálních možností pacienta."
+      ],
+      correctOptionIndexes: [0, 1, 2, 3],
+      explanation: "Všechny uvedené body zdroj řadí mezi limity terapie."
+    },
+    {
+      id: "v-neurologie:10:quiz:23",
+      prompt: "Která tvrzení o posudkovém řešení jsou správná?",
+      options: [
+        "Hodnotí se funkční schopnosti, ADL, mobilita, mentální stav a potřeba asistence.",
+        "Možnosti zahrnují příspěvek na péči, ZTP/ZTP-P, kompenzační pomůcky a invalidní důchod.",
+        "Rozhodující je funkční dopad, nikoli samotná diagnóza.",
+        "Samotný název diagnózy automaticky určuje všechny dávky a pomůcky."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "Posudkové řešení vychází z funkčního dopadu a konkrétních potřeb."
+    },
+    {
+      id: "v-neurologie:10:quiz:24",
+      prompt: "Která tvrzení o pracovním zařazení jsou správná?",
+      options: [
+        "Lehké formy GMFCS I-II mohou pracovat na běžném trhu s úpravou podmínek.",
+        "Střední formy mohou směřovat do chráněného zaměstnání nebo sociálních podniků.",
+        "Těžké formy GMFCS IV-V zpravidla odpovídají plné invaliditě.",
+        "Cílem je maximální možná nezávislost, participace a sociální integrace."
+      ],
+      correctOptionIndexes: [0, 1, 2, 3],
+      explanation: "Všechna tvrzení odpovídají zdroji."
+    },
+    {
+      id: "v-neurologie:10:quiz:25",
+      prompt: "Která tvrzení jsou podle zdroje nesprávná?",
+      options: [
+        "DMO je progresivní degenerativní onemocnění periferního nervu.",
+        "GMFCS má 12 stupňů a hodnotí sluch.",
+        "MRI je vždy normální a u DMO nepoužitelná.",
+        "Spastický typ je nejčastější typ DMO."
+      ],
+      correctOptionIndexes: [0, 1, 2],
+      explanation: "První tři tvrzení jsou chybná. Spastický typ je podle zdroje nejčastější."
+    }
+  ],
+  chapters: [
+    {
+      title: "Definice a charakteristika",
+      points: [
+        "Dětská mozková obrna (DMO) je neprogresivní neurologický syndrom vznikající na podkladě léze nezralého mozku v prenatálním, perinatálním nebo časně postnatálním období.",
+        "Popisuje skupinu onemocnění s poruchou vývoje pohybu a postury. Léze je uzavřený děj, ale klinická manifestace se mění v průběhu růstu a vývoje dítěte.",
+        "DMO je nejčastější onemocnění pohybového aparátu v dětském věku. Prevalence je přibližně 2-3/1000 živě narozených dětí a výrazně vyšší u nedonošených, u extrémně nezralých dětí až desítky na 1000.",
+        "Motorická porucha je často doprovázena kognitivními poruchami, významný kognitivní deficit může být až u 50 %, dále poruchami zraku a sluchu, komunikačními a percepčními poruchami, poruchami chování a PAS, epilepsií a sekundárními muskuloskeletálními změnami."
+      ]
+    },
+    {
+      title: "Etiologie",
+      points: [
+        "1. Prenatální: IUGR, chronická hypoxie, preeklampsie, vícečetné těhotenství, kongenitální infekce, intoxikace a VVV CNS.",
+        "2. Perinatální: hypoxie, porodní trauma a intraventrikulární hemoragie (IVH).",
+        "3. Postnatální: infekce CNS a hyperbilirubinémie, která je spojena s rizikem dyskineticko-dystonické, často závažnější formy DMO.",
+        "Příčinou jsou neprogresivní změny ve vyvíjejícím se fetálním nebo dětském mozku.",
+        "U nedonošených je významná vulnerabilita periventrikulární germinální matrix: křehká cévní síť a nezralá regulace průtoku zvyšují riziko ischemie a krvácení."
+      ]
+    },
+    {
+      title: "Klasifikace dle typu postižení",
+      points: [
+        "1. Spastický typ: nejčastější typ DMO. Je postižena pyramidová dráha, dítě nedokáže dobře diferencovaně reagovat ani opustit generalizovanou hybnost, cílená hybnost je omezená a motorika je chudá, stereotypní a redukovaná.",
+        "A) Spastická diparéza: HK jsou funkčně lepší pro fázickou, úchopovou i opěrnou funkci, DK bývají kratší a drobnější, často je hypoplazie pletence pánevního, diskrepance horní a dolní části těla, riziko luxace kyčlí, pes equinus a epilepsie asi u 16-27 %.",
+        "B) Spastická triparéza: jedna HK je funkční pro fázickou, úchopovou a opěrnou funkci.",
+        "C) Spastická kvadruparéza: těžká léze CNS, často po IVH a komplikacích hydrocefalu. Typické je těžké postižení HK i DK, mentální retardace, bulbární symptomatika, senzorické odchylky, menší hlava, poruchy p.o. příjmu s možností PEG, respirační komplikace, neurogenní deformity, skolióza a poruchy vyprazdňování.",
+        "D) Spastická hemiparéza: unilaterální postižení, často mentálně intaktní, HK je funkčně horší než DK, častá je časná vertikalizace, equinovarózní postavení a epilepsie asi u 27-44 %. Kyčelní kloub nebývá rizikový pro luxaci.",
+        "2. Dyskinetický typ (cca 10 %): postižení extrapyramidové dráhy. Rozlišuje se dystonický a choreo-atetotický typ. Typická je spousta fázické motoriky, chybění opory, ztráta kontroly pohybu, labilní držení trupu a vysoká energetická náročnost pohybu.",
+        "U dyskinetického typu má dítě představu pohybu, ale nedokáže ji realizovat. Na podněty reaguje generalizovanou nediferencovanou hybností, rychle se vyčerpá, epilepsie je méně častá, mentálně může být intaktní. Časté jsou poruchy orofaciální motoriky, slinění, podvýživa, vytlačování jídla jazykem a potřeba PEG.",
+        "Metodou volby u dyskinetické formy je nabídnout oporu. Pozor na sádrovou fixaci, může negativně zasáhnout posturální funkce a bývá špatně tolerována.",
+        "3. Ataktický typ (4-15 %): mozečkový typ s centrální hypotonií, ataxií trupu a končetin, hypermetrií, intenčním tremorem, poruchou koordinace očních bulbů, nestabilním sedem a chůzí často až ve 3.-4. roce.",
+        "U ataktického typu se může vyskytovat mentální retardace a PAS. Při mentálním deficitu hrozí přetížení terapií, stagnace nebo zhoršení vývoje, někdy je indikovaná terapeutická pauza. Posturu si dítě často zajišťuje přes sakrum a může došlapovat na zevní hranu.",
+        "4. Smíšený typ: kombinace spastického a dyskinetického typu."
+      ]
+    },
+    {
+      title: "Diagnostika",
+      points: [
+        "1. Klinické a neurologické vyšetření, včetně Vojtova diagnosticko-terapeutického konceptu: spontánní motorika, milníky vývoje, polohové reakce a dynamika reflexů.",
+        "2. Zobrazovací metody: SONO a MRI. Poranění mozku nemusí být vždy patrné na MRI, ale přibližně 86 % dětí s DMO má abnormální MRI nález.",
+        "Přibližně 14 % dětí klinicky diagnostikovaných jako DMO nemá nález na MRI; nejčastěji se jedná o děti s ataktickou formou.",
+        "3. Doplňující vyšetření: EEG, vyšetření metabolických vad a genetické vyšetření.",
+        "V ČR bývá diagnóza často stanovena mezi 1. a 2. rokem věku; do 1 roku se spíše používá pojem centrální koordinační porucha."
+      ]
+    },
+    {
+      title: "Hodnocení tíže postižení",
+      points: [
+        "GMFCS (I-V): Gross Motor Function Classification System pro klasifikaci hrubé motoriky a funkčních schopností.",
+        "GMFM: Gross Motor Function Measure pro kvantifikaci hrubé motoriky.",
+        "Objektivizace efektu terapie: 6MWT, 10MWT, TUG, 9HPT a Box and Block test."
+      ]
+    },
+    {
+      title: "Komplexní rehabilitační léčba",
+      points: [
+        "Rehabilitace je interdisciplinární proces směřující k maximální možné nezávislosti, kvalitě života a sociální integraci.",
+        "Zohledňuje se typ a tíže postižení, věk pacienta, milníky vývoje a individuální potřeby.",
+        "Věkové mezníky: hrubá motorika dozrává zhruba do 3 let, jemná motorika a koordinace mezi 3.-6./7. rokem, 8.-12. rok je zlatý věk motorického učení a po 12. roce může klesat spontánní chuť k pohybu.",
+        "Do 6 let dítě sbírá informace přes senzorické systémy: zrak, sluch, hmat, propriocepci a vestibulární systém. Nad 6 let se tyto informace více integrují a propojují do souvislostí.",
+        "Léčba spasticity: funkční elektrostimulace, aplikace botulotoxinu a ortézování.",
+        "Pohybová terapie: Vojtův princip pro kvalitu motoriky, Bobath koncept se stimulací ve vývojové řadě a kvantitu, funkční trénink chůze nebo práce s vozíkem a sportovní aktivity.",
+        "Řešení komplikací: luxace kyčelních kloubů, skolióza, deformity DK, osteoporóza, epilepsie, poruchy příjmu potravy včetně NG sondy nebo PEG a neurogenní měchýř a střevo."
+      ]
+    },
+    {
+      title: "Krátkodobý rehabilitační program",
+      points: [
+        "Stanovení hlavního problému.",
+        "Definice konkrétního krátkodobého cíle.",
+        "Výběr vhodné terapeutické techniky.",
+        "Objektivní kontrola efektu standardizovaným testováním.",
+        "Cílem může být například zlepšení stability sedu, nácvik asistované chůze, prevence kontraktur nebo edukace rodiny."
+      ]
+    },
+    {
+      title: "Dlouhodobý rehabilitační program dle věku",
+      points: [
+        "0-3 roky: pohybová terapie včetně VRL, dozrávání hrubé motoriky, návaznost na ranou péči, logopedie pro p.o. příjem a polykání, ergoterapie včetně kompenzačních a polohovacích pomůcek a řešení interních komplikací.",
+        "3-6/8 let: rozvoj jemné motoriky, koordinace a senzorického vnímání, ergoterapie a trénink ADL, práce se senzomotorickými odchylkami, předškolní příprava, kompenzační pomůcky a pomůcky pro lokomoci, verbální i alternativní komunikace, řešení spasticity a deformit a zařazení dítěte přes SPC.",
+        "6-12 let: zlatý věk motorického učení, funkční trénink, školní integrace přes SPC, IVP a asistenta a kompenzační strategie.",
+        "12 let až dospělost: v pubertě a adolescenci je riziko zhoršení mobility při nižší motivaci a růstové akceleraci, u GMFCS IV riziko usednutí na vozík. Terapie se zaměřuje na kvalitu pohybových vzorů a udržení kvantity pohybu."
+      ]
+    },
+    {
+      title: "Limity rehabilitační terapie",
+      points: [
+        "Mentální deficit, poruchy senzorického zpracování a PAS.",
+        "Nedostatečná motivace a nespolupráce rodiny.",
+        "Nutnost respektovat hranice motorických a mentálních možností pacienta."
+      ]
+    },
+    {
+      title: "Posudkové řešení",
+      points: [
+        "Hodnotí se funkční schopnosti podle GMFCS, soběstačnost podle ADL, mobilita, mentální stav a potřeba asistence.",
+        "Možnosti zahrnují příspěvek na péči, průkaz ZTP/ZTP-P, kompenzační pomůcky a invalidní důchod.",
+        "Rozhodující je funkční dopad onemocnění, nikoli samotná diagnóza."
+      ]
+    },
+    {
+      title: "Pracovní zařazení",
+      points: [
+        "Lehké formy (GMFCS I-II): běžný pracovní trh s případnou úpravou podmínek.",
+        "Střední formy: chráněné zaměstnání a sociální podniky.",
+        "Těžké formy (GMFCS IV-V): zpravidla plná invalidita.",
+        "Cílem je maximální možná nezávislost, participace a sociální integrace."
+      ]
+    }
+  ]
+};
+
 const calendarEvents: CalendarEvent[] = [
   {
     title: "Neuromuskulární sonografie (Tábor)",
