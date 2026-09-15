@@ -15,7 +15,56 @@ function Clean-Text {
   return (($Value -replace "\s+", " ").Trim())
 }
 
-function Get-DocxText {
+function Get-RomanNumeral {
+  param([int]$Number)
+
+  $map = @(
+    @(1000, "M"), @(900, "CM"), @(500, "D"), @(400, "CD"),
+    @(100, "C"), @(90, "XC"), @(50, "L"), @(40, "XL"),
+    @(10, "X"), @(9, "IX"), @(5, "V"), @(4, "IV"), @(1, "I")
+  )
+  $result = ""
+  foreach ($entry in $map) {
+    while ($Number -ge $entry[0]) {
+      $result += $entry[1]
+      $Number -= $entry[0]
+    }
+  }
+  return $result
+}
+
+function Get-LetterMarker {
+  param(
+    [int]$Number,
+    [bool]$Upper = $true
+  )
+
+  $alphabet = if ($Upper) { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" } else { "abcdefghijklmnopqrstuvwxyz" }
+  $result = ""
+  while ($Number -gt 0) {
+    $Number--
+    $result = $alphabet[$Number % 26] + $result
+    $Number = [Math]::Floor($Number / 26)
+  }
+  return $result
+}
+
+function Get-Marker {
+  param(
+    [int]$Level,
+    [int]$Number
+  )
+
+  switch ($Level) {
+    0 { return "$(Get-RomanNumeral $Number)." }
+    1 { return "$Number." }
+    2 { return "$(Get-LetterMarker $Number $true)." }
+    3 { return "$(Get-LetterMarker $Number $false)." }
+    default { return "$Number)" }
+  }
+}
+
+function Get-DocxParagraphs {
   param([string]$Path)
 
   Add-Type -AssemblyName System.IO.Compression
@@ -36,72 +85,93 @@ function Get-DocxText {
     $stream.Dispose()
   }
 
-  $xml = $xml -replace "<w:tab[^>]*/>", " "
-  $xml = $xml -replace "</w:p>", "`n"
-  $xml = $xml -replace "<[^>]+>", ""
-  $text = [System.Net.WebUtility]::HtmlDecode($xml)
-  return ($text -replace "`r", "")
+  $paragraphs = New-Object System.Collections.Generic.List[object]
+  foreach ($paragraphMatch in [regex]::Matches($xml, "<w:p[\s\S]*?</w:p>")) {
+    $paragraphXml = $paragraphMatch.Value
+    $pieces = New-Object System.Collections.Generic.List[string]
+
+    foreach ($nodeMatch in [regex]::Matches($paragraphXml, "<w:t[^>]*>(?<text>[\s\S]*?)</w:t>|<w:tab[^>]*/>|<w:br[^>]*/>")) {
+      if ($nodeMatch.Value -like "<w:tab*") {
+        $pieces.Add(" ")
+      } elseif ($nodeMatch.Value -like "<w:br*") {
+        $pieces.Add(" ")
+      } else {
+        $pieces.Add([System.Net.WebUtility]::HtmlDecode($nodeMatch.Groups["text"].Value))
+      }
+    }
+
+    $text = Clean-Text (($pieces.ToArray()) -join "")
+    if (-not $text) {
+      continue
+    }
+
+    $ilvlMatch = [regex]::Match($paragraphXml, "<w:ilvl w:val=`"(?<value>\d+)`"")
+    $numIdMatch = [regex]::Match($paragraphXml, "<w:numId w:val=`"(?<value>\d+)`"")
+    $level = if ($ilvlMatch.Success -and $numIdMatch.Success) { [int]$ilvlMatch.Groups["value"].Value } else { $null }
+
+    $splitTexts = @([regex]::Split($text, "\s+(?=(?:IX|X)\./\d+\.)") | Where-Object { $_ })
+    for ($splitIndex = 0; $splitIndex -lt $splitTexts.Count; $splitIndex++) {
+      $splitText = Clean-Text $splitTexts[$splitIndex]
+      $splitLevel = if ($splitText -match "^(?:IX|X)\./\d+\.") { $null } else { $level }
+      $paragraphs.Add([ordered]@{
+        text = $splitText
+        level = $splitLevel
+      })
+    }
+  }
+
+  return @($paragraphs.ToArray())
 }
 
 function New-Chapters {
-  param([string[]]$Lines)
+  param([object[]]$Paragraphs)
 
   $chapters = New-Object System.Collections.Generic.List[object]
-  $currentTitle = "Prehled"
+  $currentTitle = "Přehled"
   $currentPoints = New-Object System.Collections.Generic.List[string]
+  $counters = @{}
+  $hasActiveChapter = $false
 
-  foreach ($rawLine in $Lines) {
-    $line = Clean-Text $rawLine
+  foreach ($paragraph in $Paragraphs) {
+    $line = Clean-Text $paragraph.text
     if (-not $line) {
       continue
     }
 
-    $wordCount = @($line -split "\s+" | Where-Object { $_ }).Count
-    $startsLikeHeading = $line.Substring(0, 1) -cmatch "^(\p{Lu}|\d)$"
-    $looksLikeHeading = $startsLikeHeading -and
-      $line.Length -le 90 -and
-      $wordCount -le 7 -and
-      $line -match "^[\p{L}0-9]" -and
-      $line -notmatch "\.$" -and
-      $line -notmatch "\s-\s|:"
+    $level = $paragraph.level
+    if ($null -ne $level) {
+      if (-not $counters.ContainsKey($level)) {
+        $counters[$level] = 0
+      }
+      $counters[$level]++
 
-    if ($looksLikeHeading) {
-      if ($currentPoints.Count -gt 0) {
-        $chapters.Add([ordered]@{ title = $currentTitle; points = @($currentPoints) })
+      foreach ($key in @($counters.Keys)) {
+        if ([int]$key -gt $level) {
+          $counters.Remove($key)
+        }
+      }
+
+      $line = "$(Get-Marker $level $counters[$level]) $line"
+    }
+
+    if ($null -ne $level -and $level -eq 0) {
+      if ($hasActiveChapter -or $currentPoints.Count -gt 0) {
+        $chapters.Add([ordered]@{ title = $currentTitle; points = @($currentPoints.ToArray()) })
         $currentPoints = New-Object System.Collections.Generic.List[string]
       }
       $currentTitle = $line
+      $hasActiveChapter = $true
       continue
     }
 
-    if ($line.Length -gt 360) {
-      $sentences = [regex]::Split($line, "(?<=[\.\?!])\s+")
-      $buffer = ""
-      foreach ($sentence in $sentences) {
-        $sentence = Clean-Text $sentence
-        if (-not $sentence) {
-          continue
-        }
-        if (($buffer.Length + $sentence.Length) -gt 280 -and $buffer) {
-          $currentPoints.Add($buffer)
-          $buffer = $sentence
-        } else {
-          $buffer = (Clean-Text "$buffer $sentence")
-        }
-      }
-      if ($buffer) {
-        $currentPoints.Add($buffer)
-      }
-    } else {
-      $currentPoints.Add($line)
-    }
+    $currentPoints.Add($line)
   }
 
-  if ($currentPoints.Count -gt 0) {
-    $chapters.Add([ordered]@{ title = $currentTitle; points = @($currentPoints) })
+  if ($hasActiveChapter -or $currentPoints.Count -gt 0) {
+    $chapters.Add([ordered]@{ title = $currentTitle; points = @($currentPoints.ToArray()) })
   }
 
-  return @($chapters.ToArray() | Where-Object { $_.points.Count -gt 0 })
+  return @($chapters.ToArray())
 }
 
 function New-Flashcards {
@@ -113,6 +183,15 @@ function New-Flashcards {
   $cards = New-Object System.Collections.Generic.List[object]
   $index = 1
   foreach ($chapter in $Chapters) {
+    if ($cards.Count -lt 20 -and $chapter.title -ne "Přehled") {
+      $cards.Add([ordered]@{
+        id = "$QuestionKey`:flashcard:$index"
+        prompt = "Shrn cast: $($chapter.title)"
+        answer = if ($chapter.points.Count -gt 0) { (($chapter.points | Select-Object -First 5) -join " ") } else { $chapter.title }
+      })
+      $index++
+    }
+
     foreach ($point in $chapter.points) {
       if ($cards.Count -ge 20) {
         return @($cards.ToArray())
@@ -171,21 +250,33 @@ if (-not $SourceDocx) {
   throw "Could not find a source DOCX in podklady\atestacni-otazky."
 }
 
-$text = Get-DocxText $SourceDocx
-$matches = [regex]::Matches($text, "(?:IX|X)\./(?<index>\d+)\.\s*(?<title>[^\n]+)")
+$paragraphs = Get-DocxParagraphs $SourceDocx
+$matches = @()
+for ($paragraphIndex = 0; $paragraphIndex -lt $paragraphs.Count; $paragraphIndex++) {
+  $match = [regex]::Match($paragraphs[$paragraphIndex].text, "^(?:IX|X)\./(?<index>\d+)\.\s*(?<title>.+)$")
+  if ($match.Success) {
+    $matches += [ordered]@{
+      paragraphIndex = $paragraphIndex
+      index = [int]$match.Groups["index"].Value
+      title = Clean-Text $match.Groups["title"].Value
+    }
+  }
+}
 $result = [ordered]@{}
 
 for ($i = 0; $i -lt $matches.Count; $i++) {
   $match = $matches[$i]
-  $index = [int]$match.Groups["index"].Value
-  $title = Clean-Text $match.Groups["title"].Value
-  $bodyStart = $match.Index + $match.Length
-  $bodyEnd = if ($i + 1 -lt $matches.Count) { $matches[$i + 1].Index } else { $text.Length }
-  $body = $text.Substring($bodyStart, $bodyEnd - $bodyStart)
-  $lines = @($body -split "`n")
+  $index = $match.index
+  $title = $match.title
+  $bodyStart = $match.paragraphIndex + 1
+  $bodyEnd = if ($i + 1 -lt $matches.Count) { $matches[$i + 1].paragraphIndex } else { $paragraphs.Count }
+  $bodyParagraphs = @()
+  if ($bodyEnd -gt $bodyStart) {
+    $bodyParagraphs = @($paragraphs[$bodyStart..($bodyEnd - 1)])
+  }
 
   $questionKey = "ix-fyzikalni-terapie:$($index - 1)"
-  $chapters = New-Chapters $lines
+  $chapters = New-Chapters $bodyParagraphs
   if ($chapters.Count -eq 0) {
     $chapters = @([ordered]@{ title = $title; points = @("Podklady jsou pripravene v prilozenem dokumentu.") })
   }
