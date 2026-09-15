@@ -2641,7 +2641,6 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
         </section>
 
         <section className="page-block question-article">
-          <h2>{"Vypracovan\u00e1 ot\u00e1zka"}</h2>
           {activeQuestionPage.chapters.map((chapter, chapterIndex) => (
             <section key={`${questionRouteKey}:${chapterIndex}`} className="question-chapter">
               <h3>

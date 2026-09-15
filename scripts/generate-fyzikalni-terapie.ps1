@@ -63,6 +63,64 @@ function Get-CleanChapterTitle {
   return (Clean-Text ($Line -replace "^(XX|XIX|XVIII|XVII|XVI|XV|XIV|XIII|XII|XI|X|IX|VIII|VII|VI|V|IV|III|II|I)\.\s*", ""))
 }
 
+function Split-ChapterHeading {
+  param([string]$Title)
+
+  $clean = Clean-Text $Title
+  $colonMatch = [regex]::Match($clean, "^(?<title>.{2,60}?):\s*(?<body>.+)$")
+  if ($colonMatch.Success) {
+    return [ordered]@{
+      title = Clean-Text $colonMatch.Groups["title"].Value
+      body = Clean-Text $colonMatch.Groups["body"].Value
+    }
+  }
+
+  $dashMatch = [regex]::Match($clean, "^(?<title>.{2,60}?)\s+-\s+(?<body>.+)$")
+  if ($dashMatch.Success) {
+    return [ordered]@{
+      title = Clean-Text $dashMatch.Groups["title"].Value
+      body = Clean-Text $dashMatch.Groups["body"].Value
+    }
+  }
+
+  return [ordered]@{
+    title = $clean
+    body = ""
+  }
+}
+
+function Get-StructuredTextParts {
+  param([string]$Text)
+
+  $value = Clean-Text $Text
+  $separator = "|||"
+
+  $value = [regex]::Replace($value, "\s+-\s+(proudy:|tvar impulzu:|monopolární/bipolární|Druhy TENS|léčebné účinky DD:|aplikace:|indikace:|délka aplikace:|Předpis\b)", " $separator `$1")
+  $value = [regex]::Replace($value, "\s+([A-Z][^\s]{2,35})\s+-\s+", " $separator `$1 - ")
+  $value = [regex]::Replace($value, "\s+(Druhy TENS)\b", " $separator `$1")
+
+  $parts = New-Object System.Collections.Generic.List[string]
+  foreach ($part in ($value -split [regex]::Escape($separator))) {
+    $clean = Clean-Text $part
+    if ($clean) {
+      $parts.Add($clean)
+    }
+  }
+
+  return @($parts.ToArray())
+}
+
+function Add-StructuredTextParts {
+  param(
+    [System.Collections.Generic.List[string]]$Target,
+    [string]$Text
+  )
+
+  foreach ($part in (Get-StructuredTextParts $Text)) {
+    $Target.Add($part)
+  }
+}
+
 function Get-QuestionPromptPart {
   param([string]$Text)
   $clean = Clean-Text ($Text -replace "^[0-9]+\.\s*", "" -replace "^[A-Z]\.\s*", "" -replace "^[a-z]\)\s*", "")
@@ -218,9 +276,14 @@ foreach ($paragraph in $paragraphs) {
     if ($currentChapter) {
       $currentChapters.Add($currentChapter)
     }
+    $chapterParts = Split-ChapterHeading (Get-CleanChapterTitle $paragraph)
+    $points = New-Object System.Collections.Generic.List[string]
+    if ($chapterParts.body) {
+      Add-StructuredTextParts $points $chapterParts.body
+    }
     $currentChapter = [ordered]@{
-      title = Get-CleanChapterTitle $paragraph
-      points = New-Object System.Collections.Generic.List[string]
+      title = $chapterParts.title
+      points = $points
     }
     continue
   }
@@ -232,7 +295,7 @@ foreach ($paragraph in $paragraphs) {
     }
   }
 
-  $currentChapter.points.Add($paragraph)
+  Add-StructuredTextParts $currentChapter.points $paragraph
 }
 
 if ($currentKey) {
