@@ -10,6 +10,11 @@ function Clean-Text {
   return (($Value -replace "\s+", " ").Trim())
 }
 
+function Clean-PointText {
+  param([string]$Value)
+  return (Clean-Text ($Value -replace "^-\s*", ""))
+}
+
 function ConvertTo-TsString {
   param([string]$Value)
   return ($Value | ConvertTo-Json -Compress)
@@ -75,7 +80,7 @@ function Split-ChapterHeading {
     }
   }
 
-  $dashMatch = [regex]::Match($clean, "^(?<title>.{2,60}?)\s+-\s+(?<body>.+)$")
+  $dashMatch = [regex]::Match($clean, "^(?<title>.{2,120}?)\s+-\s+(?<body>.+)$")
   if ($dashMatch.Success) {
     return [ordered]@{
       title = Clean-Text $dashMatch.Groups["title"].Value
@@ -101,9 +106,43 @@ function Get-StructuredTextParts {
 
   $parts = New-Object System.Collections.Generic.List[string]
   foreach ($part in ($value -split [regex]::Escape($separator))) {
-    $clean = Clean-Text $part
+    $clean = Clean-PointText $part
     if ($clean) {
-      $parts.Add($clean)
+      $hyphenParts = @($clean -split "\s+-\s+")
+      if ($hyphenParts.Count -gt 2) {
+        foreach ($hyphenPart in $hyphenParts) {
+          $current = Clean-PointText $hyphenPart
+          if ($current) {
+            $parts.Add($current)
+          }
+        }
+      } elseif ($clean.Length -gt 90 -and $clean.Contains(" - ")) {
+        $buffer = ""
+        foreach ($hyphenPart in $hyphenParts) {
+          $current = Clean-PointText $hyphenPart
+          if (-not $current) {
+            continue
+          }
+
+          if (-not $buffer) {
+            $buffer = $current
+            continue
+          }
+
+          if ($buffer.Length -ge 45 -or $current -match "^[a-z0-9]") {
+            $parts.Add($buffer)
+            $buffer = $current
+          } else {
+            $buffer = "$buffer - $current"
+          }
+        }
+
+        if ($buffer) {
+          $parts.Add($buffer)
+        }
+      } else {
+        $parts.Add($clean)
+      }
     }
   }
 

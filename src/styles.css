@@ -317,18 +317,6 @@ h1 {
   gap: 8px;
 }
 
-.chapter-point.level-2 {
-  margin-left: 18px;
-}
-
-.chapter-point.level-3 {
-  margin-left: 38px;
-}
-
-.chapter-point.level-4 {
-  margin-left: 58px;
-}
-
 .flashcards-head {
   display: flex;
   align-items: flex-end;
@@ -561,7 +549,9 @@ h1 {
 }
 
 .chapter-point {
-  margin: 0 0 6px;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 6px;
   line-height: 1.32;
 }
 
@@ -575,6 +565,22 @@ h1 {
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.chapter-point.level-1 {
+  margin-left: 14px;
+}
+
+.chapter-point.level-2 {
+  margin-left: 28px;
+}
+
+.chapter-point.level-3 {
+  margin-left: 48px;
+}
+
+.chapter-point.level-4 {
+  margin-left: 68px;
 }
 
 .chapter-roman {

@@ -98,7 +98,7 @@ function normalizeQuestionPointText(text: string): string {
   return text.replace(/^([A-Z])\)\s/, "$1. ");
 }
 
-function getQuestionPointLevel(text: string): number {
+function getQuestionPointBaseLevel(text: string): number {
   const value = text.trim();
   if (/^\d+[\.\)]\s/.test(value)) {
     return 2;
@@ -112,9 +112,25 @@ function getQuestionPointLevel(text: string): number {
   return 1;
 }
 
-function getQuestionPointClassName(point: string): string {
+function getQuestionPointLevel(point: string, siblings?: string[], pointIndex?: number): number {
+  const baseLevel = getQuestionPointBaseLevel(point);
+  if (baseLevel > 1 || !siblings || pointIndex === undefined) {
+    return baseLevel;
+  }
+
+  for (let index = pointIndex - 1; index >= 0; index--) {
+    const previousLevel = getQuestionPointBaseLevel(siblings[index] ?? "");
+    if (previousLevel > 1) {
+      return Math.min(previousLevel + 1, 4);
+    }
+  }
+
+  return 1;
+}
+
+function getQuestionPointClassName(point: string, siblings?: string[], pointIndex?: number): string {
   const markerClass = hasOwnMarker(point) ? "with-marker" : "with-bullet";
-  return `chapter-point ${markerClass} level-${getQuestionPointLevel(point)}`;
+  return `chapter-point ${markerClass} level-${getQuestionPointLevel(point, siblings, pointIndex)}`;
 }
 
 function getPreparedQuestionLabel(questionKey: string): string | null {
@@ -2477,16 +2493,20 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       text-align: left;
     }
 
+    .point-level-1 {
+      margin-left: 14px;
+    }
+
     .point-level-2 {
-      margin-left: 22px;
+      margin-left: 28px;
     }
 
     .point-level-3 {
-      margin-left: 44px;
+      margin-left: 50px;
     }
 
     .point-level-4 {
-      margin-left: 66px;
+      margin-left: 72px;
     }
 
     .chapter {
@@ -2510,7 +2530,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       (chapter, chapterIndex) => `
     <section class="chapter">
       <h2>${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}</h2>
-      ${chapter.points.map((point) => `<p class="point-level-${getQuestionPointLevel(point)}">${normalizeQuestionPointText(point)}</p>`).join("")}
+        ${chapter.points.map((point, pointIndex) => `<p class="point-level-${getQuestionPointLevel(point, chapter.points, pointIndex)}">${normalizeQuestionPointText(point)}</p>`).join("")}
     </section>
   `
     )
@@ -2647,8 +2667,8 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                 {ROMAN_CHAPTERS[chapterIndex] ?? `${chapterIndex + 1}`}. {chapter.title}
               </h3>
               <div className="question-chapter-points">
-                {chapter.points.map((point) => (
-                  <p key={point} className={getQuestionPointClassName(point)}>
+                {chapter.points.map((point, pointIndex) => (
+                  <p key={point} className={getQuestionPointClassName(point, chapter.points, pointIndex)}>
                     {normalizeQuestionPointText(point)}
                   </p>
                 ))}
@@ -2871,8 +2891,8 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                       {chapter.title}
                     </summary>
                     <div className="chapter-points">
-                      {chapter.points.map((point) => (
-                        <p key={point} className={getQuestionPointClassName(point)}>
+                      {chapter.points.map((point, pointIndex) => (
+                        <p key={point} className={getQuestionPointClassName(point, chapter.points, pointIndex)}>
                           {normalizeQuestionPointText(point)}
                         </p>
                       ))}
