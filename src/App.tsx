@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { eduTopics, modules } from "./content";
+import { physicalTherapyPreparedQuestions } from "./preparedFyzikalniTerapie";
 
 type InstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -1941,6 +1942,8 @@ PREPARED_QUESTIONS["vii-ortopedie-a-tramatologie:1"] = {
     }
   ]
 };
+
+Object.assign(PREPARED_QUESTIONS, physicalTherapyPreparedQuestions);
 
 const calendarEvents: CalendarEvent[] = [
   {
