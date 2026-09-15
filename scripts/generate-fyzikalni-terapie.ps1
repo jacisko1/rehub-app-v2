@@ -33,6 +33,33 @@ function Get-RomanNumeral {
   return $result
 }
 
+function ConvertFrom-RomanNumeral {
+  param([string]$Roman)
+
+  $values = @{
+    I = 1
+    V = 5
+    X = 10
+    L = 50
+    C = 100
+    D = 500
+    M = 1000
+  }
+  $total = 0
+  $previous = 0
+  $chars = $Roman.ToUpper().ToCharArray()
+  for ($i = $chars.Length - 1; $i -ge 0; $i--) {
+    $value = $values[[string]$chars[$i]]
+    if ($value -lt $previous) {
+      $total -= $value
+    } else {
+      $total += $value
+      $previous = $value
+    }
+  }
+  return $total
+}
+
 function Get-LetterMarker {
   param(
     [int]$Number,
@@ -109,10 +136,10 @@ function Get-DocxParagraphs {
     $numIdMatch = [regex]::Match($paragraphXml, "<w:numId w:val=`"(?<value>\d+)`"")
     $level = if ($ilvlMatch.Success -and $numIdMatch.Success) { [int]$ilvlMatch.Groups["value"].Value } else { $null }
 
-    $splitTexts = @([regex]::Split($text, "\s+(?=(?:IX|X)\./\d+\.)") | Where-Object { $_ })
+    $splitTexts = @([regex]::Split($text, "\s+(?=(?:IX|X)\./\d+\.\s+\p{Lu})") | Where-Object { $_ })
     for ($splitIndex = 0; $splitIndex -lt $splitTexts.Count; $splitIndex++) {
       $splitText = Clean-Text $splitTexts[$splitIndex]
-      $splitLevel = if ($splitText -match "^(?:IX|X)\./\d+\.") { $null } else { $level }
+      $splitLevel = if ($splitText -match "^(?:IX|X)\./\d+\.\s+\p{Lu}") { $null } else { $level }
       $paragraphs.Add([ordered]@{
         text = $splitText
         level = $splitLevel
@@ -127,7 +154,7 @@ function New-Chapters {
   param([object[]]$Paragraphs)
 
   $chapters = New-Object System.Collections.Generic.List[object]
-  $currentTitle = "Přehled"
+  $currentTitle = "Prehled"
   $currentPoints = New-Object System.Collections.Generic.List[string]
   $counters = @{}
   $hasActiveChapter = $false
@@ -152,6 +179,18 @@ function New-Chapters {
       }
 
       $line = "$(Get-Marker $level $counters[$level]) $line"
+    }
+
+    $manualRomanHeading = [regex]::Match($line, "^(?<roman>[IVXLCDM]+)\.\s+\p{Lu}.+$")
+    if ($null -eq $level -and $manualRomanHeading.Success) {
+      if ($hasActiveChapter -or $currentPoints.Count -gt 0) {
+        $chapters.Add([ordered]@{ title = $currentTitle; points = @($currentPoints.ToArray()) })
+        $currentPoints = New-Object System.Collections.Generic.List[string]
+      }
+      $currentTitle = $line
+      $counters[0] = ConvertFrom-RomanNumeral $manualRomanHeading.Groups["roman"].Value
+      $hasActiveChapter = $true
+      continue
     }
 
     if ($null -ne $level -and $level -eq 0) {
@@ -183,10 +222,16 @@ function New-Flashcards {
   $cards = New-Object System.Collections.Generic.List[object]
   $index = 1
   foreach ($chapter in $Chapters) {
-    if ($cards.Count -lt 20 -and $chapter.title -ne "Přehled") {
+    if ($cards.Count -lt 20 -and $chapter.title -ne "Prehled") {
+      $chapterPromptTitle = $chapter.title
+      if ($chapterPromptTitle -match "^([IVXLCDM]+\.\s+[^:-]{3,80})") {
+        $chapterPromptTitle = $Matches[1].Trim()
+      } elseif ($chapterPromptTitle.Length -gt 90) {
+        $chapterPromptTitle = "$($chapterPromptTitle.Substring(0, 87))..."
+      }
       $cards.Add([ordered]@{
         id = "$QuestionKey`:flashcard:$index"
-        prompt = "Shrn cast: $($chapter.title)"
+        prompt = "Shrn cast: $chapterPromptTitle"
         answer = if ($chapter.points.Count -gt 0) { (($chapter.points | Select-Object -First 5) -join " ") } else { $chapter.title }
       })
       $index++
@@ -253,7 +298,7 @@ if (-not $SourceDocx) {
 $paragraphs = Get-DocxParagraphs $SourceDocx
 $matches = @()
 for ($paragraphIndex = 0; $paragraphIndex -lt $paragraphs.Count; $paragraphIndex++) {
-  $match = [regex]::Match($paragraphs[$paragraphIndex].text, "^(?:IX|X)\./(?<index>\d+)\.\s*(?<title>.+)$")
+  $match = [regex]::Match($paragraphs[$paragraphIndex].text, "^(?:IX|X)\./(?<index>\d+)\.\s+(?<title>\p{Lu}.+)$")
   if ($match.Success) {
     $matches += [ordered]@{
       paragraphIndex = $paragraphIndex

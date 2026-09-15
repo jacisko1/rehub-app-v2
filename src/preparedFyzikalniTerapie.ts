@@ -83,7 +83,7 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:0:flashcard:1",
-        prompt: "Shrn cast: I. Definice: praktické uplatnění fyzikálních léčebných postupů a metod na živých organizmech s cílem benefitu pro pacienta",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: praktické uplatnění fyzikálních léčebných postupů a metod na živých organizmech s cílem benefitu pro pacienta",
       },
       {
@@ -401,22 +401,22 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:1:flashcard:1",
-        prompt: "Shrn cast: I. Definice: terapeutické využití elektrického proudu",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: terapeutické využití elektrického proudu",
       },
       {
         id: "ix-fyzikalni-terapie:1:flashcard:2",
-        prompt: "Shrn cast: II. Co lze ovlivnit elektrickým proudem - nervový, svalový, cévní systém, vnímání bolesti, trofiku, metabolismus tkání",
+        prompt: "Shrn cast: II. Co lze ovlivnit elektrickým proudem",
         answer: "II. Co lze ovlivnit elektrickým proudem - nervový, svalový, cévní systém, vnímání bolesti, trofiku, metabolismus tkání",
       },
       {
         id: "ix-fyzikalni-terapie:1:flashcard:3",
-        prompt: "Shrn cast: III. Elektrická vodivost tkání - dobře vodivé: krev, sval, nervová tkáň - hůře vodivé: tuk, kůže, kost (odpor kůže klesá zvlhčením, zvýšení kontaktní plochy elektrody)",
+        prompt: "Shrn cast: III. Elektrická vodivost tkání",
         answer: "III. Elektrická vodivost tkání - dobře vodivé: krev, sval, nervová tkáň - hůře vodivé: tuk, kůže, kost (odpor kůže klesá zvlhčením, zvýšení kontaktní plochy elektrody)",
       },
       {
         id: "ix-fyzikalni-terapie:1:flashcard:4",
-        prompt: "Shrn cast: IV. Elektrický proud: tok elektricky nabitých částic (ionty - kationt/aniont nebo elektrony - záporně nabité částice ), dobře prochází tkáněmi s velkým obsahem vody a bílkovin - největší odpor průchodu klade kůže, kost, chrupavka, šlacha (malý obsah vody) - směr od katody (mínus) k anodě (plus), jednotka Ampér - účinek - analgetický, trofický, antiedematózní, myostimulační",
+        prompt: "Shrn cast: IV. Elektrický proud",
         answer: "1. Stejnosměrný - jednosměrný tok, anoda a katoda na stejném místě (nemění se) - galvanizace - ionický účinek - iontoforéza - použití: analgetický účinek, ovlivnění prokrvení, vegetativních funkcí 2. Střídavý - směr a velikost proudu se v čase mění (katoda a anoda se rychle mění) - indikace: analgezie, elektrostimulace svalů, ovlivnění svalového tonu A. nízkofrekvenční - do 1kHz, povrchové a. kontaktní - DD, TENS, Trabert b. bezkontaktní - magnet, distanční elektroterapie",
       },
       {
@@ -456,7 +456,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:1:flashcard:12",
-        prompt: "Shrn cast: V. Elektrody - velikost, vzájemná vzdálenost, polarita, intenzita proudu, délka aplikace, stav kůže - čím menší elektroda, tím vyšší hustota proudu (roste riziko popálení)",
+        prompt: "Shrn cast: V. Elektrody",
         answer: "V. Elektrody - velikost, vzájemná vzdálenost, polarita, intenzita proudu, délka aplikace, stav kůže - čím menší elektroda, tím vyšší hustota proudu (roste riziko popálení)",
       },
       {
@@ -481,7 +481,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:1:flashcard:17",
-        prompt: "Shrn cast: VII. N.Ú. elektroterapie - podráždění kůže, bolestivé pocity, popálení, elektrochemické poškození kůže",
+        prompt: "Shrn cast: VII. N.Ú. elektroterapie",
         answer: "VII. N.Ú. elektroterapie - podráždění kůže, bolestivé pocity, popálení, elektrochemické poškození kůže",
       },
       {
@@ -742,27 +742,27 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:2:flashcard:1",
-        prompt: "Shrn cast: I. Definice: terapeutické působení stejnosměrného (galvanického) proudu na organizmus - akutní 3x denně - chronický 1x týdne (aplikace až 60 minut) - minimální délka terapie 30 minut, běžný počet procedur 6, u perakutních stavů 4-5 procedur prvních 48 hod po úrazu - max. proudová hustota je 0,1 mA/cm2, prahově senzitivní (pacient vnímá proud, ale není to bolestivé, protože jednosměrný proud působí senzitivně a vegetativně)",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: terapeutické působení stejnosměrného (galvanického) proudu na organizmus - akutní 3x denně - chronický 1x týdne (aplikace až 60 minut) - minimální délka terapie 30 minut, běžný počet procedur 6, u perakutních stavů 4-5 procedur prvních 48 hod po úrazu - max. proudová hustota je 0,1 mA/cm2, prahově senzitivní (pacient vnímá proud, ale není to bolestivé, protože jednosměrný proud působí senzitivně a vegetativně)",
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:2",
-        prompt: "Shrn cast: II. Indikace: chronické bolestivé stavy, artralgie, myalgie, neuralgie",
+        prompt: "Shrn cast: II. Indikace",
         answer: "II. Indikace: chronické bolestivé stavy, artralgie, myalgie, neuralgie",
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:3",
-        prompt: "Shrn cast: III. Účinky: analgezie, prokrvení, ovlivnění trofiky tkáně",
+        prompt: "Shrn cast: III. Účinky",
         answer: "III. Účinky: analgezie, prokrvení, ovlivnění trofiky tkáně",
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:4",
-        prompt: "Shrn cast: IV. Mechanizmus účinky: polarizace všech tkání a buněk v proudové dráze - vyžaduje čas min. 30 minut, v případě pozitivní odezvy zvyšujeme step 5 min. na 40-60 minut - předpis na 10 minut je non lege artis - proudová hustota je intenzita proudu (mA) procházející určitým průřezem (elektrody) v cm2 - max. proudová hustota je 0,1mA/cm2, - nahromadění iontů na membráně, zvýší se propustnost pro Na+, což vede ke kapilární hyperémii - zlepšení trofiky, imunity, urychlení regenerace (více kyslíku, zvýší se syntéza kolagenu) - zrychlené vstřebávání výronů exsudátů a otoků, snížení bolesti, snížení spasticity, - eutonizace cévního řečiště (správný tonus) - ovlivnění nervové dráždivosti - nevyvolává svalovou kontrakci, proto je možné aplikovat i u perakutních stavů",
+        prompt: "Shrn cast: IV. Mechanizmus účinky",
         answer: "IV. Mechanizmus účinky: polarizace všech tkání a buněk v proudové dráze - vyžaduje čas min. 30 minut, v případě pozitivní odezvy zvyšujeme step 5 min. na 40-60 minut - předpis na 10 minut je non lege artis - proudová hustota je intenzita proudu (mA) procházející určitým průřezem (elektrody) v cm2 - max. proudová hustota je 0,1mA/cm2, - nahromadění iontů na membráně, zvýší se propustnost pro Na+, což vede ke kapilární hyperémii - zlepšení trofiky, imunity, urychlení regenerace (více kyslíku, zvýší se syntéza kolagenu) - zrychlené vstřebávání výronů exsudátů a otoků, snížení bolesti, snížení spasticity, - eutonizace cévního řečiště (správný tonus) - ovlivnění nervové dráždivosti - nevyvolává svalovou kontrakci, proto je možné aplikovat i u perakutních stavů",
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:5",
-        prompt: "Shrn cast: V. Pod elektrodami odlišné elektrochemické reakce:",
+        prompt: "Shrn cast: V. Pod elektrodami odlišné elektrochemické reakce",
         answer: "1. katelektrotonus - zvýšení dráždivosti nervových zakončení pod katodou (tonus, který vzniká pod katodou) indikace: hypestézie 2. anelektotonus - snížení dráždivosti pod anodou, analgezie (indikace: bolest, citlivá místa)",
       },
       {
@@ -777,27 +777,27 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:8",
-        prompt: "Shrn cast: VI. ochranné roztoky: slabé kyseliny a zásady (vzniká elektrolytická disociace H2O na H +, OH-, na kůži je NaCl, které disociuje na Na plus na katodě, kde je OH minus a vznikne NaOH, Cl minus k anodě a vznikne HCl (riziko poleptání) - proto ochranné roztoky",
+        prompt: "Shrn cast: VI. ochranné roztoky",
         answer: "VI. ochranné roztoky: slabé kyseliny a zásady (vzniká elektrolytická disociace H2O na H +, OH-, na kůži je NaCl, které disociuje na Na plus na katodě, kde je OH minus a vznikne NaOH, Cl minus k anodě a vznikne HCl (riziko poleptání) - proto ochranné roztoky",
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:9",
-        prompt: "Shrn cast: VII. katoda - kyselý, anoda - zásaditý roztok",
+        prompt: "Shrn cast: VII. katoda",
         answer: "VII. katoda - kyselý, anoda - zásaditý roztok",
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:10",
-        prompt: "Shrn cast: VIII. při odlepení elektrody - rána (přerušený elektrický okruh)",
+        prompt: "Shrn cast: VIII. při odlepení elektrody",
         answer: "VIII. při odlepení elektrody - rána (přerušený elektrický okruh)",
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:11",
-        prompt: "Shrn cast: IX. mezi pokožku a elektrodu se dává podložka, která musí přesahovat přes okraj elektrody",
+        prompt: "Shrn cast: IX. mezi pokožku a elektrodu se dává podložka, která musí přesahovat přes okraj elek",
         answer: "IX. mezi pokožku a elektrodu se dává podložka, která musí přesahovat přes okraj elektrody",
       },
       {
         id: "ix-fyzikalni-terapie:2:flashcard:12",
-        prompt: "Shrn cast: X. upozornit pacienta na možné začervenání kůže pod elektrodami, adaptaci (brnění el. proudu může po chvíli ustat)",
+        prompt: "Shrn cast: X. upozornit pacienta na možné začervenání kůže pod elektrodami, adaptaci (brnění e",
         answer: "X. upozornit pacienta na možné začervenání kůže pod elektrodami, adaptaci (brnění el. proudu může po chvíli ustat)",
       },
       {
@@ -991,32 +991,350 @@ export const physicalTherapyPreparedQuestions = ({
   "ix-fyzikalni-terapie:3": {
     chapters: [
       {
-        title: "PĹ™ehled",
+        title: "I. Definice: terapeutická aplikace proudů s frekvencí do 1000 Hz (přerušovaný galvan x modifikace střídavého síťového proudu) - proudy: monofázické, bifázické, střídavé, pulzní Monofázický - proud teče stále jedním směrem, má jednosměrné impulzy, typicky přerušovaný stejnosměrný proud Bifázický - proud mění směr, má kladnou i zápornou fázi, každá elektroda dosahuje kladných i záporných hodnot Střídavé - směr proudu se pravidelně mění, na každé elektrodě přechází plynule z kladného maxima přes nulovou intenzitu do záporného maxima, všechny střídavé proudy jsou bifazické Pulzní - mezi jednotlivými impulzy je různě dlouhá izoelektrická pauza - tvar impulzu: pravoúhlý, trojúhelníkový (šikmý), sinusový, jiný Pravoúhlý - proud vyskočí na určitou hodnutu, chvíli trvá a zase klesne Trojúhelníkévý/šikmý - intenzita postupně narůstá a klesá Sinusový - plynulý sinusový průběh - monopolární/bipolární Monopolární - 2 elektrody aktivní a indiferentní, účinek je soustředěný pod aktivní elektrodu Bipolární - obě elektrody mají terapeutický význam",
         points: [
-          "1. Traber",
-          "2. TENS",
-          "3. interference",
+        ]
+      },
+      {
+        title: "II. Indikace nízkofrekvenční terapie (celé dle chat)",
+        points: [
+          "1. bolest",
+          "2. snížená svalová síla",
+          "3. periferní parézy - elektrostimulace k zachování svalové funkce, reedukace pohybu",
+          "4. poruchy prokrvení a trofiky",
+        ]
+      },
+      {
+        title: "III. Účinky - elektrogymnastika, elektrostimulace paretických svalů, stimulace senzitivních axonů, terapie bolesti, vazodilatace",
+        points: [
+        ]
+      },
+      {
+        title: "IV. KI",
+        points: [
+          "1. KV - kardiostimulátor, závažné poruchy srdečního rytmu, karotický sinus,",
+          "2. cévní - akutní tromboza, závažná porucha periferního prokrvení",
+          "3. nervový - výrazná porucha citlivosti (WHAT? vždyť se stimulují míšní léze??)",
+          "4. lokální - poškození kůže, akutní infekce v místě elektrod",
+          "5. těhotenství",
+          "6. maligníma",
+        ]
+      },
+      {
+        title: "V. Účinky: liší se podle tvaru impulzu a frekvence",
+        points: [
+          "A. frekvence:",
+          "1. do 50Hz motorické dráždění, hyperémie",
+          "2. 100 Hz analgetický (dráždění A alfa vláken)",
+          "3. 180 Hz lokálně myorelaxační (svalová inkoordinace)",
+          "A. adaptace tkáně",
+          "B. amplitudová modulace: amplituda jednotlivých impulzů se postupně/skokem mění",
+          "C. frekvenční modulace: frekvence proudu se mění v průběhu času plynule/skokem",
+          "D. kombinace: je neúčinnější prevence vzniku adaptace tkáně",
+        ]
+      },
+      {
+        title: "VI. Příklady proudů",
+        points: [
+        ]
+      },
+      {
+        title: "VII. TENS = transkutánní elektrická neurostimulace - nízkofrekvenční, dvoufázový proud - analgezie, aplikace do míst bolesti - stimulace senzitivních nervových vláken elektrickými impulzy vede k inhibici přenosu nocicepce v zadních rozích míšních, což vede snížení bolesti (analgetický efekt) - anoda proximálně, katoda distálně - I: až 20 mA - KI kortikoidy, obecné KI - indikace: neuralgie, migréna, pooperační stavy, přetížení šíjového svalstva… akutní/chronická bolest Druhy TENS",
+        points: [
+          "1. konvenční - vyšší frekvence, nižší intenzita",
+          "2. akupunkturní",
+          "3. burst - salvy, největší analgetický efekt",
+          "4. randomizovaný",
+          "5. surge - undulující",
+        ]
+      },
+      {
+        title: "VIII. Trabertův proud - nízkofrekvenční stejnosměrný, přerušovaný (2ms a pauza 5 ms) - f 142 Hz, katoda na bolestivé místo, anoda indifenrentní (uzavření elektrického okruhu) - pravoúhlý proud, monofázický - časný analgetický efekt (úleva již během aplikace a bezprostředně po ní) - podprahově algická intenzita (aplikace dle subj. pocitů pacienta) - indikace: bolesti známé etiologie, otoky, hematomy v regresi, neuralgie - KI jizvy, znamení - tkáně nevykazují adaptaci - umístění (zapojení elektrod) E1-4: od C po Tp po Tp po LSp",
+        points: [
+        ]
+      },
+      {
+        title: "IX. Leducův proud - 100 Hz, 1 ms impulz, pauza 9 ms - pacienty hůře tolerovaný, rychle vzniká adaptace - monofázický, pravoúhlý - indikace: subakutní a chronické bolesti pohybového systému",
+        points: [
+        ]
+      },
+      {
+        title: "X. Diadynamic proud - dvousložkové: kombinace galvanizace (baze - mění prokrvení) a nízkofrekvenční stimulace (doza - analgetická složka) sinusovém monofázickým proudem - současná aplikace stejnosměrného a pulzního proudu, což vede ke kumulativní účinek",
+        points: [
+          "A. MF (monofázická fixní) - jednocestně usměrněný sinus proud, f=50 Hz, nepoužívá",
+          "B. DF (difázická fixní) - dvoucestné usměrnění dvou vln, f=100 Hz, analgezie, ovlivnění sympatiku, KRBS - indikace: premedikace před aplikací jiných DD proudů (rychle nastupuje adaptace tkáně, max. efekt aplikace 1 minuta)",
+          "C. CP (krátké periody)- střídání MF a DF - frekvenční modulace - vazodilatace, eutonizace - prahově motorická intenzita",
+          "D. LP (dlouhá perioda) - MF a na ně nasedající DF - frekvenční a amplitudová modulace, vazodilatace, otoky, analgezie",
+          "E. RS (rytmický synkopální proud) - 1 sekunda MF, 1 sekunda pauza - dráždivé a motorické účinky - nepříjemný, vyvolává kontrakce, nadprahově motorická intenzita",
+          "F. CPiso (isodynamický) - DF vyšší o 18%, účinky: analgezie, antiinflamatorní, stimulace, facilitace hojení, zvýšení cirkulace",
+          "- léčebné účinky DD: analgezie, snížení otoku a zánětu, svalová stimulace, zvýšení lokální cirkulace - pozor! první aplikace může vyvolat zhoršení obtíží (typické, upozornit pacienta)",
+        ]
+      },
+      {
+        title: "XI. aplikace: transregionální, radikulární, segmentální, longitudinální, gangliotropní, cílená na jednotlivé svaly",
+        points: [
+        ]
+      },
+      {
+        title: "XII. indikace: neuralgie, myalgie, úponové bolesti, kontuze, distorze, VAS, kořenový syndrom",
+        points: [
+        ]
+      },
+      {
+        title: "XIII. délka aplikace: čím akutnější proces, tím kratší aplikace (do 6 minut), pokud je aplikace delší je nutné použít ochranné roztoky (galvanizace), změnit polaritu (prodloužení léčby)",
+        points: [
+          "Předpis",
+          "DD: DF 2+LP4+LP6, longitudinální aplikace na PDK intenzita podprahově senzitivní 7x denně",
         ]
       },
     ],
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:3:flashcard:1",
-        prompt: "Co je dulezite k tematu: PĹ™ehled?",
-        answer: "1. Traber",
+        prompt: "Shrn cast: I. Definice",
+        answer: "I. Definice: terapeutická aplikace proudů s frekvencí do 1000 Hz (přerušovaný galvan x modifikace střídavého síťového proudu) - proudy: monofázické, bifázické, střídavé, pulzní Monofázický - proud teče stále jedním směrem, má jednosměrné impulzy, typicky přerušovaný stejnosměrný proud Bifázický - proud mění směr, má kladnou i zápornou fázi, každá elektroda dosahuje kladných i záporných hodnot Střídavé - směr proudu se pravidelně mění, na každé elektrodě přechází plynule z kladného maxima přes nulovou intenzitu do záporného maxima, všechny střídavé proudy jsou bifazické Pulzní - mezi jednotlivými impulzy je různě dlouhá izoelektrická pauza - tvar impulzu: pravoúhlý, trojúhelníkový (šikmý), sinusový, jiný Pravoúhlý - proud vyskočí na určitou hodnutu, chvíli trvá a zase klesne Trojúhelníkévý/šikmý - intenzita postupně narůstá a klesá Sinusový - plynulý sinusový průběh - monopolární/bipolární Monopolární - 2 elektrody aktivní a indiferentní, účinek je soustředěný pod aktivní elektrodu Bipolární - obě elektrody mají terapeutický význam",
       },
       {
         id: "ix-fyzikalni-terapie:3:flashcard:2",
-        prompt: "Co je dulezite k tematu: PĹ™ehled?",
-        answer: "2. TENS",
+        prompt: "Shrn cast: II. Indikace nízkofrekvenční terapie (celé dle chat)",
+        answer: "1. bolest 2. snížená svalová síla 3. periferní parézy - elektrostimulace k zachování svalové funkce, reedukace pohybu 4. poruchy prokrvení a trofiky",
       },
       {
         id: "ix-fyzikalni-terapie:3:flashcard:3",
-        prompt: "Co je dulezite k tematu: PĹ™ehled?",
-        answer: "3. interference",
+        prompt: "Co je dulezite k tematu: II. Indikace nízkofrekvenční terapie (celé dle chat)?",
+        answer: "1. bolest",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:4",
+        prompt: "Co je dulezite k tematu: II. Indikace nízkofrekvenční terapie (celé dle chat)?",
+        answer: "2. snížená svalová síla",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:5",
+        prompt: "Vysvetli pojem: 3. periferní parézy",
+        answer: "3. periferní parézy - elektrostimulace k zachování svalové funkce, reedukace pohybu",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:6",
+        prompt: "Co je dulezite k tematu: II. Indikace nízkofrekvenční terapie (celé dle chat)?",
+        answer: "4. poruchy prokrvení a trofiky",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:7",
+        prompt: "Shrn cast: III. Účinky",
+        answer: "III. Účinky - elektrogymnastika, elektrostimulace paretických svalů, stimulace senzitivních axonů, terapie bolesti, vazodilatace",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:8",
+        prompt: "Shrn cast: IV. KI",
+        answer: "1. KV - kardiostimulátor, závažné poruchy srdečního rytmu, karotický sinus, 2. cévní - akutní tromboza, závažná porucha periferního prokrvení 3. nervový - výrazná porucha citlivosti (WHAT? vždyť se stimulují míšní léze??) 4. lokální - poškození kůže, akutní infekce v místě elektrod 5. těhotenství",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:9",
+        prompt: "Vysvetli pojem: 1. KV",
+        answer: "1. KV - kardiostimulátor, závažné poruchy srdečního rytmu, karotický sinus,",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:10",
+        prompt: "Vysvetli pojem: 2. cévní",
+        answer: "2. cévní - akutní tromboza, závažná porucha periferního prokrvení",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:11",
+        prompt: "Vysvetli pojem: 3. nervový",
+        answer: "3. nervový - výrazná porucha citlivosti (WHAT? vždyť se stimulují míšní léze??)",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:12",
+        prompt: "Vysvetli pojem: 4. lokální",
+        answer: "4. lokální - poškození kůže, akutní infekce v místě elektrod",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:13",
+        prompt: "Co je dulezite k tematu: IV. KI?",
+        answer: "5. těhotenství",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:14",
+        prompt: "Co je dulezite k tematu: IV. KI?",
+        answer: "6. maligníma",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:15",
+        prompt: "Shrn cast: V. Účinky",
+        answer: "A. frekvence: 1. do 50Hz motorické dráždění, hyperémie 2. 100 Hz analgetický (dráždění A alfa vláken) 3. 180 Hz lokálně myorelaxační (svalová inkoordinace) A. adaptace tkáně",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:16",
+        prompt: "Co je dulezite k tematu: V. Účinky: liší se podle tvaru impulzu a frekvence?",
+        answer: "A. frekvence:",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:17",
+        prompt: "Co je dulezite k tematu: V. Účinky: liší se podle tvaru impulzu a frekvence?",
+        answer: "1. do 50Hz motorické dráždění, hyperémie",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:18",
+        prompt: "Co je dulezite k tematu: V. Účinky: liší se podle tvaru impulzu a frekvence?",
+        answer: "2. 100 Hz analgetický (dráždění A alfa vláken)",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:19",
+        prompt: "Co je dulezite k tematu: V. Účinky: liší se podle tvaru impulzu a frekvence?",
+        answer: "3. 180 Hz lokálně myorelaxační (svalová inkoordinace)",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:flashcard:20",
+        prompt: "Co je dulezite k tematu: V. Účinky: liší se podle tvaru impulzu a frekvence?",
+        answer: "A. adaptace tkáně",
       },
     ],
     quizQuestions: [
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:1",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "3. periferní parézy - elektrostimulace k zachování svalové funkce, reedukace pohybu",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "3. periferní parézy - elektrostimulace k zachování svalové funkce, reedukace pohybu",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:2",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "4. poruchy prokrvení a trofiky",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "4. poruchy prokrvení a trofiky",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:3",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "1. KV - kardiostimulátor, závažné poruchy srdečního rytmu, karotický sinus,",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "1. KV - kardiostimulátor, závažné poruchy srdečního rytmu, karotický sinus,",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:4",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "2. cévní - akutní tromboza, závažná porucha periferního prokrvení",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "2. cévní - akutní tromboza, závažná porucha periferního prokrvení",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:5",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "3. nervový - výrazná porucha citlivosti (WHAT? vždyť se stimulují míšní léze??)",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "3. nervový - výrazná porucha citlivosti (WHAT? vždyť se stimulují míšní léze??)",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:6",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "4. lokální - poškození kůže, akutní infekce v místě elektrod",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "4. lokální - poškození kůže, akutní infekce v místě elektrod",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:7",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "1. do 50Hz motorické dráždění, hyperémie",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "1. do 50Hz motorické dráždění, hyperémie",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:8",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "2. 100 Hz analgetický (dráždění A alfa vláken)",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "2. 100 Hz analgetický (dráždění A alfa vláken)",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:9",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "3. 180 Hz lokálně myorelaxační (svalová inkoordinace)",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "3. 180 Hz lokálně myorelaxační (svalová inkoordinace)",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:10",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "B. amplitudová modulace: amplituda jednotlivých impulzů se postupně/skokem mění",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "B. amplitudová modulace: amplituda jednotlivých impulzů se postupně/skokem mění",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:11",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "C. frekvenční modulace: frekvence proudu se mění v průběhu času plynule/skokem",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "C. frekvenční modulace: frekvence proudu se mění v průběhu času plynule/skokem",
+      },
+      {
+        id: "ix-fyzikalni-terapie:3:quiz:12",
+        prompt: "Vyber tvrzeni, ktere odpovida zpracovane otazce.",
+        options: [
+          "D. kombinace: je neúčinnější prevence vzniku adaptace tkáně",
+          "Fyzikalni terapii lze aplikovat univerzalne bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
+          "Pokud procedura nema efekt, neni nutne menit postup ani po opakovanych aplikacich.",
+          "U fyzikalni terapie nejsou dulezite davkovani, lokalizace, intenzita ani stav kuze.",
+        ],
+        correctOptionIndexes: [0],
+        explanation: "D. kombinace: je neúčinnější prevence vzniku adaptace tkáně",
+      },
     ],
   },
   "ix-fyzikalni-terapie:4": {
@@ -1034,20 +1352,23 @@ export const physicalTherapyPreparedQuestions = ({
         ]
       },
       {
-        title: "III. Příklady elektroanalgie (viz. otázka",
+        title: "III. Příklady elektroanalgie (viz. otázka IX./4. a 6.)",
         points: [
+          "1. Traber",
+          "2. TENS",
+          "3. interference",
         ]
       },
     ],
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:4:flashcard:1",
-        prompt: "Shrn cast: I. Definice: léčebné využití elektrického proudu za účelem snížení bolesti - nejpoužívanější metody jsou Traber, TENS, interference - bolest je nepříjemnou senzorickou a emocionální zkušeností, která se vztahuje ke skutečné/možné poruše tkáně - akutní x chronická bolest - vodiče: primární - I. řád - pevné vodiče - kovy II. řád - tekuté - tkáně lidského těla",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: léčebné využití elektrického proudu za účelem snížení bolesti - nejpoužívanější metody jsou Traber, TENS, interference - bolest je nepříjemnou senzorickou a emocionální zkušeností, která se vztahuje ke skutečné/možné poruše tkáně - akutní x chronická bolest - vodiče: primární - I. řád - pevné vodiče - kovy II. řád - tekuté - tkáně lidského těla",
       },
       {
         id: "ix-fyzikalni-terapie:4:flashcard:2",
-        prompt: "Shrn cast: II. Myorelaxační efekt - ovlivnění TrP",
+        prompt: "Shrn cast: II. Myorelaxační efekt",
         answer: "1. UZ 2. Kombinovaná terapie - UZ v kombinaci s TENS na povrchové svaly - UZ v kombinaci s Traber/IF na hluboké struktury",
       },
       {
@@ -1062,8 +1383,23 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:4:flashcard:5",
-        prompt: "Shrn cast: III. Příklady elektroanalgie (viz. otázka",
-        answer: "III. Příklady elektroanalgie (viz. otázka",
+        prompt: "Shrn cast: III. Příklady elektroanalgie (viz. otázka IX./4. a 6.)",
+        answer: "1. Traber 2. TENS 3. interference",
+      },
+      {
+        id: "ix-fyzikalni-terapie:4:flashcard:6",
+        prompt: "Co je dulezite k tematu: III. Příklady elektroanalgie (viz. otázka IX./4. a 6.)?",
+        answer: "1. Traber",
+      },
+      {
+        id: "ix-fyzikalni-terapie:4:flashcard:7",
+        prompt: "Co je dulezite k tematu: III. Příklady elektroanalgie (viz. otázka IX./4. a 6.)?",
+        answer: "2. TENS",
+      },
+      {
+        id: "ix-fyzikalni-terapie:4:flashcard:8",
+        prompt: "Co je dulezite k tematu: III. Příklady elektroanalgie (viz. otázka IX./4. a 6.)?",
+        answer: "3. interference",
       },
     ],
     quizQuestions: [
@@ -1149,12 +1485,12 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:5:flashcard:1",
-        prompt: "Shrn cast: I. Definice: jsou elektrické proudy o frekvencí 1-100 kHz - nejčastěji využívané v rehabilitaci jsou interferenční proudy - střední frekvence má menší odpor, pacient ji lépe toleruje a proto lze působit hlouběji - je terapeutické využití dvou středněfrekvenčních proudových okruhů, které se v hloubi tkáně kříží a vzniká tam proud, jehož frekvence je rovna vektorovému součtu frekvencí v obou kruzích - jdou hlouběji do tkání, tam se transformují na NF proudy 90 - 130 Hz (modulace amplitudy) - 4 lístek - interferenční proud: vzniká ze dvou středněfrekvenčních proudů o mírně odlišné frekvenci, které se vzájemně interferují, výsledkem je amplitudově modulovaný proud o f 100 Hz",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: jsou elektrické proudy o frekvencí 1-100 kHz - nejčastěji využívané v rehabilitaci jsou interferenční proudy - střední frekvence má menší odpor, pacient ji lépe toleruje a proto lze působit hlouběji - je terapeutické využití dvou středněfrekvenčních proudových okruhů, které se v hloubi tkáně kříží a vzniká tam proud, jehož frekvence je rovna vektorovému součtu frekvencí v obou kruzích - jdou hlouběji do tkání, tam se transformují na NF proudy 90 - 130 Hz (modulace amplitudy) - 4 lístek - interferenční proud: vzniká ze dvou středněfrekvenčních proudů o mírně odlišné frekvenci, které se vzájemně interferují, výsledkem je amplitudově modulovaný proud o f 100 Hz",
       },
       {
         id: "ix-fyzikalni-terapie:5:flashcard:2",
-        prompt: "Shrn cast: II. Indikace - chronické nociceptivní bolest 10-20 min, 9-12 procedur, podprahově motorická",
+        prompt: "Shrn cast: II. Indikace",
         answer: "1. nervové - paréza n. VII., herpes zoster, neuritidy, neuralgie 2. svalové - myositis, myalgie, spasmy, tendinits, epikondylalgie 3. kloubní - RA, bursitidy, synovitidy, capsulitidy 4. poúrazové - podpora hojení",
       },
       {
@@ -1234,12 +1570,12 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:5:flashcard:18",
-        prompt: "Shrn cast: V. Aplikace - subakutní 1x denně, chronická 2-3 x týdně, po 6. aplikaci zhodnotit efekt terapie, obvykle 9-12 procedur - po 1. aplikaci může dojít ke zhoršení obtíží - délka aplikace 3-20 minut - intenzita minimálně podprahově senzitivní - transregionálně/segmentálně/reflexní (ovlivněním Headových zón můžeme ovlivnit vnitřní orgány, který reflexní změnu vyvolali)",
+        prompt: "Shrn cast: V. Aplikace",
         answer: "V. Aplikace - subakutní 1x denně, chronická 2-3 x týdně, po 6. aplikaci zhodnotit efekt terapie, obvykle 9-12 procedur - po 1. aplikaci může dojít ke zhoršení obtíží - délka aplikace 3-20 minut - intenzita minimálně podprahově senzitivní - transregionálně/segmentálně/reflexní (ovlivněním Headových zón můžeme ovlivnit vnitřní orgány, který reflexní změnu vyvolali)",
       },
       {
         id: "ix-fyzikalni-terapie:5:flashcard:19",
-        prompt: "Shrn cast: VI. Účinky - závisí na modulační frekvenci a intenzitě",
+        prompt: "Shrn cast: VI. Účinky",
         answer: "A. analgetický - tlumení bolesti B. motorický - stimulace motorických nervů, vyvolání svalové kontrakce C. vazomotrický - zvýšení lokálního prokrvení, sekundárně podpora metabolismu a reparace D. podpora resorpce edému",
       },
       {
@@ -1398,7 +1734,7 @@ export const physicalTherapyPreparedQuestions = ({
   "ix-fyzikalni-terapie:6": {
     chapters: [
       {
-        title: "PĹ™ehled",
+        title: "Prehled",
         points: [
           "Ultrazvuk",
         ]
@@ -1523,12 +1859,12 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:6:flashcard:1",
-        prompt: "Co je dulezite k tematu: PĹ™ehled?",
+        prompt: "Co je dulezite k tematu: Prehled?",
         answer: "Ultrazvuk",
       },
       {
         id: "ix-fyzikalni-terapie:6:flashcard:2",
-        prompt: "Shrn cast: I. Definice: podélné mechanické vlnění o frekvenci nad hranicí slyšitelného zvuku (20 000Hz), zj. 0,5-3 MHz, které se generuje rozkmitáním piezoelektrického krystalu v hlavici vysokofrekvenčním proudem - zřeďování a zhušťování prostředí (ve své dráze rozkmitá částice i celé buňky) - ERA - efektivní kmitající oblast 1-10 cm2 (vyzařovací plocha hlavice) - akustická impedance: odraz v místě tkání s různou intenzitou - hloubková termoterapie - zdroj tepelné energie",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: podélné mechanické vlnění o frekvenci nad hranicí slyšitelného zvuku (20 000Hz), zj. 0,5-3 MHz, které se generuje rozkmitáním piezoelektrického krystalu v hlavici vysokofrekvenčním proudem - zřeďování a zhušťování prostředí (ve své dráze rozkmitá částice i celé buňky) - ERA - efektivní kmitající oblast 1-10 cm2 (vyzařovací plocha hlavice) - akustická impedance: odraz v místě tkání s různou intenzitou - hloubková termoterapie - zdroj tepelné energie",
       },
       {
@@ -1568,12 +1904,12 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:6:flashcard:10",
-        prompt: "Shrn cast: IV. Intenzita - Watt/cm2 - 0,5 W/cm2 do 2 W/cm2 u akutního 3 minuty - 0,8 - 1 do 3 W/cm2 u chronická 5 min - step 10 min max",
+        prompt: "Shrn cast: IV. Intenzita",
         answer: "IV. Intenzita - Watt/cm2 - 0,5 W/cm2 do 2 W/cm2 u akutního 3 minuty - 0,8 - 1 do 3 W/cm2 u chronická 5 min - step 10 min max",
       },
       {
         id: "ix-fyzikalni-terapie:6:flashcard:11",
-        prompt: "Shrn cast: V. Forma aplikace - přímý x podvodní - dynamické (stálý pohyb po celém rozsahu léčené tkáně) x semistatické (pohyb po obvodu ERA) x statické (zřídka) - lokální/segmentální/neurální/radikulární",
+        prompt: "Shrn cast: V. Forma aplikace",
         answer: "1. kontinuální - zvyšuje teplo, ohřev tkání, nevhodné u akutních zánětů 2. pulzní - poměr impulzu a pauz (atermický), aplikace několik ms, pak pauza, poměr 1:5-10, možná aplikace větší intenzity",
       },
       {
@@ -1842,7 +2178,7 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:7:flashcard:1",
-        prompt: "Shrn cast: I. Definice: je léčebná výměna tepelné energie mezi okolím a organizmem - teplo = kinetická energie",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: je léčebná výměna tepelné energie mezi okolím a organizmem - teplo = kinetická energie",
       },
       {
@@ -2160,17 +2496,17 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:8:flashcard:1",
-        prompt: "Shrn cast: I. Definice: je odmítání tepla z organizmu s terapeutickým cílem - teplota kolem 0°C a méně - cryo: řecky chlad - chlad je subjektivní vjem, není fyzikální veličina",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: je odmítání tepla z organizmu s terapeutickým cílem - teplota kolem 0°C a méně - cryo: řecky chlad - chlad je subjektivní vjem, není fyzikální veličina",
       },
       {
         id: "ix-fyzikalni-terapie:8:flashcard:2",
-        prompt: "Shrn cast: II. Efekt kryoterapie - analgezie, snížení otoku, ovlivnění zánětlivé reakce, snížení svalového tonu, omezení metabolické aktivity tkání",
+        prompt: "Shrn cast: II. Efekt kryoterapie",
         answer: "II. Efekt kryoterapie - analgezie, snížení otoku, ovlivnění zánětlivé reakce, snížení svalového tonu, omezení metabolické aktivity tkání",
       },
       {
         id: "ix-fyzikalni-terapie:8:flashcard:3",
-        prompt: "Shrn cast: III. Účinky - chlad → vazokonstrikce → ↓ prokrvení → ↓ metabolismus → ↓ edém + ↓ bolest",
+        prompt: "Shrn cast: III. Účinky",
         answer: "A. Vazokonstrikce a antiedematózní: snížený průtok krve, snížena permeabilita kapilár, omezen přestup tekutiny do intersticia vede ke zmenšení otoku B. Analgetický efekt: snížena rychlost vedení nervových vláken, zvyšuje práh pro vznik akčního potenciálu, později může vést k hypestézii až anestezii C. Metabolický účinek: snížena teplota tkáně vede ke snížení enzymatické aktivity a snížení spotřeby kyslíku D. Protizánětlivý účinek: moduluje akutní zánětlivou reakci, je snížený lokální průtok a metabolismus 1. Lokální: podráždění chladových receptorů vede ke snížení dráždivosti buněk předních rozích míšních a tím se sníží hypertonus",
       },
       {
@@ -2205,12 +2541,12 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:8:flashcard:10",
-        prompt: "Shrn cast: IV. protiklad ostatních procedur: vazokonstrikce, snížena permeabilita a diapedéza, zhoršuje buněčnou imunitu, zhoršuje spasmy",
+        prompt: "Shrn cast: IV. protiklad ostatních procedur",
         answer: "IV. protiklad ostatních procedur: vazokonstrikce, snížena permeabilita a diapedéza, zhoršuje buněčnou imunitu, zhoršuje spasmy",
       },
       {
         id: "ix-fyzikalni-terapie:8:flashcard:11",
-        prompt: "Shrn cast: V. aktivuje obrany schopnost tréninkem podmíněných reflexních termoregulací a imunitních reakcí",
+        prompt: "Shrn cast: V. aktivuje obrany schopnost tréninkem podmíněných reflexních termoregulací a imuni",
         answer: "V. aktivuje obrany schopnost tréninkem podmíněných reflexních termoregulací a imunitních reakcí",
       },
       {
@@ -2250,12 +2586,12 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:8:flashcard:19",
-        prompt: "Shrn cast: VIII. Kontraindikace - nestabilní hypertenze, IM méně než půl rok, srdeční/respirační dekompenzace, angina pectoris - poruchy prokrvení, citlivosti, chladová alergie, anémie, záchvatovité onemocnění - Raynaudova choroba, kryoglubulinémie, paroyxysmální chladová hemoglobinurie",
+        prompt: "Shrn cast: VIII. Kontraindikace",
         answer: "VIII. Kontraindikace - nestabilní hypertenze, IM méně než půl rok, srdeční/respirační dekompenzace, angina pectoris - poruchy prokrvení, citlivosti, chladová alergie, anémie, záchvatovité onemocnění - Raynaudova choroba, kryoglubulinémie, paroyxysmální chladová hemoglobinurie",
       },
       {
         id: "ix-fyzikalni-terapie:8:flashcard:20",
-        prompt: "Shrn cast: IX. N.Ú. kryoterapie: poškození kůže, omrzliny, poškození periferního nervu, paradoxní reakce na chlad",
+        prompt: "Shrn cast: IX. N.Ú. kryoterapie",
         answer: "IX. N.Ú. kryoterapie: poškození kůže, omrzliny, poškození periferního nervu, paradoxní reakce na chlad",
       },
     ],
@@ -2493,7 +2829,7 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:9:flashcard:1",
-        prompt: "Shrn cast: I. Definice: je terapeutické využívání elektromagnetického vlnění s vlnovou délkou 10⁻⁴ až 10⁻⁹ m",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: je terapeutické využívání elektromagnetického vlnění s vlnovou délkou 10⁻⁴ až 10⁻⁹ m",
       },
       {
@@ -2563,7 +2899,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:9:flashcard:15",
-        prompt: "Shrn cast: IV. Viditelné světlo - klimatoterapi, vliv na růst, regeneraci, psychický vliv",
+        prompt: "Shrn cast: IV. Viditelné světlo",
         answer: "1. Biolampa - polychromatické (více vlnových délek), polarizované světlo, nonkoherentní (vlny nejsou synchronizované) - biostimulace, dodání energie, stimuluje syntézu kolagenu - indikace: hojení ran, popáleniny, kožních defektů - minimální účinek na poruchy pohybového ústrojí, nemá vliv na hlubší partie - 3-5 min. 3xdenně akutní fáze, postupně se intenzita snižuje na 1x denně 2. Laser - light amplification by stimulated emission of light - ochrana očí! - monochromatické (jedna vlnová délka) - polarizované (kmit pouze v jedné rovině) - koherentní (vlny kmitají ve stejně fázi) - paralelní (má minimální divergenci) - má vysokou až velmi vysokou hustotu energie - před aplikací odmaštění plochy - plynové: HeNe (heliumneonové), 632 nm nebo CO2 (destrukční) - polovodičové: GaAs (galium arsenové), vlnová délka 904 nm - dnes: fotodiody, LED zářiče - třídy: 1. do 0,5 mW, 2. do 1mW, 3A. do 5mW, 3B. do 500 mW, 4. nad 500 mW (nebezpečný, využití v chirurgii) - energie = J = W(síla) .s (čas), hustota energie J/cm2 - pro terapii 5-500 mW - účinek: biostimulace, produkce ATP, produkce kolagenu, modulace zánětu, inhibice bakteriálního růstu, podpora vasodilatace - akcelerace nervové regenerace - KI: malignita, st.p. radioterapii 4-6 měsíců, hemoralgie, endokrinní žlázy, těhotenství, fotosenzitivita, fotofobie - způsob aplikace: statická, semistatická, rastovací, dynamická - indikace: hojení tkání (ran, šlach, ligament), arthritis (snížení bolesti a otoku), karpální tunel, neuropatie, neuralgie, bolest, epikondylalgie, tendinity … - dávkováni laserterapie: vyjadřujeme hustotou energie, která je určena množstvím energie J na ošetřovanou plochu (v cm2)",
       },
       {
@@ -2783,7 +3119,7 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:10:flashcard:1",
-        prompt: "Shrn cast: I. Definice: terapeutické využití elektromagnetických oscilací s frekvencí \u003e 100 (300) kHz - elektromagnetické vlny při takové frekvenci nestačí vyvolat depolarizaci membrány nervového vlákna, ale jsou v normální tkáni konvertované na teplo - terapeutické využití kondenzátorového, indukčního nebo zářivého vysokofrekvenčního pole - bezkontaktní elektroterapii - synonymum je diatermie - převážně termický efekt Diatermie = je fyzikální terapeutická metoda využívající vysokofrekvenční magnetické pole - nestačí se vyvolat depolarizaci nervových vláken, ale přenáší se na teplo",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: terapeutické využití elektromagnetických oscilací s frekvencí \u003e 100 (300) kHz - elektromagnetické vlny při takové frekvenci nestačí vyvolat depolarizaci membrány nervového vlákna, ale jsou v normální tkáni konvertované na teplo - terapeutické využití kondenzátorového, indukčního nebo zářivého vysokofrekvenčního pole - bezkontaktní elektroterapii - synonymum je diatermie - převážně termický efekt Diatermie = je fyzikální terapeutická metoda využívající vysokofrekvenční magnetické pole - nestačí se vyvolat depolarizaci nervových vláken, ale přenáší se na teplo",
       },
       {
@@ -2808,7 +3144,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:10:flashcard:6",
-        prompt: "Shrn cast: III. Způsob aplikace a zásady provozu - opatření nápisem - 2 m odstup od přístroje - zákaz gravidní ženy (nízká porodní hmotnost, VVV) - pravidelná revize technikem",
+        prompt: "Shrn cast: III. Způsob aplikace a zásady provozu",
         answer: "III. Způsob aplikace a zásady provozu - opatření nápisem - 2 m odstup od přístroje - zákaz gravidní ženy (nízká porodní hmotnost, VVV) - pravidelná revize technikem",
       },
       {
@@ -3101,7 +3437,7 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:11:flashcard:1",
-        prompt: "Shrn cast: I. Definice: elektrostimulace je metoda elektroterapie, při které elektrickým proudem vyvoláme depolarizaci nervu nebo přímo svalového vlákna s následnou svalovou kontrakcí - při poškození periferního nervu pro udržení trofiky svalů a zabránění fibroblastické přestavbě než dojde k reinervaci poškozeného nervu",
+        prompt: "Shrn cast: I. Definice",
         answer: "1. Elektrodiagnostika: stanovení optimálních parametrů impulzů pro dráždění denervovaných svalů - využívá se I/T křivka, I (mA) = intenzita proudu, T (ms) = délka impulzu - při opakovaném vyšetření máme představu o zlepšení/progresi onemocnění 2. Elektrostimulace: paréza perif. nervů, denervované svaly - sval se aktivně nezapojuje - NF proudy s pozvolným nástupem (šikmé), dříve pravoúhlé (vznik synkinéz) 3. Elektrogymnastika: dráždění ??? svalů, cílem je posílení, zařazení do správného pohybového stereotypu, svalová síla větší než 2 - kombinace elektricky vyvolané kontrakce a aktivního volního cvičení pacienta (nutná spolupráce pacienta)",
       },
       {
@@ -3146,7 +3482,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:11:flashcard:10",
-        prompt: "Shrn cast: III. Elektrostimualce inervovaného svalu - motorický nerv je funkční a zachovaný - elektrický impuls podráždí motorický nerv, který následně vyvolá kontrakci svalu - princip: elektrický impuls → motorický nerv → nervosvalová ploténka → svalová kontrakce - používají se nízkofrekvenční impulzní proudy, stačí krátké impulzy (dráždíme nerv) - parametry: frekvence, délka impulzu, amplituda, doba náběhu a poklesu, délka kontrakce, pauza mezi kontrakcemi, počet stimulací - možné využití při funkční elektrické stimulaci (FES) - obnovení/podpora funkčního pohybového stereotypu ve správný čas pro konkrétní funkci (např. foot drop - n. peroneus communis: podpora DF hlezna při chůzi, synchronizována s chůzí)",
+        prompt: "Shrn cast: III. Elektrostimualce inervovaného svalu",
         answer: "1. Indikace A. svalová slabost B. svalová atrofie při imobilizaci C. poruchy svalové aktivace",
       },
       {
@@ -3171,7 +3507,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:11:flashcard:15",
-        prompt: "Shrn cast: IV. Elektrogymnastika denervovaného svalu - jedná se o mimovolní kontrakci příčně pruhovaného svalstva pomocí elektrického dráždění - motorický nerv je poškozený a nevede vzruch ke svalu (běžná stimulace motorického nervu nevede ke svalové kontrakci) - provádíme u svalů bez reflexních změn - princip: elektrický impuls → přímo svalové vlákno → kontrakce (elektrický impulz dráždí přímo svalová vlákna) - denervované svalové vlákno má jiné elektrické vlastnosti než normálně inervovaný sval, proto je potřeba delší impulz, pomalejší náběh impulzu, vyšší intenzita (denervované svalové vlákno je mnohem méně dráždivé) - cíl: udržet kontraktilitu svalových vláken, zpomalit atrofii, udržet metabolickou aktivitu svalu - elektrostimulace nenahradí regeneraci nervu! - dbáme na předcházení energetického vyčerpání svalu, což se projevuje změnou kvality kontrakce nebo postupným zvyšováním proudu (intenzita max. do 25 mA)",
+        prompt: "Shrn cast: IV. Elektrogymnastika denervovaného svalu",
         answer: "1. Indikace A. poškození periferního nervu B. periferní paréza C. léze nervového kořene",
       },
       {
@@ -3418,7 +3754,7 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:12:flashcard:1",
-        prompt: "Shrn cast: I. Definice: terapeutické využívání vody s využitím jejích termických, mechanických a chemických vlastností k ovlivnění organizmu - vhodné pro všechny věkové kategorie pro udržení zdraví a prevenci nemoci - benefit: zvýšení kondice a výkonnosti, nespecifická odolnost - hranice celkové 42 °C, částečné 46°C",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: terapeutické využívání vody s využitím jejích termických, mechanických a chemických vlastností k ovlivnění organizmu - vhodné pro všechny věkové kategorie pro udržení zdraví a prevenci nemoci - benefit: zvýšení kondice a výkonnosti, nespecifická odolnost - hranice celkové 42 °C, částečné 46°C",
       },
       {
@@ -3737,12 +4073,12 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:13:flashcard:1",
-        prompt: "Shrn cast: I. Definice: je fyzikální terapie, která vzniká průchodem el. proudu o nízké frekvenci (10-70 Hz) vodičem nebo cívkou - protéka-li cívkou pulzní proud, vzniká pulzní magnetické pole - distanční terapie, která využívá k terapii biologické účinky elektromagnetického pole - v rehabilitaci se využívá nízkofrekvenční pulzní magnetické pole - magnetická indukce: je fyzikální veličiny, popisuje sílu a směr magnetického pole, jednotka Tesla, magnetické pole vzniká kolem každého vodiče, kterým teče proud - frekvence: jak často se impulzy opakují (Hz)",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: je fyzikální terapie, která vzniká průchodem el. proudu o nízké frekvenci (10-70 Hz) vodičem nebo cívkou - protéka-li cívkou pulzní proud, vzniká pulzní magnetické pole - distanční terapie, která využívá k terapii biologické účinky elektromagnetického pole - v rehabilitaci se využívá nízkofrekvenční pulzní magnetické pole - magnetická indukce: je fyzikální veličiny, popisuje sílu a směr magnetického pole, jednotka Tesla, magnetické pole vzniká kolem každého vodiče, kterým teče proud - frekvence: jak často se impulzy opakují (Hz)",
       },
       {
         id: "ix-fyzikalni-terapie:13:flashcard:2",
-        prompt: "Shrn cast: II. Dělení - pulzní magnetické pole se ovlivňuje indukcí a frekvencí a jejich různou kombinací - frekvence - jak rychle se pouští proud (kolikrát za sekundu) - indukce - jak silné je magnetické pole",
+        prompt: "Shrn cast: II. Dělení",
         answer: "Magnetická pole - statická (neměnné pole, f = 0 Hz) - dynamická = mění se frekvence a intenzita (pulzní/střídavé) 1. Nízkofrekvenční pulzní magnetické pole 100-150 Hz - ovlivňuje výměnu iontů, není využívaný tepelný účinek - nevyvolává svalovou kontrakci, používá se hlavně kvůli biologickým účinkům - např. pakloub 2. Vysokofrekvenční elektromagnetické pole - diatermie, tepelný účinek 9-250 MHz 3. Vysokointenzivní pulzní magnetické pole - vysoká magnetická indukce aktivuje nervy a svaly, analgetický efekt - např. aktivace oslabených svalů (stimuluje širší oblast a je méně selektivní než klasická elektrostimulace)",
       },
       {
@@ -3817,7 +4153,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:13:flashcard:17",
-        prompt: "Shrn cast: IV. Vlastnosti magnetoterapie - magnetická indukce - ovlivňuje membránové receptory, nemá tepelný účinek - spíše trofotropní - myorelaxace, spamolyza, analgezie - frekvence: do 10 Hz protizánětlivá, 25-50 Hz trofotropní, 70 Hz revaskularizace - magnetické pole prochází přes oděv i sádrovou fixaci - magnetická pole: statická (stálá)/dynamická - střídavá/pulzní)",
+        prompt: "Shrn cast: IV. Vlastnosti magnetoterapie",
         answer: "IV. Vlastnosti magnetoterapie - magnetická indukce - ovlivňuje membránové receptory, nemá tepelný účinek - spíše trofotropní - myorelaxace, spamolyza, analgezie - frekvence: do 10 Hz protizánětlivá, 25-50 Hz trofotropní, 70 Hz revaskularizace - magnetické pole prochází přes oděv i sádrovou fixaci - magnetická pole: statická (stálá)/dynamická - střídavá/pulzní)",
       },
       {
@@ -4034,22 +4370,22 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:14:flashcard:1",
-        prompt: "Shrn cast: I. Definice: je léčebné využití mechanické energie k ovlivnění pohybového aparátu, měkkých tkáních a některých poruch cirkulace. - využívá se se pohyb, tlak, tah, komprese, podtlak, mechanická vibrace",
+        prompt: "Shrn cast: I. Definice",
         answer: "I. Definice: je léčebné využití mechanické energie k ovlivnění pohybového aparátu, měkkých tkáních a některých poruch cirkulace. - využívá se se pohyb, tlak, tah, komprese, podtlak, mechanická vibrace",
       },
       {
         id: "ix-fyzikalni-terapie:14:flashcard:2",
-        prompt: "Shrn cast: II. Cíl - obnovení nebo zvýšení ROM - snížení bolesti - ovlivnění svalového tonu - zlepšení cirkulace - redukce otoku",
+        prompt: "Shrn cast: II. Cíl",
         answer: "II. Cíl - obnovení nebo zvýšení ROM - snížení bolesti - ovlivnění svalového tonu - zlepšení cirkulace - redukce otoku",
       },
       {
         id: "ix-fyzikalni-terapie:14:flashcard:3",
-        prompt: "Shrn cast: III. Motodlaha = CPM = continous pasece motion (kontinuální pasivní pohyb) - přístroj provádí opakovaný pasivní pohyb v předem nastaveném rozsahu, pacient pohyb aktivně nevykonává - doplňková terapie k aktivní rehabilitaci - nastavení: ROM (postupně se zvětšuje), rychlost, počet cyklů, délka terapie - účinky: prevence kontraktury, udržení/zvětšení ROM, snížení bolesti, usnadnění časné mobilizace, redukce pooperační ztuhlosti - indikace: TEP koleno, kyčel, rameno, artroskopie, imobilizace vedoucí k omezení ROM - KI: nestabilní osteosyntéza, čerstvá fraktura, akutní infekce v kloubu, nestabilita v kloubu",
+        prompt: "Shrn cast: III. Motodlaha = CPM = continous pasece motion (kontinuální pasivní pohyb)",
         answer: "III. Motodlaha = CPM = continous pasece motion (kontinuální pasivní pohyb) - přístroj provádí opakovaný pasivní pohyb v předem nastaveném rozsahu, pacient pohyb aktivně nevykonává - doplňková terapie k aktivní rehabilitaci - nastavení: ROM (postupně se zvětšuje), rychlost, počet cyklů, délka terapie - účinky: prevence kontraktury, udržení/zvětšení ROM, snížení bolesti, usnadnění časné mobilizace, redukce pooperační ztuhlosti - indikace: TEP koleno, kyčel, rameno, artroskopie, imobilizace vedoucí k omezení ROM - KI: nestabilní osteosyntéza, čerstvá fraktura, akutní infekce v kloubu, nestabilita v kloubu",
       },
       {
         id: "ix-fyzikalni-terapie:14:flashcard:4",
-        prompt: "Shrn cast: IV. Vakuum-kompresivní terapie - přístroj založený na střídání přetlaku a podtlaku v uzavřeném prostoru - KI: akutní trombozy, tromboflebitidy, rozsáhlé varixy, rozsáhlé gangrény (nebezpečí toxemie), aneurysma, akutně vzniklé rány, lokální purulentní stavy, edémy kardinálního původu - indikace: porucha prokrvení končetiny (organické i funkční), algodystrofický syndrom, chronické otoky, lymfedémy, trofické poruchy kůže, posttraumatické stavy - doba aplikace 25 min., pozitivní step 5 min. do 45-60 min., Sudek 12 minut - prodlužuje se délka aplikace, tlaky se nezvedají - limitem terapie je subjektivní vnímání pacienta a změna barvy končetiny, komprese končetiny",
+        prompt: "Shrn cast: IV. Vakuum",
         answer: "1. Přetlak - fáze eliminace: končetina bledne - působení na končetinu zevním tlakem - nejčastěji se používá IPC intermitentní pneumatická komprese - končetina vložena do návleku s několika komory, které se postupně nafukují a dochází k rytmické kompresi končetiny - tlak je aplikovaný z distálního směru proximálně - účinky: podpora venózního návratu, lymfatického toku, redukce otoku, zlepšení cirkulace 2. Podtlak - fáze pasivní hyperemie: končetina červená - snižujeme tlak v aplikátoru/komoře kolem končetiny - účinky: zvýšení lokálního prokrvení, podpora mikrocirkulace, ovlivnění venózního a lymfatického systému, podpora trafiky tkání",
       },
       {
@@ -4064,7 +4400,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:14:flashcard:7",
-        prompt: "Shrn cast: V. Trakce - pasivní procedura, neměla by bolet - mechanická síla působí tah v ose končetiny nebo páteře či kořenového kloubu - dle zdroje síly: přístrojová/manuální, dle průběhu: kontinuální/přerušované - mechanismus účinku: při dostatečné relaxaci okolního svalstva dochází k oddálení obratlů/kloubních ploch, zvětšení rozměru foramen intervertebrale, odlehčení podrážděných kloubních ploch, snížení tlaku na ncl. pulposus v disku, protažení kloubních pouzder a okolních ligament - základním předpokladem je negativní výsledek ručního trakčního testu (trakce přinese úlevu) - KI: pozitivní trakční test (zhoršení potíží při/po trakčním testu), hypertenze II a III dle WHO, neurovegetativní dystonie, sklon k ortostatickým kolapsům, nepříznivý účinek při předchozí trakci - provedení: po trakci pacient musí zůstat ležet stejně dlouho jako trvala trakce, vhodné před trakcí aplikovat relaxační FT (UZ, solux, parafin), trakční poloha: Fowler pozice kyčle a kolena ve flexi 90 st./polohovací stolek (škubnutí, špatně se dozoruje síla), zátěž 5-60 kg, trvání 10-20 minut, frekvence 2-3 týdně chronický, 1x denně akutně",
+        prompt: "Shrn cast: V. Trakce",
         answer: "1. trakce páteře - indikace: radikulární syndrom, výhřez disku, bolestivá blokáda obratlů bez možnosti mobilizace či manipulace - KI: akutní úraz páteře, osteoporóza, infekc/nádor páteře, nestabilní páteř, spondylolistéza (relativní), akutní radikulární syndrom, pohyb v segmentu 2. periferních kloubů - součást manuální terapie a mobilizace - indikace: arthritis, arthrotisis",
       },
       {
@@ -4079,17 +4415,17 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:14:flashcard:10",
-        prompt: "Shrn cast: VI. Vibrační terapie - mechanické vibrace ovlivňují svalový tonus, propriorecepci, cirkulaci, vnímání bolesti",
+        prompt: "Shrn cast: VI. Vibrační terapie",
         answer: "VI. Vibrační terapie - mechanické vibrace ovlivňují svalový tonus, propriorecepci, cirkulaci, vnímání bolesti",
       },
       {
         id: "ix-fyzikalni-terapie:14:flashcard:11",
-        prompt: "Shrn cast: VII. Mechanické masážní přístroje - relaxační, cirkulační, analgetický účinek - využívají tlaku, vibrace, mechanické hnětení",
+        prompt: "Shrn cast: VII. Mechanické masážní přístroje",
         answer: "VII. Mechanické masážní přístroje - relaxační, cirkulační, analgetický účinek - využívají tlaku, vibrace, mechanické hnětení",
       },
       {
         id: "ix-fyzikalni-terapie:14:flashcard:12",
-        prompt: "Shrn cast: VIII. Robotická/mechanicky asistovaná terapie - podporuje motorické učení, umožňuje vysoký počet opakování pohybu - např.: mechanicky asistovaný nácvik chůze, robotická rehabilitace HK",
+        prompt: "Shrn cast: VIII. Robotická/mechanicky asistovaná terapie",
         answer: "Vždy respektovat typ výkonu a pokyny operatéra.",
       },
       {
@@ -4236,7 +4572,7 @@ export const physicalTherapyPreparedQuestions = ({
     flashcards: [
       {
         id: "ix-fyzikalni-terapie:15:flashcard:1",
-        prompt: "Shrn cast: I. Definice: soubor mechanizmů, kterými organizmus udržuje stálou tělesnou teplotu navzdory změnám okolního prostředí - centrální regulační orgán - hypotalamus - termogeneze - tvorba tepla - termolýza - výdej tepla",
+        prompt: "Shrn cast: I. Definice",
         answer: "Tělesná teplota: výslednice mezi tvorbou a ztrátou Teplo: kinetická energie kmitajících molekul",
       },
       {
@@ -4251,7 +4587,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:15:flashcard:4",
-        prompt: "Shrn cast: II. Řízení termoregulace - regulace autonomním nervovým systémem",
+        prompt: "Shrn cast: II. Řízení termoregulace",
         answer: "1. Termoreceptory: periferní (v kůži, informace o teplotě v okolí)/centrální (hypotalamus a hlubší tkáň, informace o vnitřní teplotě) 2. Hypotalamus - přední (mechanismy výdeje tepla)/zadní (tvorba a uchování tepla)",
       },
       {
@@ -4266,12 +4602,12 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:15:flashcard:7",
-        prompt: "Shrn cast: III. Termogeneze - teplo vniká metabolickou aktivitou - termogeneze obligátní (bazální metabolismus)/fakultativní (sv. třes, zvýšený metabolismus) - zdroje: svalová práce, svalový třes, metabolismus bazálních orgánů, tukové tkáně - při chladu: stresová termogeneze (svalová kontrakce vede k tvorbě tepla)/netřesová termogeneze(novorozenci, hnědá tuková tkáň)",
+        prompt: "Shrn cast: III. Termogeneze",
         answer: "III. Termogeneze - teplo vniká metabolickou aktivitou - termogeneze obligátní (bazální metabolismus)/fakultativní (sv. třes, zvýšený metabolismus) - zdroje: svalová práce, svalový třes, metabolismus bazálních orgánů, tukové tkáně - při chladu: stresová termogeneze (svalová kontrakce vede k tvorbě tepla)/netřesová termogeneze(novorozenci, hnědá tuková tkáň)",
       },
       {
         id: "ix-fyzikalni-terapie:15:flashcard:8",
-        prompt: "Shrn cast: IV. Termolýza - ztáta tepla 4 mechanizmy",
+        prompt: "Shrn cast: IV. Termolýza",
         answer: "A. kondukce - vedení (přímý přenos tepla mezi tělem a předmětem) B. konvekce - proudění (teplo odvádí proudící medium - proudící vzduch, voda) C. radiace - záření (vyzařování tepla do okolí pomocí elektromagnetického záření?? D. evaporace - odpařování",
       },
       {
@@ -4296,17 +4632,17 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:15:flashcard:13",
-        prompt: "Shrn cast: V. Reakce organizmu na chlad - vazokonstrikce, snížení průtoku krve kůží, omezení tepelných ztrát - třes, zvýšení svalový tonus, metabolická aktivita, behaviorální reakce - vyhledání teplo",
+        prompt: "Shrn cast: V. Reakce organizmu na chlad",
         answer: "V. Reakce organizmu na chlad - vazokonstrikce, snížení průtoku krve kůží, omezení tepelných ztrát - třes, zvýšení svalový tonus, metabolická aktivita, behaviorální reakce - vyhledání teplo",
       },
       {
         id: "ix-fyzikalni-terapie:15:flashcard:14",
-        prompt: "Shrn cast: VI. Reakce organizmu na teplo - vazodilatace, zvýšení průtoku krve kůží, zvýšení výdaje tepla, pocení, evaporace",
+        prompt: "Shrn cast: VI. Reakce organizmu na teplo",
         answer: "VI. Reakce organizmu na teplo - vazodilatace, zvýšení průtoku krve kůží, zvýšení výdaje tepla, pocení, evaporace",
       },
       {
         id: "ix-fyzikalni-terapie:15:flashcard:15",
-        prompt: "Shrn cast: VII. Hyperémie - zvýšení prokrvení tkáně",
+        prompt: "Shrn cast: VII. Hyperémie",
         answer: "1. aktivní hyperémie - vazodilatace arteriol a zvýšení průtoku krve vede ke zvýšení přísunu O2, živin, odvodu metabolitů, podpoře regenerace, snížení tonu - teplo využíváme před mobilizací, protahováním, cvičením, manuální terapií 2. reaktivní hyperémie - vzniká po krátkodobém přerušení nebo výrazným omezení průtoku krve 3. pasivní hyperémie - městnání - venózní kongesce, není žádoucí",
       },
       {
@@ -4326,7 +4662,7 @@ export const physicalTherapyPreparedQuestions = ({
       },
       {
         id: "ix-fyzikalni-terapie:15:flashcard:19",
-        prompt: "Shrn cast: VIII. Terapeutický význam hyperémie - zvýšení metabolismu - více krve (trofický) - odvod metabolitů - zvýšený průtok (resorbční) - reparace - lepší cirkulace - analgezie (analgetický) - snížení svalového tonu (spasmolytický)",
+        prompt: "Shrn cast: VIII. Terapeutický význam hyperémie",
         answer: "VIII. Terapeutický význam hyperémie - zvýšení metabolismu - více krve (trofický) - odvod metabolitů - zvýšený průtok (resorbční) - reparace - lepší cirkulace - analgezie (analgetický) - snížení svalového tonu (spasmolytický)",
       },
       {
