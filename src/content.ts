@@ -275,11 +275,11 @@ export const eduTopics: EduTopic[] = [
       "Ultrazvuk a rázová vlna: účinky, indikace, kontraindikace",
       "Termoterapie: účinky, indikace, kontraindikace",
       "Kryoterapie: účinky, indikace, kontraindikace",
-      "Fototerapie, rozdělení, laser. speciální indikace a kontraindikace, zásady provozu",
+      "Fototerapie, rozdělení, laser: speciální indikace, kontraindikace, zásady provozu",
       "Vysokofrekvenční terapie, speciální indikace a kontraindikace, zásady provozu",
       "Elektrostimulace inervovaného a denervovaného svalu",
       "Vodoléčba, hydrokinezioterapie, speciální indikace a kontraindikace",
-      "Pulzní magnetické pole, speciální indikace a kontraindikace,zásady provozu",
+      "Pulzní magnetické pole, speciální indikace a kontraindikace, zásady provozu",
       "Mechanoterapie (motodlaha, přetlakově-podtlaková terapie, trakce, atd.)",
       "Termoregulace, terapeutický význam hyperémie, typy hyperémie"
     ]

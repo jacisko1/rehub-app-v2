@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { eduTopics, modules } from "./content";
+import { physicalTherapyPreparedQuestions } from "./preparedFyzikalniTerapie";
 
 type InstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -90,11 +91,30 @@ const REHATUBE_VIDEOS: YouTubeVideo[] = [
 ];
 
 function hasOwnMarker(text: string): boolean {
-  return /^(\d+[\.\)]|[A-Z][\.\)]|[IVXLCDM]+\.)\s/.test(text.trim());
+  return /^(\d+[\.\)]|[A-Z]\.|[a-z]\)|[IVXLCDM]+\.)\s/.test(text.trim());
 }
 
 function normalizeQuestionPointText(text: string): string {
   return text.replace(/^([A-Z])\)\s/, "$1. ");
+}
+
+function getQuestionPointLevel(text: string): number {
+  const value = text.trim();
+  if (/^\d+[\.\)]\s/.test(value)) {
+    return 2;
+  }
+  if (/^[A-Z]\.\s/.test(value)) {
+    return 3;
+  }
+  if (/^[a-z]\)\s/.test(value)) {
+    return 4;
+  }
+  return 1;
+}
+
+function getQuestionPointClassName(point: string): string {
+  const markerClass = hasOwnMarker(point) ? "with-marker" : "with-bullet";
+  return `chapter-point ${markerClass} level-${getQuestionPointLevel(point)}`;
 }
 
 function getPreparedQuestionLabel(questionKey: string): string | null {
@@ -1942,6 +1962,8 @@ PREPARED_QUESTIONS["vii-ortopedie-a-tramatologie:1"] = {
   ]
 };
 
+Object.assign(PREPARED_QUESTIONS, physicalTherapyPreparedQuestions);
+
 const calendarEvents: CalendarEvent[] = [
   {
     title: "Neuromuskulární sonografie (Tábor)",
@@ -2455,6 +2477,18 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       text-align: left;
     }
 
+    .point-level-2 {
+      margin-left: 22px;
+    }
+
+    .point-level-3 {
+      margin-left: 44px;
+    }
+
+    .point-level-4 {
+      margin-left: 66px;
+    }
+
     .chapter {
       padding-top: 14px;
       border-top: 1px solid #d9e4e3;
@@ -2476,7 +2510,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       (chapter, chapterIndex) => `
     <section class="chapter">
       <h2>${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}</h2>
-      ${chapter.points.map((point) => `<p>${normalizeQuestionPointText(point)}</p>`).join("")}
+      ${chapter.points.map((point) => `<p class="point-level-${getQuestionPointLevel(point)}">${normalizeQuestionPointText(point)}</p>`).join("")}
     </section>
   `
     )
@@ -2615,7 +2649,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
               </h3>
               <div className="question-chapter-points">
                 {chapter.points.map((point) => (
-                  <p key={point} className={`chapter-point ${hasOwnMarker(point) ? "with-marker" : "with-bullet"}`}>
+                  <p key={point} className={getQuestionPointClassName(point)}>
                     {normalizeQuestionPointText(point)}
                   </p>
                 ))}
@@ -2839,7 +2873,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                     </summary>
                     <div className="chapter-points">
                       {chapter.points.map((point) => (
-                        <p key={point} className={`chapter-point ${hasOwnMarker(point) ? "with-marker" : "with-bullet"}`}>
+                        <p key={point} className={getQuestionPointClassName(point)}>
                           {normalizeQuestionPointText(point)}
                         </p>
                       ))}

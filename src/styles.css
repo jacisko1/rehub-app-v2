@@ -317,6 +317,18 @@ h1 {
   gap: 8px;
 }
 
+.chapter-point.level-2 {
+  margin-left: 18px;
+}
+
+.chapter-point.level-3 {
+  margin-left: 38px;
+}
+
+.chapter-point.level-4 {
+  margin-left: 58px;
+}
+
 .flashcards-head {
   display: flex;
   align-items: flex-end;
