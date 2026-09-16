@@ -48,6 +48,14 @@ type QuizQuestion = {
   explanation: string;
 };
 
+type SingleChoiceQuizQuestion = {
+  id: string;
+  prompt: string;
+  options: string[];
+  correctOptionIndex: number;
+  explanation: string;
+};
+
 type YouTubeVideo = {
   id: string;
   title: string;
@@ -195,24 +203,103 @@ function getQuestionKeyFromRoute(sectionId: string | null): string | null {
 
 function createFlashcards(questionKey: string, preparedQuestion: PreparedQuestion): Flashcard[] {
   if (preparedQuestion.flashcards?.length) {
-    return preparedQuestion.flashcards;
+    return preparedQuestion.flashcards.map((card) => ({
+      ...card,
+      prompt: fixCzechText(card.prompt),
+      answer: fixCzechText(card.answer)
+    }));
   }
 
   return preparedQuestion.chapters.flatMap((chapter, chapterIndex) =>
     chapter.points.map((point, pointIndex) => ({
       id: `${questionKey}:${chapterIndex}:${pointIndex}`,
-      prompt: `${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}`,
-      answer: point
+      prompt: fixCzechText(`${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}`),
+      answer: fixCzechText(point)
     }))
   );
 }
 
-function areOptionSetsEqual(left: number[], right: number[]): boolean {
-  if (left.length !== right.length) {
-    return false;
+const CZECH_TEXT_REPLACEMENTS: [string, string][] = [
+  ["Ăˇ", "á"],
+  ["Ă©", "é"],
+  ["Ă­", "í"],
+  ["Ăł", "ó"],
+  ["Ăş", "ú"],
+  ["ĹŻ", "ů"],
+  ["Ă˝", "ý"],
+  ["Ă", "Á"],
+  ["Ă‰", "É"],
+  ["ĂŤ", "Í"],
+  ["Ă“", "Ó"],
+  ["Ăš", "Ú"],
+  ["Ĺ®", "Ů"],
+  ["Ăť", "Ý"],
+  ["ÄŤ", "č"],
+  ["ÄŹ", "ď"],
+  ["Ä›", "ě"],
+  ["Ĺ", "ň"],
+  ["Ĺ™", "ř"],
+  ["Ĺˇ", "š"],
+  ["ĹĄ", "ť"],
+  ["Ĺľ", "ž"],
+  ["ÄŚ", "Č"],
+  ["ÄŽ", "Ď"],
+  ["Äš", "Ě"],
+  ["Ĺ‡", "Ň"],
+  ["Ĺ", "Ř"],
+  ["Ĺ ", "Š"],
+  ["Ĺ¤", "Ť"],
+  ["Ĺ˝", "Ž"],
+  ["Shrn cast:", "Shrň část:"],
+  ["Co je dulezite k bodu:", "Co je důležité k bodu:"],
+  ["Vyber tvrzeni, ktere odpovida zpracovane otazce.", "Vyber tvrzení, které odpovídá zpracované otázce."],
+  ["Fyzikalni terapii lze indikovat bez ohledu na diagnozu, kontraindikace a reakci pacienta.", "Fyzikální terapii lze indikovat bez ohledu na diagnózu, kontraindikace a reakci pacienta."],
+  ["Pri fyzikalni terapii neni nutne resit davkovani, lokalizaci, intenzitu ani stav kuze.", "Při fyzikální terapii není nutné řešit dávkování, lokalizaci, intenzitu ani stav kůže."],
+  ["Pokud zvolena procedura opakovane nema efekt, neni potreba postup prehodnotit.", "Pokud zvolená procedura opakovaně nemá efekt, není potřeba postup přehodnotit."]
+];
+
+function fixCzechText(value: string): string {
+  return CZECH_TEXT_REPLACEMENTS.reduce((text, [broken, fixed]) => text.split(broken).join(fixed), value);
+}
+
+function rotateOptions(options: string[], correctOptionIndex: number, seed: string): { options: string[]; correctOptionIndex: number } {
+  if (options.length === 0) {
+    return { options, correctOptionIndex };
   }
 
-  return left.every((value, index) => value === right[index]);
+  const offset = Array.from(seed).reduce((sum, char) => sum + char.charCodeAt(0), 0) % options.length;
+  const rotated = [...options.slice(offset), ...options.slice(0, offset)];
+  const rotatedCorrectIndex = (correctOptionIndex - offset + options.length) % options.length;
+  return { options: rotated, correctOptionIndex: rotatedCorrectIndex };
+}
+
+function toSingleChoiceQuizQuestion(question: QuizQuestion): SingleChoiceQuizQuestion {
+  const correctIndexes = question.correctOptionIndexes.filter((index) => index >= 0 && index < question.options.length);
+  const correctOption =
+    correctIndexes.length > 0
+      ? correctIndexes.map((index) => fixCzechText(question.options[index])).join(" ")
+      : "Žádná z uvedených odpovědí není správná.";
+  const incorrectOptions = question.options
+    .map((option, index) => ({ option: fixCzechText(option), index }))
+    .filter(({ index }) => !correctIndexes.includes(index))
+    .map(({ option }) => option);
+  const fallbackOptions = [
+    "Toto tvrzení neodpovídá vypracované otázce.",
+    "Tato možnost zaměňuje indikaci s kontraindikací.",
+    "Tato odpověď neodpovídá uvedenému členění."
+  ];
+  const options = [correctOption, ...incorrectOptions, ...fallbackOptions]
+    .filter((option, index, allOptions) => allOptions.indexOf(option) === index)
+    .slice(0, 4);
+  const normalized = rotateOptions(options, 0, question.id);
+
+  return {
+    id: question.id,
+    prompt: fixCzechText(question.prompt),
+    options: normalized.options,
+    correctOptionIndex: normalized.correctOptionIndex,
+    explanation: fixCzechText(question.explanation)
+  };
 }
 
 
@@ -2360,8 +2447,9 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({});
   const [revealedFlashcards, setRevealedFlashcards] = useState<Record<string, boolean>>({});
   const [activeFlashcardIndex, setActiveFlashcardIndex] = useState(0);
-  const [quizSelections, setQuizSelections] = useState<Record<string, number[]>>({});
-  const [quizSubmitted, setQuizSubmitted] = useState(false);
+  const [quizSelections, setQuizSelections] = useState<Record<string, number>>({});
+  const [quizAnswered, setQuizAnswered] = useState<Record<string, boolean>>({});
+  const [activeQuizIndex, setActiveQuizIndex] = useState(0);
   const questionRouteKey = getQuestionKeyFromRoute(sectionId);
   const activeSection =
     questionRouteKey
@@ -2383,10 +2471,14 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     () => (questionRouteKey && activeQuestionPage ? createFlashcards(questionRouteKey, activeQuestionPage) : []),
     [questionRouteKey, activeQuestionPage]
   );
-  const activeQuizQuestions = activeQuestionPage?.quizQuestions ?? [];
+  const activeQuizQuestions = useMemo(
+    () => (activeQuestionPage?.quizQuestions ?? []).map(toSingleChoiceQuizQuestion),
+    [activeQuestionPage]
+  );
+  const activeQuizQuestion = activeQuizQuestions[activeQuizIndex] ?? null;
+  const answeredQuizCount = activeQuizQuestions.filter((question) => quizAnswered[question.id]).length;
   const quizScore = activeQuizQuestions.reduce((score, question) => {
-    const selected = quizSelections[question.id] ?? [];
-    return score + (areOptionSetsEqual(selected, question.correctOptionIndexes) ? 1 : 0);
+    return score + (quizAnswered[question.id] && quizSelections[question.id] === question.correctOptionIndex ? 1 : 0);
   }, 0);
 
   useEffect(() => {
@@ -2415,7 +2507,8 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     setRevealedFlashcards({});
     setActiveFlashcardIndex(0);
     setQuizSelections({});
-    setQuizSubmitted(false);
+    setQuizAnswered({});
+    setActiveQuizIndex(0);
   }, [questionRouteKey]);
 
   const toggleChapter = (chapterKey: string) => {
@@ -2426,14 +2519,19 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     setRevealedFlashcards((prev) => ({ ...prev, [cardId]: !prev[cardId] }));
   };
 
-  const toggleQuizOption = (questionId: string, optionIndex: number) => {
-    setQuizSelections((prev) => {
-      const current = prev[questionId] ?? [];
-      const next = current.includes(optionIndex)
-        ? current.filter((value) => value !== optionIndex)
-        : [...current, optionIndex].sort((a, b) => a - b);
-      return { ...prev, [questionId]: next };
-    });
+  const answerQuizQuestion = (questionId: string, optionIndex: number) => {
+    if (quizAnswered[questionId]) {
+      return;
+    }
+
+    setQuizSelections((prev) => ({ ...prev, [questionId]: optionIndex }));
+    setQuizAnswered((prev) => ({ ...prev, [questionId]: true }));
+  };
+
+  const restartQuiz = () => {
+    setQuizSelections({});
+    setQuizAnswered({});
+    setActiveQuizIndex(0);
   };
 
   const downloadQuestionDoc = () => {
@@ -2738,70 +2836,92 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                 <div className="flashcards-head">
                   <div>
                     <p className="section-copy">
-                      {"Ka\u017ed\u00e1 ot\u00e1zka m\u00e1 4 mo\u017enosti a spr\u00e1vn\u00fdch odpov\u011bd\u00ed m\u016f\u017ee b\u00fdt 0 a\u017e 4. Test vych\u00e1z\u00ed pouze z vypracovan\u00e9ho textu."}
+                      {"Ka\u017ed\u00e1 ot\u00e1zka m\u00e1 jednu spr\u00e1vnou odpov\u011b\u010f. Po zodpov\u011bzen\u00ed se zobraz\u00ed vyhodnocen\u00ed a vysv\u011btlen\u00ed."}
                     </p>
                   </div>
                 </div>
 
-                <div className="quiz-list">
-                  {activeQuizQuestions.map((question, questionIndex) => {
-                    const selected = quizSelections[question.id] ?? [];
-                    const isCorrect = areOptionSetsEqual(selected, question.correctOptionIndexes);
+                {activeQuizQuestion && (
+                  <div className="quiz-list">
+                    {(() => {
+                      const question = activeQuizQuestion;
+                      const selected = quizSelections[question.id];
+                      const isAnswered = Boolean(quizAnswered[question.id]);
+                      const isCorrect = selected === question.correctOptionIndex;
 
-                    return (
-                      <article
-                        key={question.id}
-                        className={`quiz-card ${quizSubmitted ? (isCorrect ? "correct" : "incorrect") : ""}`.trim()}
-                      >
-                        <h3>
-                          {questionIndex + 1}. {question.prompt}
-                        </h3>
+                      return (
+                        <article
+                          key={question.id}
+                          className={`quiz-card ${isAnswered ? (isCorrect ? "correct" : "incorrect") : ""}`.trim()}
+                        >
+                          <div className="quiz-progress">
+                            {activeQuizIndex + 1} / {activeQuizQuestions.length}
+                          </div>
+                          <h3>
+                            {activeQuizIndex + 1}. {question.prompt}
+                          </h3>
 
-                        <div className="quiz-options">
-                          {question.options.map((option, optionIndex) => {
-                            const isSelected = selected.includes(optionIndex);
-                            const isCorrectOption = question.correctOptionIndexes.includes(optionIndex);
-                            const optionClassName = quizSubmitted
-                              ? `quiz-option ${isCorrectOption ? "is-correct" : isSelected ? "is-wrong" : ""}`.trim()
-                              : "quiz-option";
+                          <div className="quiz-options">
+                            {question.options.map((option, optionIndex) => {
+                              const isSelected = selected === optionIndex;
+                              const isCorrectOption = optionIndex === question.correctOptionIndex;
+                              const optionClassName = isAnswered
+                                ? `quiz-option ${isCorrectOption ? "is-correct" : isSelected ? "is-wrong" : ""}`.trim()
+                                : "quiz-option";
 
-                            return (
-                              <label key={`${question.id}:${optionIndex}`} className={optionClassName}>
-                                <input
-                                  type="checkbox"
-                                  checked={isSelected}
-                                  onChange={() => toggleQuizOption(question.id, optionIndex)}
-                                  disabled={quizSubmitted}
-                                />
-                                <span>{option}</span>
-                              </label>
-                            );
-                          })}
-                        </div>
+                              return (
+                                <label key={`${question.id}:${optionIndex}`} className={optionClassName}>
+                                  <input
+                                    type="radio"
+                                    name={question.id}
+                                    checked={isSelected}
+                                    onChange={() => answerQuizQuestion(question.id, optionIndex)}
+                                    disabled={isAnswered}
+                                  />
+                                  <span>{option}</span>
+                                </label>
+                              );
+                            })}
+                          </div>
 
-                        {quizSubmitted && (
-                          <p className="quiz-explanation">
-                            {isCorrect ? "Spr\u00e1vn\u011b." : "Nespr\u00e1vn\u011b."} {question.explanation}
-                          </p>
-                        )}
-                      </article>
-                    );
-                  })}
-                </div>
+                          {isAnswered && (
+                            <div className="quiz-explanation">
+                              <strong>{isCorrect ? "Správně." : "Nesprávně."}</strong>
+                              <span>
+                                {" Správná odpověď: "}
+                                {question.options[question.correctOptionIndex]}
+                              </span>
+                              <span>{question.explanation}</span>
+                            </div>
+                          )}
+                        </article>
+                      );
+                    })()}
+                  </div>
+                )}
 
                 <div className="quiz-actions">
-                  {quizSubmitted && (
-                    <p className="quiz-summary">
-                      {"Sk\u00f3re: "}
-                      <strong>
-                        {quizScore} / {activeQuizQuestions.length}
-                      </strong>
-                    </p>
-                  )}
+                  <p className="quiz-summary">
+                    {`Zodpovězeno: ${answeredQuizCount} / ${activeQuizQuestions.length} · Skóre: `}
+                    <strong>
+                      {quizScore} / {activeQuizQuestions.length}
+                    </strong>
+                  </p>
 
-                  <button className="btn primary" type="button" onClick={() => setQuizSubmitted(true)}>
-                    {"Vyhodnotit test"}
-                  </button>
+                  {answeredQuizCount === activeQuizQuestions.length ? (
+                    <button className="btn primary" type="button" onClick={restartQuiz}>
+                      {"Spustit znovu"}
+                    </button>
+                  ) : (
+                    <button
+                      className="btn primary"
+                      type="button"
+                      onClick={() => setActiveQuizIndex((prev) => Math.min(activeQuizQuestions.length - 1, prev + 1))}
+                      disabled={!activeQuizQuestion || !quizAnswered[activeQuizQuestion.id]}
+                    >
+                      {"Dal\u0161\u00ed ot\u00e1zka"}
+                    </button>
+                  )}
                 </div>
               </div>
             </details>

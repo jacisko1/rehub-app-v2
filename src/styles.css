@@ -474,6 +474,13 @@ h1 {
   line-height: 1.4;
 }
 
+.quiz-progress {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 .quiz-card.correct {
   border-color: rgba(47, 117, 84, 0.36);
   background: rgba(217, 242, 227, 0.42);
@@ -523,6 +530,11 @@ h1 {
   margin: 14px 0 0;
   color: var(--muted);
   line-height: 1.5;
+}
+
+.quiz-explanation span {
+  display: block;
+  margin-top: 4px;
 }
 
 .question-details {

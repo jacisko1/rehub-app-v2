@@ -15,6 +15,14 @@ function Clean-PointText {
   return (Clean-Text ($Value -replace "^-\s*", ""))
 }
 
+function U {
+  param([string]$Value)
+  return [regex]::Replace($Value, "\\u([0-9a-fA-F]{4})", {
+    param($Match)
+    return [string][char]([Convert]::ToInt32($Match.Groups[1].Value, 16))
+  })
+}
+
 function ConvertTo-TsString {
   param([string]$Value)
   return ($Value | ConvertTo-Json -Compress)
@@ -201,7 +209,7 @@ function New-Flashcards {
     }
     $cards.Add([ordered]@{
       id = "$QuestionKey`:flashcard:$index"
-      prompt = "Shrn cast: $(Get-ShortPromptTitle $chapter.title)"
+      prompt = "$(U 'Shr\u0148 \u010d\u00e1st'): $(Get-ShortPromptTitle $chapter.title)"
       answer = $chapterAnswer
     })
     $index++
@@ -212,7 +220,7 @@ function New-Flashcards {
       }
       $cards.Add([ordered]@{
         id = "$QuestionKey`:flashcard:$index"
-        prompt = "Co je dulezite k bodu: $(Get-QuestionPromptPart $point)?"
+        prompt = "$(U 'Co je d\u016fle\u017eit\u00e9 k bodu'): $(Get-QuestionPromptPart $point)?"
         answer = $point
       })
       $index++
@@ -246,12 +254,12 @@ function New-QuizQuestions {
     $answer = $items[$i]
     $questions.Add([ordered]@{
       id = "$QuestionKey`:quiz:$($i + 1)"
-      prompt = "Vyber tvrzeni, ktere odpovida zpracovane otazce."
+      prompt = U "Vyber tvrzen\u00ed, kter\u00e9 odpov\u00edd\u00e1 zpracovan\u00e9 ot\u00e1zce."
       options = @(
         $answer,
-        "Fyzikalni terapii lze indikovat bez ohledu na diagnozu, kontraindikace a reakci pacienta.",
-        "Pri fyzikalni terapii neni nutne resit davkovani, lokalizaci, intenzitu ani stav kuze.",
-        "Pokud zvolena procedura opakovane nema efekt, neni potreba postup prehodnotit."
+        (U "Fyzik\u00e1ln\u00ed terapii lze indikovat bez ohledu na diagn\u00f3zu, kontraindikace a reakci pacienta."),
+        (U "P\u0159i fyzik\u00e1ln\u00ed terapii nen\u00ed nutn\u00e9 \u0159e\u0161it d\u00e1vkov\u00e1n\u00ed, lokalizaci, intenzitu ani stav k\u016f\u017ee."),
+        (U "Pokud zvolen\u00e1 procedura opakovan\u011b nem\u00e1 efekt, nen\u00ed pot\u0159eba postup p\u0159ehodnotit.")
       )
       correctOptionIndexes = @(0)
       explanation = $answer
