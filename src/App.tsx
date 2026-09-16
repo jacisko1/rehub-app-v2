@@ -148,7 +148,7 @@ function getQuestionPointClassName(point: string, siblings?: string[], pointInde
 function renderQuestionPointDocHtml(point: string, siblings: string[], pointIndex: number): string {
   const level = getQuestionPointLevel(point, siblings, pointIndex);
   const text = normalizeQuestionPointText(point);
-  if (isBulletPoint(point)) {
+  if (isBulletPoint(point) || !hasOwnMarker(point)) {
     return `<ul class="point-list point-level-${level}"><li>${text}</li></ul>`;
   }
   return `<p class="point-level-${level}">${text}</p>`;
