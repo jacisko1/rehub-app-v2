@@ -64,6 +64,9 @@ function Get-DocxParagraphText {
 
     $text = Clean-Text (($parts.ToArray()) -join "")
     if ($text) {
+      if ($paragraphXml -match "<w:numPr>" -and $text -notmatch "^(\d+[\.\)]|[A-Z]\.|[a-z]\)|[IVXLCDM]+\.|-)\s") {
+        $text = "- $text"
+      }
       $paragraphs.Add($text)
     }
   }
@@ -105,10 +108,18 @@ function Split-ChapterHeading {
 function Get-StructuredTextParts {
   param([string]$Text)
 
-  $value = Clean-Text $Text
+  $isBullet = $Text.Trim() -match "^-\s+"
+  $value = if ($isBullet) { Clean-PointText $Text } else { Clean-Text $Text }
   $separator = "|||"
 
-  $value = [regex]::Replace($value, "\s+-\s+(proudy:|tvar impulzu:|monopolární/bipolární|Druhy TENS|léčebné účinky DD:|aplikace:|indikace:|délka aplikace:|Předpis\b)", " $separator `$1")
+  if ($isBullet) {
+    if ($value) {
+      return @("- $value")
+    }
+    return @()
+  }
+
+  $value = [regex]::Replace($value, "\s+-\s+(proudy:|tvar impulzu:|monopol\S+/bipol\S+|Druhy TENS|léčebné účinky DD:|aplikace:|indikace:|délka aplikace:|Předpis\b)", " $separator `$1")
   $value = [regex]::Replace($value, "\s+([A-Z][^\s]{2,35})\s+-\s+", " $separator `$1 - ")
   $value = [regex]::Replace($value, "\s+(Druhy TENS)\b", " $separator `$1")
 
@@ -116,41 +127,7 @@ function Get-StructuredTextParts {
   foreach ($part in ($value -split [regex]::Escape($separator))) {
     $clean = Clean-PointText $part
     if ($clean) {
-      $hyphenParts = @($clean -split "\s+-\s+")
-      if ($hyphenParts.Count -gt 2) {
-        foreach ($hyphenPart in $hyphenParts) {
-          $current = Clean-PointText $hyphenPart
-          if ($current) {
-            $parts.Add($current)
-          }
-        }
-      } elseif ($clean.Length -gt 90 -and $clean.Contains(" - ")) {
-        $buffer = ""
-        foreach ($hyphenPart in $hyphenParts) {
-          $current = Clean-PointText $hyphenPart
-          if (-not $current) {
-            continue
-          }
-
-          if (-not $buffer) {
-            $buffer = $current
-            continue
-          }
-
-          if ($buffer.Length -ge 45 -or $current -match "^[a-z0-9]") {
-            $parts.Add($buffer)
-            $buffer = $current
-          } else {
-            $buffer = "$buffer - $current"
-          }
-        }
-
-        if ($buffer) {
-          $parts.Add($buffer)
-        }
-      } else {
-        $parts.Add($clean)
-      }
+      $parts.Add($clean)
     }
   }
 

@@ -102,8 +102,12 @@ function hasOwnMarker(text: string): boolean {
   return /^(\d+[\.\)]|[A-Z]\.|[a-z]\)|[IVXLCDM]+\.)\s/.test(text.trim());
 }
 
+function isBulletPoint(text: string): boolean {
+  return /^[-•]\s+/.test(text.trim());
+}
+
 function normalizeQuestionPointText(text: string): string {
-  return text.replace(/^([A-Z])\)\s/, "$1. ");
+  return text.replace(/^[-•]\s+/, "").replace(/^([A-Z])\)\s/, "$1. ");
 }
 
 function getQuestionPointBaseLevel(text: string): number {
@@ -139,6 +143,15 @@ function getQuestionPointLevel(point: string, siblings?: string[], pointIndex?: 
 function getQuestionPointClassName(point: string, siblings?: string[], pointIndex?: number): string {
   const markerClass = hasOwnMarker(point) ? "with-marker" : "with-bullet";
   return `chapter-point ${markerClass} level-${getQuestionPointLevel(point, siblings, pointIndex)}`;
+}
+
+function renderQuestionPointDocHtml(point: string, siblings: string[], pointIndex: number): string {
+  const level = getQuestionPointLevel(point, siblings, pointIndex);
+  const text = normalizeQuestionPointText(point);
+  if (isBulletPoint(point)) {
+    return `<ul class="point-list point-level-${level}"><li>${text}</li></ul>`;
+  }
+  return `<p class="point-level-${level}">${text}</p>`;
 }
 
 function getPreparedQuestionLabel(questionKey: string): string | null {
@@ -2549,10 +2562,10 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
   <style>
     body {
       margin: 0;
-      padding: 40px 48px 56px;
+      padding: 34px 44px 46px;
       font-family: Calibri, "Segoe UI", Arial, sans-serif;
       color: #1f2a2a;
-      line-height: 1.6;
+      line-height: 1.25;
       background: #ffffff;
     }
 
@@ -2571,24 +2584,36 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     }
 
     h1 {
-      margin: 0 0 24px;
+      margin: 0 0 18px;
       font-size: 24pt;
       line-height: 1.2;
       color: #163433;
     }
 
     h2 {
-      margin: 28px 0 12px;
+      margin: 18px 0 7px;
       font-size: 15pt;
-      line-height: 1.3;
+      line-height: 1.2;
       color: #163433;
       page-break-after: avoid;
     }
 
     p {
-      margin: 0 0 10px;
+      margin: 0 0 4px;
       font-size: 11.5pt;
       text-align: left;
+    }
+
+    ul {
+      margin-top: 0;
+      margin-bottom: 4px;
+      padding-left: 18px;
+      font-size: 11.5pt;
+    }
+
+    li {
+      margin: 0 0 2px;
+      line-height: 1.25;
     }
 
     .point-level-1 {
@@ -2607,8 +2632,24 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       margin-left: 72px;
     }
 
+    .point-list.point-level-1 {
+      margin-left: 14px;
+    }
+
+    .point-list.point-level-2 {
+      margin-left: 28px;
+    }
+
+    .point-list.point-level-3 {
+      margin-left: 50px;
+    }
+
+    .point-list.point-level-4 {
+      margin-left: 72px;
+    }
+
     .chapter {
-      padding-top: 14px;
+      padding-top: 9px;
       border-top: 1px solid #d9e4e3;
       page-break-inside: avoid;
     }
@@ -2628,7 +2669,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
       (chapter, chapterIndex) => `
     <section class="chapter">
       <h2>${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}</h2>
-        ${chapter.points.map((point, pointIndex) => `<p class="point-level-${getQuestionPointLevel(point, chapter.points, pointIndex)}">${normalizeQuestionPointText(point)}</p>`).join("")}
+        ${chapter.points.map((point, pointIndex) => renderQuestionPointDocHtml(point, chapter.points, pointIndex)).join("")}
     </section>
   `
     )
