@@ -119,6 +119,32 @@ function Get-StructuredTextParts {
     return @()
   }
 
+  $numberedDetailMatch = [regex]::Match($value, "^(?<head>\d+[\.\)]\s+.+?)\s+-\s+(?<tail>.+)$")
+  if ($numberedDetailMatch.Success) {
+    $splitParts = @($numberedDetailMatch.Groups["tail"].Value -split "\s+-\s+")
+    if ($splitParts.Count -ge 2) {
+      $numberedParts = New-Object System.Collections.Generic.List[string]
+      $numberedParts.Add((Clean-Text $numberedDetailMatch.Groups["head"].Value))
+      foreach ($splitPart in $splitParts) {
+        $cleanSplitPart = Clean-PointText $splitPart
+        if ($cleanSplitPart) {
+          $cleanSplitPart = [regex]::Replace($cleanSplitPart, "\s+(Druhy TENS)\b", "|||`$1")
+          foreach ($detailPart in ($cleanSplitPart -split [regex]::Escape("|||"))) {
+            $cleanDetailPart = Clean-PointText $detailPart
+            if ($cleanDetailPart) {
+              if ($cleanDetailPart -eq "Druhy TENS") {
+                $numberedParts.Add($cleanDetailPart)
+              } else {
+                $numberedParts.Add("- $cleanDetailPart")
+              }
+            }
+          }
+        }
+      }
+      return @($numberedParts.ToArray())
+    }
+  }
+
   $value = [regex]::Replace($value, "\s+-\s+(proudy:|tvar impulzu:|monopol\S+/bipol\S+|Druhy TENS|léčebné účinky DD:|aplikace:|indikace:|délka aplikace:|Předpis\b)", " $separator `$1")
   $value = [regex]::Replace($value, "\s+([A-Z][^\s]{2,35})\s+-\s+", " $separator `$1 - ")
   $value = [regex]::Replace($value, "\s+(Druhy TENS)\b", " $separator `$1")
