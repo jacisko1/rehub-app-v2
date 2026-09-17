@@ -23,9 +23,16 @@ type CalendarEvent = {
   isCzech: boolean;
 };
 
+type QuestionPoint =
+  | string
+  | {
+      text: string;
+      level?: number;
+    };
+
 type QuestionChapter = {
   title: string;
-  points: string[];
+  points: QuestionPoint[];
 };
 
 type PreparedQuestion = {
@@ -62,6 +69,11 @@ type YouTubeVideo = {
   url: string;
 };
 
+type YouTubeSection = {
+  title: string;
+  videos: YouTubeVideo[];
+};
+
 type InstagramPost = {
   url: string;
   title: string;
@@ -85,33 +97,72 @@ const REHAGRAM_POSTS: InstagramPost[] = [
     title: "Instagram příspěvek 3"
   }
 ];
-const REHATUBE_VIDEOS: YouTubeVideo[] = [
+const REHATUBE_SECTIONS: YouTubeSection[] = [
   {
-    id: "uQbd3mzGMVc",
-    title: "RehaTube video 1",
-    url: "https://youtu.be/uQbd3mzGMVc?si=hEHm45xCaRMJnDLX"
+    title: "Reportáže ze sjezdů",
+    videos: [
+      {
+        id: "uQbd3mzGMVc",
+        title: "Sjezd SRFM Luhačovice 2026",
+        url: "https://youtu.be/uQbd3mzGMVc"
+      }
+    ]
   },
   {
-    id: "TUeMnBy80IM",
-    title: "RehaTube video 2",
-    url: "https://youtu.be/TUeMnBy80IM?si=BSX6RbI_JYYyRh2a"
+    title: "Odborné přednášky - SRFM Luhačovice 2026",
+    videos: [
+      {
+        id: "wc_4sDB4IQU",
+        title: "Doc. MUDr. Ladislav Kočan, Ph.D., FIPP: Intervenční algeziologie",
+        url: "https://youtu.be/wc_4sDB4IQU"
+      },
+      {
+        id: "Nr8CjC8PTis",
+        title: "Doc. MUDr. Tereza Serranová, Ph.D.: Funkční poruchy hybnosti",
+        url: "https://youtu.be/Nr8CjC8PTis"
+      },
+      {
+        id: "dvjQ7d5YA9g",
+        title: "Bernhard Taxer, MSc, Ph.D., OMT: Facial pain, Headache and Neurodynamics",
+        url: "https://youtu.be/dvjQ7d5YA9g"
+      },
+      {
+        id: "jL-c_PbHspQ",
+        title: "Mgr. Filip Jevič, Ph.D.: RehaSÍŤ dětské onkologie",
+        url: "https://youtu.be/jL-c_PbHspQ"
+      },
+      {
+        id: "TUeMnBy80IM",
+        title: "Dr. Rebecca E. Giusti, DO: Thoracic outlet syndrome",
+        url: "https://youtu.be/TUeMnBy80IM"
+      }
+    ]
   }
 ];
 
-function hasOwnMarker(text: string): boolean {
-  return /^(\d+[\.\)]|[A-Z]\.|[a-z]\)|[IVXLCDM]+\.)\s/.test(text.trim());
+function getQuestionPointText(point: QuestionPoint): string {
+  return typeof point === "string" ? point : point.text;
 }
 
-function isBulletPoint(text: string): boolean {
-  return /^[-•]\s+/.test(text.trim());
+function hasOwnMarker(point: QuestionPoint): boolean {
+  return /^(\d+[\.\)]|[A-Z]\.|[a-z]\)|[IVXLCDM]+\.)\s/.test(getQuestionPointText(point).trim());
 }
 
-function normalizeQuestionPointText(text: string): string {
+function isBulletPoint(point: QuestionPoint): boolean {
+  return /^[-•]\s+/.test(getQuestionPointText(point).trim());
+}
+
+function normalizeQuestionPointText(point: QuestionPoint): string {
+  const text = getQuestionPointText(point);
   return text.replace(/^[-•]\s+/, "").replace(/^([A-Z])\)\s/, "$1. ");
 }
 
-function getQuestionPointBaseLevel(text: string): number {
-  const value = text.trim();
+function getQuestionPointBaseLevel(point: QuestionPoint): number {
+  if (typeof point !== "string" && point.level) {
+    return point.level;
+  }
+
+  const value = getQuestionPointText(point).trim();
   if (/^\d+[\.\)]\s/.test(value)) {
     return 2;
   }
@@ -124,9 +175,9 @@ function getQuestionPointBaseLevel(text: string): number {
   return 1;
 }
 
-function getQuestionPointLevel(point: string, siblings?: string[], pointIndex?: number): number {
+function getQuestionPointLevel(point: QuestionPoint, siblings?: QuestionPoint[], pointIndex?: number): number {
   const baseLevel = getQuestionPointBaseLevel(point);
-  if (baseLevel > 1 || !siblings || pointIndex === undefined) {
+  if (typeof point !== "string" || baseLevel > 1 || !siblings || pointIndex === undefined) {
     return baseLevel;
   }
 
@@ -140,12 +191,12 @@ function getQuestionPointLevel(point: string, siblings?: string[], pointIndex?: 
   return 1;
 }
 
-function getQuestionPointClassName(point: string, siblings?: string[], pointIndex?: number): string {
+function getQuestionPointClassName(point: QuestionPoint, siblings?: QuestionPoint[], pointIndex?: number): string {
   const markerClass = hasOwnMarker(point) ? "with-marker" : "with-bullet";
   return `chapter-point ${markerClass} level-${getQuestionPointLevel(point, siblings, pointIndex)}`;
 }
 
-function renderQuestionPointDocHtml(point: string, siblings: string[], pointIndex: number): string {
+function renderQuestionPointDocHtml(point: QuestionPoint, siblings: QuestionPoint[], pointIndex: number): string {
   const level = getQuestionPointLevel(point, siblings, pointIndex);
   const text = normalizeQuestionPointText(point);
   if (isBulletPoint(point) || !hasOwnMarker(point)) {
@@ -181,6 +232,10 @@ function getPreparedQuestionDocumentName(questionKey: string): string | null {
     return null;
   }
 
+  if (topicId === "ix-fyzikalni-terapie") {
+    return `ix-fyzikalni-terapie-${questionIndex + 1}.docx`;
+  }
+
   const categoryLabel = topic.heading.replace(/\.$/, "").trim();
   const questionLabel = topic.questions[questionIndex] ?? "";
   const filename = [categoryLabel, `${questionIndex + 1}`, questionLabel]
@@ -189,6 +244,16 @@ function getPreparedQuestionDocumentName(questionKey: string): string | null {
     .join("_");
 
   return filename ? `${filename}.doc` : null;
+}
+
+function getPreparedQuestionDocumentUrl(questionKey: string): string | null {
+  const [topicId] = questionKey.split(":");
+  const documentName = getPreparedQuestionDocumentName(questionKey);
+  if (topicId !== "ix-fyzikalni-terapie" || !documentName) {
+    return null;
+  }
+
+  return `/atestacni-otazky/${documentName}`;
 }
 
 function getPreparedQuestionRoute(topicId: string, questionIndex: number): string {
@@ -227,7 +292,7 @@ function createFlashcards(questionKey: string, preparedQuestion: PreparedQuestio
     chapter.points.map((point, pointIndex) => ({
       id: `${questionKey}:${chapterIndex}:${pointIndex}`,
       prompt: fixCzechText(`${ROMAN_CHAPTERS[chapterIndex] ?? chapterIndex + 1}. ${chapter.title}`),
-      answer: fixCzechText(point)
+      answer: fixCzechText(normalizeQuestionPointText(point))
     }))
   );
 }
@@ -2307,20 +2372,31 @@ function ModulePage({ slug, sectionId }: { slug: string; sectionId: string | nul
             <span className="channel-cta">Otevřít kanál</span>
           </a>
 
-          <div className="video-grid">
-            {REHATUBE_VIDEOS.map((video) => (
-              <article key={video.id} className="video-card">
-                <div className="video-embed">
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${video.id}`}
-                    title={video.title}
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
+          <div className="video-sections">
+            {REHATUBE_SECTIONS.map((section) => (
+              <section key={section.title} className="video-section" aria-labelledby={`video-section-${section.videos[0].id}`}>
+                <h2 id={`video-section-${section.videos[0].id}`}>{section.title}</h2>
+                <div className="video-grid">
+                  {section.videos.map((video) => (
+                    <article key={video.id} className="video-card">
+                      <div className="video-embed">
+                        <iframe
+                          src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+                          title={video.title}
+                          loading="lazy"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                        />
+                      </div>
+                      <h3>{video.title}</h3>
+                      <a className="video-link" href={video.url} target="_blank" rel="noreferrer">
+                        Otevřít na YouTube
+                      </a>
+                    </article>
+                  ))}
                 </div>
-              </article>
+              </section>
             ))}
           </div>
         </section>
@@ -2553,6 +2629,17 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
     }
 
     const documentName = getPreparedQuestionDocumentName(questionRouteKey) ?? `${questionRouteKey.replace(/[:/]/g, "-")}.doc`;
+    const documentUrl = getPreparedQuestionDocumentUrl(questionRouteKey);
+
+    if (documentUrl) {
+      const link = document.createElement("a");
+      link.href = documentUrl;
+      link.download = documentName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      return;
+    }
 
     const html = `<!DOCTYPE html>
 <html lang="cs">
@@ -2807,7 +2894,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
               </h3>
               <div className="question-chapter-points">
                 {chapter.points.map((point, pointIndex) => (
-                  <p key={point} className={getQuestionPointClassName(point, chapter.points, pointIndex)}>
+                  <p key={`${pointIndex}:${getQuestionPointText(point)}`} className={getQuestionPointClassName(point, chapter.points, pointIndex)}>
                     {normalizeQuestionPointText(point)}
                   </p>
                 ))}
@@ -3053,7 +3140,7 @@ function RehaEduPage({ sectionId }: { sectionId: string | null }) {
                     </summary>
                     <div className="chapter-points">
                       {chapter.points.map((point, pointIndex) => (
-                        <p key={point} className={getQuestionPointClassName(point, chapter.points, pointIndex)}>
+                        <p key={`${pointIndex}:${getQuestionPointText(point)}`} className={getQuestionPointClassName(point, chapter.points, pointIndex)}>
                           {normalizeQuestionPointText(point)}
                         </p>
                       ))}
